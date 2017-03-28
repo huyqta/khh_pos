@@ -75,11 +75,38 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListForms\ucListProduct.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListForms\ucListProduct.Designer.cs">
+      <DependentUpon>ucListProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListForms\ucListCategory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ListForms\ucListCategory.Designer.cs">
+      <DependentUpon>ucListCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="ObservableListSource.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListForms\ucListProduct.resx">
+      <DependentUpon>ucListProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListForms\ucListCategory.resx">
+      <DependentUpon>ucListCategory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
