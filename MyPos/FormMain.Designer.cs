@@ -49,11 +49,12 @@
             this.barButtonCategory,
             this.barButtonProduct});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
+            this.ribbon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ribbon.MaxItemId = 3;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPageList});
-            this.ribbon.Size = new System.Drawing.Size(1785, 258);
+            this.ribbon.Size = new System.Drawing.Size(892, 143);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // barButtonCategory
@@ -64,7 +65,7 @@
             this.barButtonCategory.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonCategory.LargeGlyph")));
             this.barButtonCategory.Name = "barButtonCategory";
             this.barButtonCategory.Tag = 'c';
-            this.barButtonCategory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButton_ItemClick);
+            this.barButtonCategory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonCategory_ItemClick);
             // 
             // barButtonProduct
             // 
@@ -74,7 +75,7 @@
             this.barButtonProduct.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonProduct.LargeGlyph")));
             this.barButtonProduct.Name = "barButtonProduct";
             this.barButtonProduct.Tag = 'p';
-            this.barButtonProduct.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButton_ItemClick);
+            this.barButtonProduct.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonProduct_ItemClick);
             // 
             // ribbonPageList
             // 
@@ -92,10 +93,11 @@
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 1150);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 530);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1785, 55);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(892, 31);
             // 
             // xtraTabbedMdiManager1
             // 
@@ -103,12 +105,13 @@
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1785, 1205);
+            this.ClientSize = new System.Drawing.Size(892, 561);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormMain";
             this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;

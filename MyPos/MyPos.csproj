@@ -92,6 +92,18 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListForms\frmListProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListForms\frmListProduct.Designer.cs">
+      <DependentUpon>frmListProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListForms\frmListCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListForms\frmListCategory.Designer.cs">
+      <DependentUpon>frmListCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListForms\ucListProduct.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -115,6 +127,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListForms\frmListProduct.resx">
+      <DependentUpon>frmListProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListForms\frmListCategory.resx">
+      <DependentUpon>frmListCategory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListForms\ucListProduct.resx">
       <DependentUpon>ucListProduct.cs</DependentUpon>
