@@ -48,5 +48,12 @@ namespace MyPos
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void barButtonOrderItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            FunctionalForms.frmSaleForm frm = new FunctionalForms.frmSaleForm();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

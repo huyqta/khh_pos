@@ -23,8 +23,8 @@ namespace MyPos
         private void button1_Click(object sender, EventArgs e)
         {
             Category cat = new Category();
-            cat = model.Categories.Where(c => c.CategoryId == 2).FirstOrDefault();
-            model.Products.Add(new Product() { Name = "TEST 5", CategoryId = 2, Category = cat });
+            cat = model.Categories.Where(c => c.Id == 2).FirstOrDefault();
+            model.Products.Add(new Product() { Name = "TEST 5", CategoryId = 2 });
             model.SaveChanges();
             dataGridView1.DataSource = model.Products.ToList();
         }

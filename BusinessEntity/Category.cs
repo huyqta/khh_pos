@@ -14,7 +14,7 @@ namespace BusinessEntity
             Products = new HashSet<Product>();
         }
 
-        public int CategoryId { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 

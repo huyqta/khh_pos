@@ -12,30 +12,30 @@ using BusinessEntity;
 
 namespace MyPos.ListForms
 {
-    public partial class frmListCategory : DevExpress.XtraEditors.XtraForm
+    public partial class frmListUnit : DevExpress.XtraEditors.XtraForm
     {
         ProductModel model = new ProductModel();
 
-        public frmListCategory()
+        public frmListUnit()
         {
             InitializeComponent();
-            //gcCategory.DataSource = model.Categories.ToList();
+            gcList.DataSource = model.Categories.ToList();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             model.SaveChanges();
-            gcCategory.DataSource = model.Categories.ToList();
+            gcList.DataSource = model.Categories.ToList();
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             model.Categories.Add(new Category() { });
             model.SaveChanges();
-            gcCategory.DataSource = model.Categories.ToList();
+            gcList.DataSource = model.Categories.ToList();
         }
 
-        private void gcCategory_KeyDown(object sender, KeyEventArgs e)
+        private void gvList_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.N)
             {
@@ -44,10 +44,11 @@ namespace MyPos.ListForms
             if (e.Control && e.KeyCode == Keys.S)
             {
                 btnSave_Click(null, null);
+                MessageBox.Show("Đã lưu thành công!");
             }
         }
 
-        private void gvCategory_KeyDown(object sender, KeyEventArgs e)
+        private void gcList_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.N)
             {
@@ -56,14 +57,8 @@ namespace MyPos.ListForms
             if (e.Control && e.KeyCode == Keys.S)
             {
                 btnSave_Click(null, null);
+                MessageBox.Show("Đã lưu thành công!");
             }
-        }
-
-        private void frmListCategory_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'khh_posDataSet.Categories' table. You can move, or remove it, as needed.
-            this.categoriesTableAdapter.Fill(this.khh_posDataSet.Categories);
-
         }
     }
 }

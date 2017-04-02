@@ -49,8 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Unit.cs" />
+    <Compile Include="Order.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="ObservableListSource.cs" />
+    <Compile Include="OrderDetail.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductContext.cs" />
     <Compile Include="ProductModel.cs" />
