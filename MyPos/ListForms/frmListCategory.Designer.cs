@@ -30,19 +30,19 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gcCategory = new DevExpress.XtraGrid.GridControl();
+            this.categoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.khhposDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.khh_posDataSet = new MyPos.khh_posDataSet();
             this.gvCategory = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ImageUrl = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Description = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.categoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.categoriesTableAdapter = new MyPos.khh_posDataSetTableAdapters.CategoriesTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.gcCategory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khhposDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCategory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // gcCategory
@@ -59,6 +59,11 @@
             this.gcCategory.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCategory});
             this.gcCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gcCategory_KeyDown);
+            // 
+            // categoriesBindingSource
+            // 
+            this.categoriesBindingSource.DataMember = "Categories";
+            this.categoriesBindingSource.DataSource = this.khhposDataSetBindingSource;
             // 
             // khhposDataSetBindingSource
             // 
@@ -78,6 +83,8 @@
             this.Description});
             this.gvCategory.GridControl = this.gcCategory;
             this.gvCategory.Name = "gvCategory";
+            this.gvCategory.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplace;
+            this.gvCategory.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.gvCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gvCategory_KeyDown);
             // 
             // Name
@@ -104,11 +111,6 @@
             this.Description.Visible = true;
             this.Description.VisibleIndex = 2;
             // 
-            // categoriesBindingSource
-            // 
-            this.categoriesBindingSource.DataMember = "Categories";
-            this.categoriesBindingSource.DataSource = this.khhposDataSetBindingSource;
-            // 
             // categoriesTableAdapter
             // 
             this.categoriesTableAdapter.ClearBeforeFill = true;
@@ -125,10 +127,10 @@
             this.Text = "Nhóm hàng";
             this.Load += new System.EventHandler(this.frmListCategory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcCategory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khhposDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCategory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
