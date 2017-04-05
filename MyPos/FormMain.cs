@@ -17,6 +17,9 @@ namespace MyPos
         {
             InitializeComponent();
             xtraTabbedMdiManager1.MdiParent = this;
+            FunctionalForms.frmSaleForm frm = new FunctionalForms.frmSaleForm();
+            frm.MdiParent = this;
+            frm.Show();
         }
 
         private void barButton_ItemClick(object sender, ItemClickEventArgs e)

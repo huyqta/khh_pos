@@ -34,13 +34,13 @@
             this.barButtonCategory = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonProduct = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonOrderItem = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonUnit = new DevExpress.XtraBars.BarButtonItem();
+            this.barStaticStatus = new DevExpress.XtraBars.BarStaticItem();
             this.ribbonPageList = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupList = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.barButtonUnit = new DevExpress.XtraBars.BarButtonItem();
-            this.barStaticStatus = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -56,12 +56,12 @@
             this.barButtonUnit,
             this.barStaticStatus});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ribbon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ribbon.MaxItemId = 6;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPageList});
-            this.ribbon.Size = new System.Drawing.Size(892, 143);
+            this.ribbon.Size = new System.Drawing.Size(1784, 258);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // barButtonCategory
@@ -95,6 +95,22 @@
             this.barButtonOrderItem.Name = "barButtonOrderItem";
             this.barButtonOrderItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonOrderItem_ItemClick);
             // 
+            // barButtonUnit
+            // 
+            this.barButtonUnit.Caption = "Đơn vị tính";
+            this.barButtonUnit.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonUnit.Glyph")));
+            this.barButtonUnit.Id = 4;
+            this.barButtonUnit.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonUnit.LargeGlyph")));
+            this.barButtonUnit.Name = "barButtonUnit";
+            this.barButtonUnit.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonUnit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonUnit_ItemClick);
+            // 
+            // barStaticStatus
+            // 
+            this.barStaticStatus.Id = 5;
+            this.barStaticStatus.Name = "barStaticStatus";
+            this.barStaticStatus.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
             // ribbonPageList
             // 
             this.ribbonPageList.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -120,45 +136,30 @@
             // ribbonStatusBar
             // 
             this.ribbonStatusBar.ItemLinks.Add(this.barStaticStatus);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 530);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 1024);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(892, 31);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1784, 55);
             // 
             // xtraTabbedMdiManager1
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
             // 
-            // barButtonUnit
-            // 
-            this.barButtonUnit.Caption = "Đơn vị tính";
-            this.barButtonUnit.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonUnit.Glyph")));
-            this.barButtonUnit.Id = 4;
-            this.barButtonUnit.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonUnit.LargeGlyph")));
-            this.barButtonUnit.Name = "barButtonUnit";
-            this.barButtonUnit.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.barButtonUnit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonUnit_ItemClick);
-            // 
-            // barStaticStatus
-            // 
-            this.barStaticStatus.Id = 5;
-            this.barStaticStatus.Name = "barStaticStatus";
-            this.barStaticStatus.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 561);
+            this.ClientSize = new System.Drawing.Size(1784, 1079);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormMain";
             this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "KHH POS";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
             this.ResumeLayout(false);
