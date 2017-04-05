@@ -55,5 +55,12 @@ namespace MyPos
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void barButtonUnit_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ListForms.frmListUnit frm = new ListForms.frmListUnit();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

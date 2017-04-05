@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using BusinessEntity;
+using MyPos.Helper;
+using System.Data.Common;
 
 namespace MyPos.ListForms
 {
@@ -37,25 +39,9 @@ namespace MyPos.ListForms
 
         private void gcCategory_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyCode == Keys.N)
-            {
-                btnAddNew_Click(null, null);
-            }
             if (e.Control && e.KeyCode == Keys.S)
             {
-                btnSave_Click(null, null);
-            }
-        }
-
-        private void gvCategory_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode == Keys.N)
-            {
-                btnAddNew_Click(null, null);
-            }
-            if (e.Control && e.KeyCode == Keys.S)
-            {
-                btnSave_Click(null, null);
+                DbHelper.UpdateDatasource(gcCategory, categoriesTableAdapter.Adapter, khh_posDataSet.Tables["Categories"]);
             }
         }
 
@@ -63,7 +49,8 @@ namespace MyPos.ListForms
         {
             // TODO: This line of code loads data into the 'khh_posDataSet.Categories' table. You can move, or remove it, as needed.
             this.categoriesTableAdapter.Fill(this.khh_posDataSet.Categories);
-
         }
+
+
     }
 }

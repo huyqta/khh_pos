@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using BusinessEntity;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
+using MyPos.Helper;
 
 namespace MyPos.ListForms
 {
@@ -30,6 +31,14 @@ namespace MyPos.ListForms
             lkuCategoryGrid.DisplayMember = "Name";
             lkuCategoryGrid.ValueMember = "Id";
             lkuCategoryGrid.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
+        }
+
+        private void gcList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                DbHelper.UpdateDatasource(gcList, productsTableAdapter.Adapter, khh_posDataSet.Tables["Products"]);
+            }
         }
 
         private void gcList_ProcessGridKey(object sender, KeyEventArgs e)

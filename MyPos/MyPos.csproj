@@ -102,10 +102,16 @@
     <Compile Include="FunctionalForms\frmSaleForm.Designer.cs">
       <DependentUpon>frmSaleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\DbHelper.cs" />
     <Compile Include="khh_posDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>khh_posDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="khh_posDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>khh_posDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="ListForms\frmListUnit.cs">
       <SubType>Form</SubType>
@@ -187,6 +193,17 @@
     </None>
     <None Include="khh_posDataSet.xss">
       <DependentUpon>khh_posDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="khh_posDataSet1.xsc">
+      <DependentUpon>khh_posDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="khh_posDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>khh_posDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="khh_posDataSet1.xss">
+      <DependentUpon>khh_posDataSet1.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Product.datasource" />

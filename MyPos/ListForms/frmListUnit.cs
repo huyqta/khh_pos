@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using BusinessEntity;
+using MyPos.Helper;
 
 namespace MyPos.ListForms
 {
@@ -19,46 +20,21 @@ namespace MyPos.ListForms
         public frmListUnit()
         {
             InitializeComponent();
-            gcList.DataSource = model.Categories.ToList();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            model.SaveChanges();
-            gcList.DataSource = model.Categories.ToList();
-        }
-
-        private void btnAddNew_Click(object sender, EventArgs e)
-        {
-            model.Categories.Add(new Category() { });
-            model.SaveChanges();
-            gcList.DataSource = model.Categories.ToList();
-        }
-
-        private void gvList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode == Keys.N)
-            {
-                btnAddNew_Click(null, null);
-            }
-            if (e.Control && e.KeyCode == Keys.S)
-            {
-                btnSave_Click(null, null);
-                MessageBox.Show("Đã lưu thành công!");
-            }
         }
 
         private void gcList_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.KeyCode == Keys.N)
-            {
-                btnAddNew_Click(null, null);
-            }
             if (e.Control && e.KeyCode == Keys.S)
             {
-                btnSave_Click(null, null);
-                MessageBox.Show("Đã lưu thành công!");
+                DbHelper.UpdateDatasource(gcList, unitsTableAdapter.Adapter, khh_posDataSet.Tables["Units"]);
             }
+        }
+
+        private void frmListUnit_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'khh_posDataSet.Units' table. You can move, or remove it, as needed.
+            this.unitsTableAdapter.Fill(this.khh_posDataSet.Units);
+
         }
     }
 }

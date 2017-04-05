@@ -57,17 +57,20 @@
             this.gcList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcList.EmbeddedNavigator.Appearance.Font = new System.Drawing.Font("Tahoma", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gcList.EmbeddedNavigator.Appearance.Options.UseFont = true;
+            this.gcList.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
             this.gcList.Location = new System.Drawing.Point(0, 0);
             this.gcList.MainView = this.gvList;
+            this.gcList.Margin = new System.Windows.Forms.Padding(2);
             this.gcList.Name = "gcList";
             this.gcList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.lkuCategoryGrid});
-            this.gcList.Size = new System.Drawing.Size(1434, 869);
+            this.gcList.Size = new System.Drawing.Size(717, 452);
             this.gcList.TabIndex = 5;
             this.gcList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvList});
             this.gcList.ProcessGridKey += new System.Windows.Forms.KeyEventHandler(this.gcList_ProcessGridKey);
+            this.gcList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gcList_KeyDown);
             // 
             // productsBindingSource
             // 
@@ -161,11 +164,12 @@
             // 
             // lkuCategory
             // 
-            this.lkuCategory.Location = new System.Drawing.Point(187, 629);
+            this.lkuCategory.Location = new System.Drawing.Point(94, 327);
+            this.lkuCategory.Margin = new System.Windows.Forms.Padding(2);
             this.lkuCategory.Name = "lkuCategory";
             this.lkuCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lkuCategory.Size = new System.Drawing.Size(356, 34);
+            this.lkuCategory.Size = new System.Drawing.Size(178, 20);
             this.lkuCategory.TabIndex = 6;
             this.lkuCategory.Visible = false;
             // 
@@ -175,15 +179,14 @@
             // 
             // frmListProduct
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1434, 869);
+            this.ClientSize = new System.Drawing.Size(717, 452);
             this.Controls.Add(this.lkuCategory);
             this.Controls.Add(this.gcList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(6);
             //this.Name = "frmListProduct";
-            this.Text = "Nhóm hàng";
+            this.Text = "Đơn vị tính";
             this.Load += new System.EventHandler(this.frmListProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
