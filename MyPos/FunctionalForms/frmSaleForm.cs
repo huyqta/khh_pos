@@ -25,6 +25,8 @@ namespace MyPos.FunctionalForms
 
         private void frmSaleForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'khh_posDataSet.Categories' table. You can move, or remove it, as needed.
+            this.categoriesTableAdapter.Fill(this.khh_posDataSet.Categories);
             LoadOrders(DateTime.Now);
             SetDataForTest();
         }
