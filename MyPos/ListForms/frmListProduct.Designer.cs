@@ -35,20 +35,29 @@
             this.gvList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CategoryId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.lkuCategoryGrid = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemLookUp_Category = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.UnitId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUp_Unit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.ImageUrl = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DefaultPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Description = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.lkuCategory = new DevExpress.XtraEditors.LookUpEdit();
+            this.lkuCategoryGrid = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.productsTableAdapter = new MyPos.khh_posDataSetTableAdapters.ProductsTableAdapter();
+            this.categoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.categoriesTableAdapter = new MyPos.khh_posDataSetTableAdapters.CategoriesTableAdapter();
+            this.unitsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.unitsTableAdapter = new MyPos.khh_posDataSetTableAdapters.UnitsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkuCategoryGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUp_Category)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUp_Unit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkuCategory.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkuCategoryGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.unitsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // gcList
@@ -64,7 +73,9 @@
             this.gcList.Name = "gcList";
             this.gcList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
-            this.lkuCategoryGrid});
+            this.lkuCategoryGrid,
+            this.repositoryItemLookUp_Unit,
+            this.repositoryItemLookUp_Category});
             this.gcList.Size = new System.Drawing.Size(717, 452);
             this.gcList.TabIndex = 5;
             this.gcList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -87,6 +98,7 @@
             this.gvList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Name,
             this.CategoryId,
+            this.UnitId,
             this.ImageUrl,
             this.DefaultPrice,
             this.Description});
@@ -111,11 +123,72 @@
             // CategoryId
             // 
             this.CategoryId.Caption = "Nhóm hàng";
-            this.CategoryId.ColumnEdit = this.lkuCategoryGrid;
+            this.CategoryId.ColumnEdit = this.repositoryItemLookUp_Category;
             this.CategoryId.FieldName = "CategoryId";
             this.CategoryId.Name = "CategoryId";
             this.CategoryId.Visible = true;
-            this.CategoryId.VisibleIndex = 1;
+            this.CategoryId.VisibleIndex = 2;
+            // 
+            // repositoryItemLookUp_Category
+            // 
+            this.repositoryItemLookUp_Category.AutoHeight = false;
+            this.repositoryItemLookUp_Category.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUp_Category.DataSource = this.categoriesBindingSource;
+            this.repositoryItemLookUp_Category.DisplayMember = "Name";
+            this.repositoryItemLookUp_Category.Name = "repositoryItemLookUp_Category";
+            this.repositoryItemLookUp_Category.ValueMember = "Id";
+            // 
+            // UnitId
+            // 
+            this.UnitId.Caption = "Đơn vị tính";
+            this.UnitId.ColumnEdit = this.repositoryItemLookUp_Unit;
+            this.UnitId.FieldName = "UnitId";
+            this.UnitId.Name = "UnitId";
+            this.UnitId.Visible = true;
+            this.UnitId.VisibleIndex = 1;
+            // 
+            // repositoryItemLookUp_Unit
+            // 
+            this.repositoryItemLookUp_Unit.AutoHeight = false;
+            this.repositoryItemLookUp_Unit.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUp_Unit.DataSource = this.unitsBindingSource;
+            this.repositoryItemLookUp_Unit.DisplayMember = "Name";
+            this.repositoryItemLookUp_Unit.Name = "repositoryItemLookUp_Unit";
+            this.repositoryItemLookUp_Unit.ValueMember = "Id";
+            // 
+            // ImageUrl
+            // 
+            this.ImageUrl.Caption = "Liên kết ảnh";
+            this.ImageUrl.FieldName = "ImageUrl";
+            this.ImageUrl.Name = "ImageUrl";
+            this.ImageUrl.Visible = true;
+            this.ImageUrl.VisibleIndex = 3;
+            // 
+            // DefaultPrice
+            // 
+            this.DefaultPrice.Caption = "Giá bán";
+            this.DefaultPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.DefaultPrice.FieldName = "DefaultPrice";
+            this.DefaultPrice.Name = "DefaultPrice";
+            this.DefaultPrice.Visible = true;
+            this.DefaultPrice.VisibleIndex = 4;
+            // 
+            // Description
+            // 
+            this.Description.Caption = "Mô tả";
+            this.Description.FieldName = "Description";
+            this.Description.Name = "Description";
+            this.Description.Visible = true;
+            this.Description.VisibleIndex = 5;
+            // 
+            // repositoryItemLookUpEdit1
+            // 
+            this.repositoryItemLookUpEdit1.AutoHeight = false;
+            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
             // 
             // lkuCategoryGrid
             // 
@@ -130,71 +203,48 @@
             this.lkuCategoryGrid.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoComplete;
             this.lkuCategoryGrid.ValueMember = "Id";
             // 
-            // ImageUrl
-            // 
-            this.ImageUrl.Caption = "Liên kết ảnh";
-            this.ImageUrl.FieldName = "ImageUrl";
-            this.ImageUrl.Name = "ImageUrl";
-            this.ImageUrl.Visible = true;
-            this.ImageUrl.VisibleIndex = 2;
-            // 
-            // DefaultPrice
-            // 
-            this.DefaultPrice.Caption = "Giá bán";
-            this.DefaultPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.DefaultPrice.FieldName = "DefaultPrice";
-            this.DefaultPrice.Name = "DefaultPrice";
-            this.DefaultPrice.Visible = true;
-            this.DefaultPrice.VisibleIndex = 3;
-            // 
-            // Description
-            // 
-            this.Description.Caption = "Mô tả";
-            this.Description.FieldName = "Description";
-            this.Description.Name = "Description";
-            this.Description.Visible = true;
-            this.Description.VisibleIndex = 4;
-            // 
-            // repositoryItemLookUpEdit1
-            // 
-            this.repositoryItemLookUpEdit1.AutoHeight = false;
-            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
-            // 
-            // lkuCategory
-            // 
-            this.lkuCategory.Location = new System.Drawing.Point(94, 327);
-            this.lkuCategory.Margin = new System.Windows.Forms.Padding(2);
-            this.lkuCategory.Name = "lkuCategory";
-            this.lkuCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lkuCategory.Size = new System.Drawing.Size(178, 20);
-            this.lkuCategory.TabIndex = 6;
-            this.lkuCategory.Visible = false;
-            // 
             // productsTableAdapter
             // 
             this.productsTableAdapter.ClearBeforeFill = true;
+            // 
+            // categoriesBindingSource
+            // 
+            this.categoriesBindingSource.DataMember = "Categories";
+            this.categoriesBindingSource.DataSource = this.khh_posDataSet;
+            // 
+            // categoriesTableAdapter
+            // 
+            this.categoriesTableAdapter.ClearBeforeFill = true;
+            // 
+            // unitsBindingSource
+            // 
+            this.unitsBindingSource.DataMember = "Units";
+            this.unitsBindingSource.DataSource = this.khh_posDataSet;
+            // 
+            // unitsTableAdapter
+            // 
+            this.unitsTableAdapter.ClearBeforeFill = true;
             // 
             // frmListProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 452);
-            this.Controls.Add(this.lkuCategory);
             this.Controls.Add(this.gcList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             //this.Name = "frmListProduct";
-            this.Text = "Đơn vị tính";
+            this.Text = "Hàng hóa";
             this.Load += new System.EventHandler(this.frmListProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkuCategoryGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUp_Category)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUp_Unit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lkuCategory.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lkuCategoryGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.unitsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -208,10 +258,16 @@
         private DevExpress.XtraGrid.Columns.GridColumn DefaultPrice;
         private DevExpress.XtraGrid.Columns.GridColumn Description;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit1;
-        private DevExpress.XtraEditors.LookUpEdit lkuCategory;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit lkuCategoryGrid;
         private khh_posDataSet khh_posDataSet;
         private System.Windows.Forms.BindingSource productsBindingSource;
         private khh_posDataSetTableAdapters.ProductsTableAdapter productsTableAdapter;
+        private DevExpress.XtraGrid.Columns.GridColumn UnitId;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUp_Unit;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUp_Category;
+        private System.Windows.Forms.BindingSource categoriesBindingSource;
+        private khh_posDataSetTableAdapters.CategoriesTableAdapter categoriesTableAdapter;
+        private System.Windows.Forms.BindingSource unitsBindingSource;
+        private khh_posDataSetTableAdapters.UnitsTableAdapter unitsTableAdapter;
     }
 }

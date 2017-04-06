@@ -63,6 +63,14 @@ namespace MyPos.ListForms
 
         private void frmListProduct_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'khh_posDataSet.Units' table. You can move, or remove it, as needed.
+            this.unitsTableAdapter.Fill(this.khh_posDataSet.Units);
+            // TODO: This line of code loads data into the 'khh_posDataSet.Categories' table. You can move, or remove it, as needed.
+            this.categoriesTableAdapter.Fill(this.khh_posDataSet.Categories);
+            // TODO: This line of code loads data into the 'khh_posDataSet.Categories' table. You can move, or remove it, as needed.
+            this.categoriesTableAdapter.Fill(this.khh_posDataSet.Categories);
+            // TODO: This line of code loads data into the 'khh_posDataSet.Units' table. You can move, or remove it, as needed.
+            this.unitsTableAdapter.Fill(this.khh_posDataSet.Units);
             // TODO: This line of code loads data into the 'khh_posDataSet.Products' table. You can move, or remove it, as needed.
             this.productsTableAdapter.Fill(this.khh_posDataSet.Products);
 

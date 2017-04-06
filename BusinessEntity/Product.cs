@@ -21,5 +21,7 @@ namespace BusinessEntity
         public double DefaultPrice { get; set; }
 
         public string Description { get; set; }
+
+        public int UnitId { get; set; }
     }
 }

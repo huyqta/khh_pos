@@ -30,6 +30,10 @@ namespace MyPos.FunctionalForms
 
         private void frmSaleForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'khh_posDataSet.Units' table. You can move, or remove it, as needed.
+            this.unitsTableAdapter.Fill(this.khh_posDataSet.Units);
+            // TODO: This line of code loads data into the 'khh_posDataSet.Products' table. You can move, or remove it, as needed.
+            this.productsTableAdapter.Fill(this.khh_posDataSet.Products);
             // TODO: This line of code loads data into the 'khh_posDataSet.Categories' table. You can move, or remove it, as needed.
             this.categoriesTableAdapter.Fill(this.khh_posDataSet.Categories);
             LoadOrders(DateTime.Now);
@@ -74,13 +78,14 @@ namespace MyPos.FunctionalForms
 
         private void gvOrders_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            Order selectedOrder = (Order)gvOrders.GetFocusedRow();
-            gcOrderDetail.DataSource = listOrderDetails.Where(o => o.OrderId == selectedOrder.Id).ToList();
+            order = (Order)gvOrders.GetFocusedRow();
+            lblOrderCode.Text = order.OrderCode;
+            gcOrderDetail.DataSource = model.OrderDetails.Where(o => o.OrderId == order.Id).ToList();
         }
 
         private void gcCategory_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void winExplorerView_Category_ItemClick(object sender, DevExpress.XtraGrid.Views.WinExplorer.WinExplorerViewItemClickEventArgs e)
@@ -112,32 +117,64 @@ namespace MyPos.FunctionalForms
         private void winExplorerView_Product_ItemDoubleClick(object sender, DevExpress.XtraGrid.Views.WinExplorer.WinExplorerViewItemDoubleClickEventArgs e)
         {
             Product pr = e.ItemInfo.Row.RowKey as Product;
-            if (string.IsNullOrEmpty(lblOrderCode.Text))
+            if (order == null)
             {
                 lblOrderCode.Text = DateTime.Now.ToString("ddMMyyyyHHmmss");
                 order = new Order();
                 order.Id = Guid.NewGuid();
                 order.OrderCode = lblOrderCode.Text;
                 order.OrderDateTime = DateTime.Now;
+                model.SaveChanges();
             }
-            OrderDetail orderDetail = new OrderDetail();
-            orderDetail.Id = Guid.NewGuid();
-            orderDetail.OrderId = order.Id;
-            orderDetail.ProductId = pr.Id;
-            orderDetail.Quanlity = 1;
-            //orderDetail.UnitId = pr.unitId
-            orderDetail.UnitPrice = pr.DefaultPrice;
-            orderDetail.TotalPrice = pr.DefaultPrice;
-            model.OrderDetails.Add(orderDetail);
-
+            listOrderDetails = model.OrderDetails.Where(od => od.OrderId == order.Id).ToList();
+            if (listOrderDetails.Any(l => l.ProductId == pr.Id))
+            {
+                model.OrderDetails.Where(od => od.ProductId == pr.Id && od.OrderId == order.Id).FirstOrDefault().Quanlity++;
+            }
+            else
+            {
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.Id = Guid.NewGuid();
+                orderDetail.OrderId = order.Id;
+                orderDetail.ProductId = pr.Id;
+                orderDetail.Quanlity = 1;
+                //orderDetail.UnitId = pr.unitId
+                orderDetail.UnitPrice = pr.DefaultPrice;
+                orderDetail.TotalPrice = pr.DefaultPrice;
+                model.OrderDetails.Add(orderDetail);
+            }
             model.SaveChanges();
-            gcOrderDetail.DataSource = model.OrderDetails.ToList();
+            gcOrderDetail.DataSource = model.OrderDetails.Where(od => od.OrderId == order.Id).ToList();
         }
 
-        private void gvOrderDetail_Click(object sender, EventArgs e)
+        private void gvOrderDetail_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            var orderId = Guid.Parse(gvOrders.GetFocusedDataRow()["Id"].ToString());
-            gcOrderDetail.DataSource = model.OrderDetails.Where(od => od.OrderId == orderId).ToList();
+
+        }
+
+        private void gvOrderDetail_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+
+            switch (e.Column.FieldName)
+            {
+                case "ProductId":
+                    int productId = int.Parse(e.Value.ToString());
+                    Product product = model.Products.Where(p => p.Id == productId).FirstOrDefault();
+                    //OrderDetail od = (OrderDetail)gvOrderDetail.GetFocusedRow();
+                    gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["CategoryId"], product.CategoryId);
+                    gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["UnitId"], product.UnitId);
+                    gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["UnitPrice"], product.DefaultPrice);
+                    gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["Quanlity"], 1);
+                    gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["TotalPrice"], product.DefaultPrice);
+                    break;
+            }
+        }
+
+        private void gvOrders_DoubleClick(object sender, EventArgs e)
+        {
+            order = (Order)gvOrders.GetFocusedRow();
+            lblOrderCode.Text = order.OrderCode;
+            gcOrderDetail.DataSource = model.OrderDetails.Where(o => o.OrderId == order.Id).ToList();
         }
     }
 }
