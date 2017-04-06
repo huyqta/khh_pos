@@ -65,5 +65,23 @@ namespace MyPos
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void barButtonCompany_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            
+            ListForms.frmListCompany frm = new ListForms.frmListCompany();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void barButtonImportExcel_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "EXCEL|*.xls|EXCEL 2012|*.xlsx";
+            ofd.Multiselect = false;
+            ofd.ShowDialog();
+
+            string filePath = ofd.FileName;
+        }
     }
 }

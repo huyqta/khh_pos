@@ -21,20 +21,6 @@ namespace MyPos.ListForms
         public frmListCategory()
         {
             InitializeComponent();
-            //gcCategory.DataSource = model.Categories.ToList();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            model.SaveChanges();
-            gcCategory.DataSource = model.Categories.ToList();
-        }
-
-        private void btnAddNew_Click(object sender, EventArgs e)
-        {
-            model.Categories.Add(new Category() { });
-            model.SaveChanges();
-            gcCategory.DataSource = model.Categories.ToList();
         }
 
         private void gcCategory_KeyDown(object sender, KeyEventArgs e)
@@ -51,6 +37,30 @@ namespace MyPos.ListForms
             this.categoriesTableAdapter.Fill(this.khh_posDataSet.Categories);
         }
 
+        private void gvCategory_DoubleClick(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "*.png|*.jpg|*.jpeg";
+            openFileDialog1.Title = "Chọn hình ảnh";
+            openFileDialog1.Multiselect = false;
+            openFileDialog1.ShowDialog();
 
+            string imageUrl = openFileDialog1.FileName;
+
+            DataRow dr = gvCategory.GetFocusedDataRow();
+            dr["ImageUrl"] = imageUrl;
+        }
+
+        private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            openFileDialog1.Filter = "PNG|*.png|JPG|*.jpg|JPEG|*.jpeg";
+            openFileDialog1.Title = "Chọn hình ảnh";
+            openFileDialog1.Multiselect = false;
+            openFileDialog1.ShowDialog();
+
+            string imageUrl = openFileDialog1.FileName;
+
+            DataRow dr = gvCategory.GetFocusedDataRow();
+            dr["ImageUrl"] = imageUrl;
+        }
     }
 }

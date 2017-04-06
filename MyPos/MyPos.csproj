@@ -113,6 +113,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>khh_posDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ListForms\frmListCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListForms\frmListCustomer.Designer.cs">
+      <DependentUpon>frmListCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListForms\frmListUnit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FunctionalForms\frmSaleForm.resx">
       <DependentUpon>frmSaleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListForms\frmListCustomer.resx">
+      <DependentUpon>frmListCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListForms\frmListUnit.resx">
       <DependentUpon>frmListUnit.cs</DependentUpon>

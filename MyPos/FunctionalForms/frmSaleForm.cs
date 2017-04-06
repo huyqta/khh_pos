@@ -30,6 +30,8 @@ namespace MyPos.FunctionalForms
 
         private void frmSaleForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'khh_posDataSet.Customers' table. You can move, or remove it, as needed.
+            this.customersTableAdapter.Fill(this.khh_posDataSet.Customers);
             // TODO: This line of code loads data into the 'khh_posDataSet.Units' table. You can move, or remove it, as needed.
             this.unitsTableAdapter.Fill(this.khh_posDataSet.Units);
             // TODO: This line of code loads data into the 'khh_posDataSet.Products' table. You can move, or remove it, as needed.
@@ -41,46 +43,17 @@ namespace MyPos.FunctionalForms
 
         private void rdSelectDateOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (rdSelectDateOrder.SelectedIndex == 0)
-            //{
             dtSelectDateOrder.Enabled = rdSelectDateOrder.SelectedIndex == 2;
-            //}
         }
 
         private void LoadOrders(DateTime datetimeOrder)
         {
-            //listOrders = model.Orders.Where(o => o.OrderDateTime.Date == dtSelectDateOrder.DateTime.Date).ToList();
             gcOrders.DataSource = model.Orders.Where(o => DbFunctions.TruncateTime(o.OrderDateTime) == datetimeOrder.Date).ToList();
         }
 
-        //private void gvOrders_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
-        //{
-        //    gcOrderDetail.DataSource = listOrderDetails.Where(o => o.OrderId == (int)gvOrders.GetFocusedDataRow()["Id"]).ToList();
-        //}
-
-
-        //private void SetDataForTest()
-        //{
-        //    listOrders.Add(new Order() { Id = Guid.Parse("00000000-0000-0000-0000-000000000001"), OrderCode = "001", Description = "abc", OrderDateTime = DateTime.Now, OrderDetails = null, TotalPrice = 10000 });
-        //    listOrders.Add(new Order() { Id = Guid.Parse("00000000-0000-0000-0000-000000000002"), OrderCode = "002", Description = "abc", OrderDateTime = DateTime.Now, OrderDetails = null, TotalPrice = 10000 });
-        //    listOrders.Add(new Order() { Id = Guid.Parse("00000000-0000-0000-0000-000000000003"), OrderCode = "003", Description = "abc", OrderDateTime = DateTime.Now, OrderDetails = null, TotalPrice = 10000 });
-        //    listOrders.Add(new Order() { Id = Guid.Parse("00000000-0000-0000-0000-000000000004"), OrderCode = "004", Description = "abc", OrderDateTime = DateTime.Now, OrderDetails = null, TotalPrice = 10000 });
-        //    listOrders.Add(new Order() { Id = Guid.Parse("00000000-0000-0000-0000-000000000005"), OrderCode = "005", Description = "abc", OrderDateTime = DateTime.Now, OrderDetails = null, TotalPrice = 10000 });
-        //    listOrders.Add(new Order() { Id = Guid.Parse("00000000-0000-0000-0000-000000000006"), OrderCode = "006", Description = "abc", OrderDateTime = DateTime.Now, OrderDetails = null, TotalPrice = 10000 });
-
-        //    listOrderDetails.Add(new OrderDetail() { Id = Guid.Parse("00000000-0000-0000-0000-000000000001"), OrderId = Guid.Parse("00000000-0000-0000-0000-000000000001"), CategoryId = 0, ProductId = 0, Quanlity = 1, UnitPrice = 10, TotalPrice = 10, UnitId = 0 });
-        //    listOrderDetails.Add(new OrderDetail() { Id = Guid.Parse("00000000-0000-0000-0000-000000000001"), OrderId = Guid.Parse("00000000-0000-0000-0000-000000000002"), CategoryId = 0, ProductId = 0, Quanlity = 1, UnitPrice = 10, TotalPrice = 10, UnitId = 0 });
-        //    listOrderDetails.Add(new OrderDetail() { Id = Guid.Parse("00000000-0000-0000-0000-000000000001"), OrderId = Guid.Parse("00000000-0000-0000-0000-000000000002"), CategoryId = 0, ProductId = 0, Quanlity = 1, UnitPrice = 10, TotalPrice = 10, UnitId = 0 });
-        //    listOrderDetails.Add(new OrderDetail() { Id = Guid.Parse("00000000-0000-0000-0000-000000000001"), OrderId = Guid.Parse("00000000-0000-0000-0000-000000000003"), CategoryId = 0, ProductId = 0, Quanlity = 1, UnitPrice = 10, TotalPrice = 10, UnitId = 0 });
-        //    listOrderDetails.Add(new OrderDetail() { Id = Guid.Parse("00000000-0000-0000-0000-000000000001"), OrderId = Guid.Parse("00000000-0000-0000-0000-000000000003"), CategoryId = 0, ProductId = 0, Quanlity = 1, UnitPrice = 10, TotalPrice = 10, UnitId = 0 });
-        //    listOrderDetails.Add(new OrderDetail() { Id = Guid.Parse("00000000-0000-0000-0000-000000000001"), OrderId = Guid.Parse("00000000-0000-0000-0000-000000000003"), CategoryId = 0, ProductId = 0, Quanlity = 1, UnitPrice = 10, TotalPrice = 10, UnitId = 0 });
-        //}
-
         private void gvOrders_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            order = (Order)gvOrders.GetFocusedRow();
-            lblOrderCode.Text = order.OrderCode;
-            gcOrderDetail.DataSource = model.OrderDetails.Where(o => o.OrderId == order.Id).ToList();
+            LoadOrder();
         }
 
         private void gcCategory_Click(object sender, EventArgs e)
@@ -102,7 +75,10 @@ namespace MyPos.FunctionalForms
             order.Id = Guid.NewGuid();
             order.OrderCode = lblOrderCode.Text;
             order.OrderDateTime = DateTime.Now;
+            order.CustomerId = 1;
             model.Orders.Add(order);
+
+            gcOrderDetail.DataSource = model.OrderDetails.Local.Where(od => od.OrderId == order.Id).ToList();
 
             model.SaveChanges();
             gcOrders.DataSource = model.Orders.ToList();
@@ -111,6 +87,7 @@ namespace MyPos.FunctionalForms
         private void btnSubmitOrder_Click(object sender, EventArgs e)
         {
             lblOrderCode.Text = string.Empty;
+            order.CustomerId = int.Parse(lookUpCustomer.EditValue.ToString());
             model.SaveChanges();
         }
 
@@ -124,12 +101,14 @@ namespace MyPos.FunctionalForms
                 order.Id = Guid.NewGuid();
                 order.OrderCode = lblOrderCode.Text;
                 order.OrderDateTime = DateTime.Now;
-                model.SaveChanges();
             }
             listOrderDetails = model.OrderDetails.Where(od => od.OrderId == order.Id).ToList();
             if (listOrderDetails.Any(l => l.ProductId == pr.Id))
             {
-                model.OrderDetails.Where(od => od.ProductId == pr.Id && od.OrderId == order.Id).FirstOrDefault().Quanlity++;
+                OrderDetail focusedOrderDetail = model.OrderDetails.Where(od => od.ProductId == pr.Id && od.OrderId == order.Id).FirstOrDefault();
+                focusedOrderDetail.Quanlity++;
+                focusedOrderDetail.TotalPrice = focusedOrderDetail.Quanlity * focusedOrderDetail.UnitPrice;
+                order.TotalPrice = model.OrderDetails.Local.Where(od => od.OrderId == order.Id).Sum(od => od.TotalPrice);
             }
             else
             {
@@ -138,13 +117,16 @@ namespace MyPos.FunctionalForms
                 orderDetail.OrderId = order.Id;
                 orderDetail.ProductId = pr.Id;
                 orderDetail.Quanlity = 1;
-                //orderDetail.UnitId = pr.unitId
+                orderDetail.UnitId = pr.UnitId;
                 orderDetail.UnitPrice = pr.DefaultPrice;
                 orderDetail.TotalPrice = pr.DefaultPrice;
                 model.OrderDetails.Add(orderDetail);
             }
+            order.TotalPrice = model.OrderDetails.Local.Where(od => od.OrderId == order.Id).Sum(od => od.TotalPrice);
+
             model.SaveChanges();
             gcOrderDetail.DataSource = model.OrderDetails.Where(od => od.OrderId == order.Id).ToList();
+            gcOrders.DataSource = model.Orders.ToList();
         }
 
         private void gvOrderDetail_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -154,12 +136,12 @@ namespace MyPos.FunctionalForms
 
         private void gvOrderDetail_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-
+            var selectedOrderDetail = gvOrderDetail.GetRow(gvOrderDetail.FocusedRowHandle) as OrderDetail;
+            int productId = selectedOrderDetail.ProductId;
+            Product product = model.Products.Where(p => p.Id == productId).FirstOrDefault();
             switch (e.Column.FieldName)
             {
                 case "ProductId":
-                    int productId = int.Parse(e.Value.ToString());
-                    Product product = model.Products.Where(p => p.Id == productId).FirstOrDefault();
                     //OrderDetail od = (OrderDetail)gvOrderDetail.GetFocusedRow();
                     gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["CategoryId"], product.CategoryId);
                     gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["UnitId"], product.UnitId);
@@ -167,13 +149,38 @@ namespace MyPos.FunctionalForms
                     gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["Quanlity"], 1);
                     gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["TotalPrice"], product.DefaultPrice);
                     break;
+                case "Quanlity":
+                    if (listOrderDetails.Any(l => l.ProductId == product.Id))
+                    {
+                        OrderDetail focusedOrderDetail = model.OrderDetails.Where(od => od.ProductId == product.Id && od.OrderId == order.Id).FirstOrDefault();
+                        focusedOrderDetail.Quanlity = int.Parse(e.Value.ToString());
+                        focusedOrderDetail.TotalPrice = focusedOrderDetail.Quanlity * focusedOrderDetail.UnitPrice;
+                        model.SaveChanges();
+                        order.TotalPrice = model.OrderDetails.Where(od => od.OrderId == order.Id).Sum(od => od.TotalPrice);
+                    }
+                    model.SaveChanges();
+                    gcOrderDetail.DataSource = model.OrderDetails.Where(od => od.OrderId == order.Id).ToList();
+                    gcOrders.RefreshDataSource();
+                    break;
             }
         }
 
         private void gvOrders_DoubleClick(object sender, EventArgs e)
         {
+            LoadOrder();
+        }
+
+        private void lookUpCustomer_EditValueChanged(object sender, EventArgs e)
+        {
+            order.CustomerId = int.Parse(lookUpCustomer.EditValue.ToString());
+            model.SaveChanges();
+        }
+
+        private void LoadOrder()
+        {
             order = (Order)gvOrders.GetFocusedRow();
             lblOrderCode.Text = order.OrderCode;
+            lookUpCustomer.EditValue = order.CustomerId;
             gcOrderDetail.DataSource = model.OrderDetails.Where(o => o.OrderId == order.Id).ToList();
         }
     }
