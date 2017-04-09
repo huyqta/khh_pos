@@ -135,6 +135,9 @@
     <Compile Include="Helper\DbHelper.cs" />
     <Compile Include="Helper\GridViewColumnButtonMenu.cs" />
     <Compile Include="Helper\UtilityHelper.cs" />
+    <Compile Include="khh_posDataSet.cs">
+      <DependentUpon>khh_posDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="khh_posDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -26,8 +26,10 @@ namespace MyPos.FunctionalForms
         private void frmSaleStatistic_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'khh_posDataSet.SaleStatistic' table. You can move, or remove it, as needed.
-            this.saleStatisticTableAdapter.Fill(this.khh_posDataSet.SaleStatistic);
+            this.saleStatisticTableAdapter.Fill(this.khh_posDataSet.SaleStatistics);
             dtSelectDate.DateTime = DateTime.Now;
+            gcSaleStatistic.DataSource = model.SaleStatistics.ToList();
+            gvSaleStatistic.ExpandAllGroups();
         }
 
         private void gcSaleStatistic_ProcessGridKey(object sender, KeyEventArgs e)
@@ -39,7 +41,7 @@ namespace MyPos.FunctionalForms
         {
             if (e.Control && e.KeyCode == Keys.S)
             {
-                DbHelper.UpdateDatasource(gcSaleStatistic, saleStatisticTableAdapter.Adapter, khh_posDataSet.Tables["SaleStatistic"]);
+                DbHelper.UpdateDatasource(gcSaleStatistic, saleStatisticTableAdapter.Adapter, khh_posDataSet.Tables["SaleStatistics"]);
                 model.SaveChanges();
             }
             gcSaleStatistic.DataSource = LoadOrders(dtSelectDate.DateTime);
@@ -70,7 +72,8 @@ namespace MyPos.FunctionalForms
                         ss.UnitName = orderDetail.UnitName;
                         ss.UnitPrice = orderDetail.UnitPrice;
                         ss.TotalPrice = orderDetail.TotalPrice;
-
+                        ss.CustomerId = order.CustomerId;
+                        ss.CustomerName = model.Customers.Where(c => c.Id == order.CustomerId).FirstOrDefault().Name.ToString();
                         model.SaleStatistics.Add(ss);
                     }                                
                 }
