@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraEditors;
 using BusinessEntity;
 using System.Data.Entity;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraReports.UI;
 
 namespace MyPos.FunctionalForms
 {
@@ -44,6 +42,10 @@ namespace MyPos.FunctionalForms
         private void rdSelectDateOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
             dtSelectDateOrder.Enabled = rdSelectDateOrder.SelectedIndex == 2;
+            if (rdSelectDateOrder.SelectedIndex == 1)
+            {
+                LoadOrders(DateTime.Now.AddDays(-1));
+            }
         }
 
         private void LoadOrders(DateTime datetimeOrder)
@@ -87,7 +89,7 @@ namespace MyPos.FunctionalForms
         private void btnSubmitOrder_Click(object sender, EventArgs e)
         {
             lblOrderCode.Text = string.Empty;
-            order.CustomerId = int.Parse(lookUpCustomer.EditValue.ToString());
+            order = new Order();
             model.SaveChanges();
         }
 
@@ -115,8 +117,12 @@ namespace MyPos.FunctionalForms
                 OrderDetail orderDetail = new OrderDetail();
                 orderDetail.Id = Guid.NewGuid();
                 orderDetail.OrderId = order.Id;
+                orderDetail.ProductName = pr.Name;
                 orderDetail.ProductId = pr.Id;
+                orderDetail.CategoryName = model.Categories.Where(c => c.Id == pr.CategoryId).Select(c => c.Name).FirstOrDefault().ToString();
+                orderDetail.CategoryId = pr.CategoryId;
                 orderDetail.Quanlity = 1;
+                orderDetail.UnitName = model.Units.Where(u => u.Id == pr.UnitId).Select(u => u.Name).FirstOrDefault().ToString();
                 orderDetail.UnitId = pr.UnitId;
                 orderDetail.UnitPrice = pr.DefaultPrice;
                 orderDetail.TotalPrice = pr.DefaultPrice;
@@ -131,38 +137,59 @@ namespace MyPos.FunctionalForms
 
         private void gvOrderDetail_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-
-        }
-
-        private void gvOrderDetail_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
             var selectedOrderDetail = gvOrderDetail.GetRow(gvOrderDetail.FocusedRowHandle) as OrderDetail;
             int productId = selectedOrderDetail.ProductId;
             Product product = model.Products.Where(p => p.Id == productId).FirstOrDefault();
+            OrderDetail orderDetail = model.OrderDetails.Where(od => od.OrderId == order.Id && od.ProductId == productId).FirstOrDefault();
             switch (e.Column.FieldName)
             {
                 case "ProductId":
-                    //OrderDetail od = (OrderDetail)gvOrderDetail.GetFocusedRow();
+                    orderDetail.ProductName = product.Name;
+
                     gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["CategoryId"], product.CategoryId);
+                    orderDetail.CategoryName = model.Categories.Where(c => c.Id == product.CategoryId).Select(c => c.Name).FirstOrDefault().ToString();
+                    orderDetail.CategoryId = product.CategoryId;
+
                     gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["UnitId"], product.UnitId);
+                    orderDetail.UnitName = model.Units.Where(u => u.Id == product.UnitId).Select(u => u.Name).FirstOrDefault().ToString();
+                    orderDetail.UnitId = product.UnitId;
+
                     gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["UnitPrice"], product.DefaultPrice);
                     gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["Quanlity"], 1);
                     gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["TotalPrice"], product.DefaultPrice);
                     break;
                 case "Quanlity":
-                    if (listOrderDetails.Any(l => l.ProductId == product.Id))
+                    if (model.OrderDetails.Local.Any(l => l.ProductId == product.Id))
                     {
-                        OrderDetail focusedOrderDetail = model.OrderDetails.Where(od => od.ProductId == product.Id && od.OrderId == order.Id).FirstOrDefault();
+                        OrderDetail focusedOrderDetail = model.OrderDetails.Local.Where(od => od.ProductId == product.Id && od.OrderId == order.Id).FirstOrDefault();
                         focusedOrderDetail.Quanlity = int.Parse(e.Value.ToString());
                         focusedOrderDetail.TotalPrice = focusedOrderDetail.Quanlity * focusedOrderDetail.UnitPrice;
                         model.SaveChanges();
-                        order.TotalPrice = model.OrderDetails.Where(od => od.OrderId == order.Id).Sum(od => od.TotalPrice);
+                        order.TotalPrice = model.OrderDetails.Local.Where(od => od.OrderId == order.Id).Sum(od => od.TotalPrice);
+                    }
+                    model.SaveChanges();
+                    gcOrderDetail.DataSource = model.OrderDetails.Where(od => od.OrderId == order.Id).ToList();
+                    gcOrders.RefreshDataSource();
+                    break;
+                case "UnitPrice":
+                    if (model.OrderDetails.Local.Any(l => l.ProductId == product.Id))
+                    {
+                        OrderDetail focusedOrderDetail = model.OrderDetails.Local.Where(od => od.ProductId == product.Id && od.OrderId == order.Id).FirstOrDefault();
+                        focusedOrderDetail.UnitPrice = int.Parse(e.Value.ToString());
+                        focusedOrderDetail.TotalPrice = focusedOrderDetail.Quanlity * focusedOrderDetail.UnitPrice;
+                        model.SaveChanges();
+                        order.TotalPrice = model.OrderDetails.Local.Where(od => od.OrderId == order.Id).Sum(od => od.TotalPrice);
                     }
                     model.SaveChanges();
                     gcOrderDetail.DataSource = model.OrderDetails.Where(od => od.OrderId == order.Id).ToList();
                     gcOrders.RefreshDataSource();
                     break;
             }
+        }
+
+        private void gvOrderDetail_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+
         }
 
         private void gvOrders_DoubleClick(object sender, EventArgs e)
@@ -182,6 +209,61 @@ namespace MyPos.FunctionalForms
             lblOrderCode.Text = order.OrderCode;
             lookUpCustomer.EditValue = order.CustomerId;
             gcOrderDetail.DataSource = model.OrderDetails.Where(o => o.OrderId == order.Id).ToList();
+        }
+
+        private void gcCategory_DataSourceChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            MessageBox.Show("In phieu tinh tien");
+        }
+
+        private void gvOrders_MouseDown(object sender, MouseEventArgs e)
+        {
+            GridView view = sender as GridView;
+            // Check if the right mouse button has been pressed 
+            if (e.Button == MouseButtons.Right)
+                DoShowMenu(view.CalcHitInfo(new Point(e.X, e.Y)));
+        }
+
+        private void DoShowMenu(DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hi)
+        {
+            // Create the menu. 
+            DevExpress.XtraGrid.Menu.GridViewMenu menu = null;
+            // Check whether the header panel button has been clicked. 
+            if (hi.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.ColumnButton)
+            {
+                menu = new GridViewColumnButtonMenu(hi.View);
+                menu.Init(hi);
+                // Display the menu. 
+                menu.Show(hi.HitPoint);
+            }
+        }
+
+        private void toolStripMenu_PrintReceipt_Click(object sender, EventArgs e)
+        {
+            //Reports.frmReports frm = new Reports.frmReports();
+            //ReportDesignTool designTool = new ReportDesignTool(frm);
+            //// Invoke the Ribbon End-User Designer form.   
+            //designTool.ShowRibbonDesigner();
+
+            //// Invoke the Ribbon End-User Designer form modally  
+            //// with the specified look and feel settings.  
+            ////designTool.ShowRibbonDesignerDialog(UserLookAndFeel.Default);
+
+            //// Invoke the standard End-User Designer form.   
+            //designTool.ShowDesigner();
+
+            //// Invoke the standard End-User Designer form modally  
+            //// with the specified look and feel settings.  
+            ////designTool.ShowDesignerDialog(UserLookAndFeel.Default);
+            Order orderPrint = (Order)gvOrders.GetFocusedRow();
+            Reports.rpReceipt rp = new Reports.rpReceipt(orderPrint);
+            rp.ShowPreview();
+            //rp.Print();
         }
     }
 }

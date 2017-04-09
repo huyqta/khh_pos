@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
+using MyPos.Helper;
 
 namespace MyPos
 {
@@ -82,6 +83,35 @@ namespace MyPos
             ofd.ShowDialog();
 
             string filePath = ofd.FileName;
+
+            UtilityHelper.ReadFileExcel(filePath);
+        }
+
+        private void ribbon_Click(object sender, EventArgs e)
+        {
+            FunctionalForms.frmSaleStatistic frm = new FunctionalForms.frmSaleStatistic();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void barStaticStatus_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void barButtonVendor_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void ribbonStatusBar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void barButtonItemSaleStatistic_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
         }
     }
 }

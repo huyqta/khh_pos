@@ -46,6 +46,8 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.barButtonItemSaleStatistic = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -62,15 +64,17 @@
             this.barStaticStatus,
             this.barButtonCompany,
             this.barButtonVendor,
-            this.barButtonImportExcel});
+            this.barButtonImportExcel,
+            this.barButtonItemSaleStatistic});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbon.MaxItemId = 9;
+            this.ribbon.MaxItemId = 10;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPageList});
             this.ribbon.Size = new System.Drawing.Size(1784, 258);
             this.ribbon.StatusBar = this.ribbonStatusBar;
+            this.ribbon.Click += new System.EventHandler(this.ribbon_Click);
             // 
             // barButtonCategory
             // 
@@ -118,6 +122,7 @@
             this.barStaticStatus.Id = 5;
             this.barStaticStatus.Name = "barStaticStatus";
             this.barStaticStatus.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.barStaticStatus.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barStaticStatus_ItemClick);
             // 
             // barButtonCompany
             // 
@@ -138,6 +143,7 @@
             this.barButtonVendor.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonVendor.LargeGlyph")));
             this.barButtonVendor.Name = "barButtonVendor";
             this.barButtonVendor.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.barButtonVendor.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonVendor_ItemClick);
             // 
             // barButtonImportExcel
             // 
@@ -154,9 +160,10 @@
             this.ribbonPageGroupList,
             this.ribbonPageGroup2,
             this.ribbonPageGroup1,
-            this.ribbonPageGroup3});
+            this.ribbonPageGroup3,
+            this.ribbonPageGroup4});
             this.ribbonPageList.Name = "ribbonPageList";
-            this.ribbonPageList.Text = "Danh mục";
+            this.ribbonPageList.Text = "Chức năng";
             // 
             // ribbonPageGroupList
             // 
@@ -193,10 +200,26 @@
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(1784, 55);
+            this.ribbonStatusBar.Click += new System.EventHandler(this.ribbonStatusBar_Click);
             // 
             // xtraTabbedMdiManager1
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
+            // 
+            // ribbonPageGroup4
+            // 
+            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItemSaleStatistic);
+            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            this.ribbonPageGroup4.Text = "Thống kê";
+            // 
+            // barButtonItemSaleStatistic
+            // 
+            this.barButtonItemSaleStatistic.Caption = "Doanh số bán hàng";
+            this.barButtonItemSaleStatistic.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItemSaleStatistic.Glyph")));
+            this.barButtonItemSaleStatistic.Id = 9;
+            this.barButtonItemSaleStatistic.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItemSaleStatistic.LargeGlyph")));
+            this.barButtonItemSaleStatistic.Name = "barButtonItemSaleStatistic";
+            this.barButtonItemSaleStatistic.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemSaleStatistic_ItemClick);
             // 
             // FormMain
             // 
@@ -237,5 +260,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonVendor;
         private DevExpress.XtraBars.BarButtonItem barButtonImportExcel;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemSaleStatistic;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
     }
 }

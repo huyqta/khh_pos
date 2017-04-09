@@ -35,6 +35,7 @@
             this.gvCategory = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ImageUrl = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.Description = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemPopupGalleryEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPopupGalleryEdit();
             this.categoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -42,15 +43,14 @@
             this.categoriesTableAdapter = new MyPos.khh_posDataSetTableAdapters.CategoriesTableAdapter();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
-            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gcCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCategory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupGalleryEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khhposDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // gcCategory
@@ -112,6 +112,14 @@
             this.ImageUrl.Visible = true;
             this.ImageUrl.VisibleIndex = 1;
             // 
+            // repositoryItemButtonEdit1
+            // 
+            this.repositoryItemButtonEdit1.AutoHeight = false;
+            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit1_ButtonClick);
+            // 
             // Description
             // 
             this.Description.Caption = "Mô tả";
@@ -149,14 +157,6 @@
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
             // 
-            // repositoryItemButtonEdit1
-            // 
-            this.repositoryItemButtonEdit1.AutoHeight = false;
-            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
-            this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit1_ButtonClick);
-            // 
             // frmListCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -172,10 +172,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCategory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPopupGalleryEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khhposDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             this.ResumeLayout(false);
 
         }
