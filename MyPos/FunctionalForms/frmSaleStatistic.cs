@@ -41,11 +41,11 @@ namespace MyPos.FunctionalForms
         {
             if (e.Control && e.KeyCode == Keys.S)
             {
-                DbHelper.UpdateDatasource(gcSaleStatistic, saleStatisticTableAdapter.Adapter, khh_posDataSet.Tables["SaleStatistics"]);
                 model.SaveChanges();
+                gvSaleStatistic.ExpandAllGroups();
+                MessageBox.Show("Saved successfull!");
             }
-            gcSaleStatistic.DataSource = LoadOrders(dtSelectDate.DateTime);
-            gvSaleStatistic.ExpandAllGroups();
+            
         }
 
         private void btnInitialDay_Click(object sender, EventArgs e)

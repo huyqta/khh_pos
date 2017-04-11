@@ -38,6 +38,7 @@ namespace MyPos.ListForms
             if (e.Control && e.KeyCode == Keys.S)
             {
                 DbHelper.UpdateDatasource(gcList, productsTableAdapter.Adapter, khh_posDataSet.Tables["Products"]);
+                gvList.ExpandAllGroups();
             }
         }
 
