@@ -90,6 +90,7 @@ namespace MyPos.FunctionalForms
         private void dtSelectDate_DateTimeChanged(object sender, EventArgs e)
         {
             LoadSaleStatisticByDate(dtSelectDate.DateTime);
+            CalculateRevenues(dtSelectDate.DateTime);
         }
 
         private void LoadSaleStatisticByDate(DateTime datetime)
@@ -101,8 +102,13 @@ namespace MyPos.FunctionalForms
 
         private void CalculateRevenues(DateTime datetime)
         {
-            var yearlyRevenue = model.SaleStatistics.Sum(s => s.Revenue);
-            //var quarterlyRevenue = model.SaleStatistics.Where(s=>s.Date).Sum(s => s.Revenue);
+            var yearlyRevenue = model.Revenues.Where(s=>s.RevenueDateTime.Year == datetime.Year).Sum(s => s.RevenueValue);
+            var monthlyRevenue = model.Revenues.Where(s =>s.RevenueDateTime.Year == datetime.Year && s.RevenueDateTime.Month == datetime.Month).Sum(s => s.RevenueValue);
+            var dailyRevenue = model.Revenues.Where(s =>DbFunctions.TruncateTime(s.RevenueDateTime) == datetime.Date).Sum(s => s.RevenueValue);
+
+            lblRevenueYearly.Text = yearlyRevenue.ToString("###,###,###");
+            lblRevenueMonthly.Text = monthlyRevenue.ToString("###,###,###");
+            lblRevenueDaily.Text = dailyRevenue.ToString("###,###,###");
         }
 
         private void btnSave_Click(object sender, EventArgs e)

@@ -46,6 +46,14 @@ namespace MyPos.FunctionalForms
             {
                 LoadOrders(DateTime.Now.AddDays(-1));
             }
+            else if (rdSelectDateOrder.SelectedIndex == 0)
+            {
+                LoadOrders(DateTime.Now);
+            }
+            else
+            {
+                LoadOrders(dtSelectDateOrder.DateTime);
+            }
         }
 
         private void LoadOrders(DateTime datetimeOrder)
@@ -83,7 +91,7 @@ namespace MyPos.FunctionalForms
             gcOrderDetail.DataSource = model.OrderDetails.Local.Where(od => od.OrderId == order.Id).ToList();
 
             model.SaveChanges();
-            gcOrders.DataSource = model.Orders.ToList();
+            rdSelectDateOrder_SelectedIndexChanged(null, null);
         }
 
         private void btnSubmitOrder_Click(object sender, EventArgs e)
@@ -132,7 +140,7 @@ namespace MyPos.FunctionalForms
 
             model.SaveChanges();
             gcOrderDetail.DataSource = model.OrderDetails.Where(od => od.OrderId == order.Id).ToList();
-            gcOrders.DataSource = model.Orders.ToList();
+            //rdSelectDateOrder_SelectedIndexChanged(null, null);
         }
 
         private void gvOrderDetail_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -206,9 +214,12 @@ namespace MyPos.FunctionalForms
         private void LoadOrder()
         {
             order = (Order)gvOrders.GetFocusedRow();
-            lblOrderCode.Text = order.OrderCode;
-            lookUpCustomer.EditValue = order.CustomerId;
-            gcOrderDetail.DataSource = model.OrderDetails.Where(o => o.OrderId == order.Id).ToList();
+            if (order != null)
+            {
+                lblOrderCode.Text = order.OrderCode;
+                lookUpCustomer.EditValue = order.CustomerId;
+                gcOrderDetail.DataSource = model.OrderDetails.Where(o => o.OrderId == order.Id).ToList();
+            }
         }
 
         private void gcCategory_DataSourceChanged(object sender, EventArgs e)
