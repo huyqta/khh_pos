@@ -79,8 +79,7 @@ namespace MyPos.FunctionalForms
                 }
             }
 
-            gcSaleStatistic.DataSource = model.SaleStatistics.Local.ToList();
-            gvSaleStatistic.ExpandAllGroups();
+            LoadSaleStatisticByDate(dtSelectDate.DateTime);
         }
 
         private List<Order> LoadOrders(DateTime datetimeOrder)
@@ -90,8 +89,39 @@ namespace MyPos.FunctionalForms
 
         private void dtSelectDate_DateTimeChanged(object sender, EventArgs e)
         {
-            gcSaleStatistic.DataSource = LoadOrders(dtSelectDate.DateTime);
+            LoadSaleStatisticByDate(dtSelectDate.DateTime);
+        }
+
+        private void LoadSaleStatisticByDate(DateTime datetime)
+        {
+            var listOrdersCode = LoadOrders(datetime).Select(o => o.OrderCode);
+            gcSaleStatistic.DataSource = model.SaleStatistics.Local.Where(o => listOrdersCode.Contains(o.OrderCode)).ToList();
             gvSaleStatistic.ExpandAllGroups();
+        }
+
+        private void CalculateRevenues(DateTime datetime)
+        {
+            var yearlyRevenue = model.SaleStatistics.Sum(s => s.Revenue);
+            //var quarterlyRevenue = model.SaleStatistics.Where(s=>s.Date).Sum(s => s.Revenue);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            var listOrdersCode = LoadOrders(dtSelectDate.DateTime).Select(o => o.OrderCode);
+            model.SaleStatistics.Local.Where(o => listOrdersCode.Contains(o.OrderCode)).ToList();
+            if (!model.Revenues.Any(r=>DbFunctions.TruncateTime(r.RevenueDateTime) == dtSelectDate.DateTime.Date))
+            {
+                Revenue rev = new Revenue();
+                rev.Id = Guid.NewGuid();
+                rev.RevenueDateTime = dtSelectDate.DateTime;
+                rev.RevenueValue = model.SaleStatistics.Local.Where(o => listOrdersCode.Contains(o.OrderCode)).Sum(s => s.Revenue);
+                model.Revenues.Add(rev);
+            }
+            else
+            {
+                model.Revenues.Where(r => DbFunctions.TruncateTime(r.RevenueDateTime) == dtSelectDate.DateTime.Date).FirstOrDefault().RevenueValue = model.SaleStatistics.Local.Where(o => listOrdersCode.Contains(o.OrderCode)).Sum(s => s.Revenue);
+            }
+            model.SaveChanges();
         }
     }
 }

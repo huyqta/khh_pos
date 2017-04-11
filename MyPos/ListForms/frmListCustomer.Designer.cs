@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.gcList = new DevExpress.XtraGrid.GridControl();
+            this.customersBindingSource = new System.Windows.Forms.BindingSource();
             this.khh_posDataSet = new MyPos.khh_posDataSet();
             this.gvList = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.customersTableAdapter = new MyPos.khh_posDataSetTableAdapters.CustomersTableAdapter();
             this.Name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Address = new DevExpress.XtraGrid.Columns.GridColumn();
             this.PhoneNumber = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -42,10 +40,11 @@
             this.TaxNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.isCompany = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Description = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.customersTableAdapter = new MyPos.khh_posDataSetTableAdapters.CustomersTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // gcList
@@ -54,16 +53,21 @@
             this.gcList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcList.EmbeddedNavigator.Appearance.Font = new System.Drawing.Font("Tahoma", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gcList.EmbeddedNavigator.Appearance.Options.UseFont = true;
-            this.gcList.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcList.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gcList.Location = new System.Drawing.Point(0, 0);
             this.gcList.MainView = this.gvList;
-            this.gcList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gcList.Name = "gcList";
-            this.gcList.Size = new System.Drawing.Size(1434, 869);
+            this.gcList.Size = new System.Drawing.Size(717, 452);
             this.gcList.TabIndex = 5;
             this.gcList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvList});
             this.gcList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gcList_KeyDown);
+            // 
+            // customersBindingSource
+            // 
+            this.customersBindingSource.DataMember = "Customers";
+            this.customersBindingSource.DataSource = this.khh_posDataSet;
             // 
             // khh_posDataSet
             // 
@@ -85,15 +89,6 @@
             this.gvList.Name = "gvList";
             this.gvList.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplace;
             this.gvList.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
-            // 
-            // customersBindingSource
-            // 
-            this.customersBindingSource.DataMember = "Customers";
-            this.customersBindingSource.DataSource = this.khh_posDataSet;
-            // 
-            // customersTableAdapter
-            // 
-            this.customersTableAdapter.ClearBeforeFill = true;
             // 
             // Name
             // 
@@ -159,21 +154,24 @@
             this.Description.Visible = true;
             this.Description.VisibleIndex = 7;
             // 
+            // customersTableAdapter
+            // 
+            this.customersTableAdapter.ClearBeforeFill = true;
+            // 
             // frmListCompany
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1434, 869);
+            this.ClientSize = new System.Drawing.Size(717, 452);
             this.Controls.Add(this.gcList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             //this.Name = "frmListCompany";
-            this.Text = "Nhóm hàng";
+            this.Text = "Khách hàng";
             this.Load += new System.EventHandler(this.frmListUnit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -28,36 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.gcList = new DevExpress.XtraGrid.GridControl();
-            this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productsBindingSource = new System.Windows.Forms.BindingSource();
             this.khh_posDataSet = new MyPos.khh_posDataSet();
             this.gvList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CategoryId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUp_Category = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.categoriesBindingSource = new System.Windows.Forms.BindingSource();
             this.UnitId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUp_Unit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.unitsBindingSource = new System.Windows.Forms.BindingSource();
             this.ImageUrl = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DefaultPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Description = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.lkuCategoryGrid = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.productsTableAdapter = new MyPos.khh_posDataSetTableAdapters.ProductsTableAdapter();
-            this.categoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.categoriesTableAdapter = new MyPos.khh_posDataSetTableAdapters.CategoriesTableAdapter();
-            this.unitsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.unitsTableAdapter = new MyPos.khh_posDataSetTableAdapters.UnitsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUp_Category)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUp_Unit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.unitsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuCategoryGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.unitsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // gcList
@@ -139,6 +138,11 @@
             this.repositoryItemLookUp_Category.Name = "repositoryItemLookUp_Category";
             this.repositoryItemLookUp_Category.ValueMember = "Id";
             // 
+            // categoriesBindingSource
+            // 
+            this.categoriesBindingSource.DataMember = "Categories";
+            this.categoriesBindingSource.DataSource = this.khh_posDataSet;
+            // 
             // UnitId
             // 
             this.UnitId.Caption = "Đơn vị tính";
@@ -157,6 +161,11 @@
             this.repositoryItemLookUp_Unit.DisplayMember = "Name";
             this.repositoryItemLookUp_Unit.Name = "repositoryItemLookUp_Unit";
             this.repositoryItemLookUp_Unit.ValueMember = "Id";
+            // 
+            // unitsBindingSource
+            // 
+            this.unitsBindingSource.DataMember = "Units";
+            this.unitsBindingSource.DataSource = this.khh_posDataSet;
             // 
             // ImageUrl
             // 
@@ -207,19 +216,9 @@
             // 
             this.productsTableAdapter.ClearBeforeFill = true;
             // 
-            // categoriesBindingSource
-            // 
-            this.categoriesBindingSource.DataMember = "Categories";
-            this.categoriesBindingSource.DataSource = this.khh_posDataSet;
-            // 
             // categoriesTableAdapter
             // 
             this.categoriesTableAdapter.ClearBeforeFill = true;
-            // 
-            // unitsBindingSource
-            // 
-            this.unitsBindingSource.DataMember = "Units";
-            this.unitsBindingSource.DataSource = this.khh_posDataSet;
             // 
             // unitsTableAdapter
             // 
@@ -233,6 +232,7 @@
             this.Controls.Add(this.gcList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             //this.Name = "frmListProduct";
+            this.Tag = "Product";
             this.Text = "Hàng hóa";
             this.Load += new System.EventHandler(this.frmListProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
@@ -240,11 +240,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUp_Category)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUp_Unit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.unitsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lkuCategoryGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.unitsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

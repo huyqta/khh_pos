@@ -19,6 +19,7 @@ namespace BusinessEntity
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<SaleStatistic> SaleStatistics { get; set; }
+        public virtual DbSet<Revenue> Revenues { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

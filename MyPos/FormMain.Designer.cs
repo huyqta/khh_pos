@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barButtonCategory = new DevExpress.XtraBars.BarButtonItem();
@@ -39,15 +38,15 @@
             this.barButtonCompany = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonVendor = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonImportExcel = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItemSaleStatistic = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageList = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroupList = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItemSaleStatistic = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -67,14 +66,13 @@
             this.barButtonImportExcel,
             this.barButtonItemSaleStatistic});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.Margin = new System.Windows.Forms.Padding(4);
+            this.ribbon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ribbon.MaxItemId = 10;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPageList});
-            this.ribbon.Size = new System.Drawing.Size(1784, 258);
+            this.ribbon.Size = new System.Drawing.Size(892, 143);
             this.ribbon.StatusBar = this.ribbonStatusBar;
-            this.ribbon.Click += new System.EventHandler(this.ribbon_Click);
             // 
             // barButtonCategory
             // 
@@ -95,7 +93,7 @@
             this.barButtonProduct.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonProduct.LargeGlyph")));
             this.barButtonProduct.Name = "barButtonProduct";
             this.barButtonProduct.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.barButtonProduct.Tag = 'p';
+            this.barButtonProduct.Tag = "Product";
             this.barButtonProduct.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonProduct_ItemClick);
             // 
             // barButtonOrderItem
@@ -154,6 +152,15 @@
             this.barButtonImportExcel.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.barButtonImportExcel.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonImportExcel_ItemClick);
             // 
+            // barButtonItemSaleStatistic
+            // 
+            this.barButtonItemSaleStatistic.Caption = "Doanh số bán hàng";
+            this.barButtonItemSaleStatistic.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItemSaleStatistic.Glyph")));
+            this.barButtonItemSaleStatistic.Id = 9;
+            this.barButtonItemSaleStatistic.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItemSaleStatistic.LargeGlyph")));
+            this.barButtonItemSaleStatistic.Name = "barButtonItemSaleStatistic";
+            this.barButtonItemSaleStatistic.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemSaleStatistic_ItemClick);
+            // 
             // ribbonPageList
             // 
             this.ribbonPageList.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -192,44 +199,35 @@
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             this.ribbonPageGroup3.Text = "Công cụ";
             // 
-            // ribbonStatusBar
-            // 
-            this.ribbonStatusBar.ItemLinks.Add(this.barStaticStatus);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 1024);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbonStatusBar.Name = "ribbonStatusBar";
-            this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1784, 55);
-            this.ribbonStatusBar.Click += new System.EventHandler(this.ribbonStatusBar_Click);
-            // 
-            // xtraTabbedMdiManager1
-            // 
-            this.xtraTabbedMdiManager1.MdiParent = this;
-            // 
             // ribbonPageGroup4
             // 
             this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItemSaleStatistic);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = "Thống kê";
             // 
-            // barButtonItemSaleStatistic
+            // ribbonStatusBar
             // 
-            this.barButtonItemSaleStatistic.Caption = "Doanh số bán hàng";
-            this.barButtonItemSaleStatistic.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItemSaleStatistic.Glyph")));
-            this.barButtonItemSaleStatistic.Id = 9;
-            this.barButtonItemSaleStatistic.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItemSaleStatistic.LargeGlyph")));
-            this.barButtonItemSaleStatistic.Name = "barButtonItemSaleStatistic";
-            this.barButtonItemSaleStatistic.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItemSaleStatistic_ItemClick);
+            this.ribbonStatusBar.ItemLinks.Add(this.barStaticStatus);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 530);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ribbonStatusBar.Name = "ribbonStatusBar";
+            this.ribbonStatusBar.Ribbon = this.ribbon;
+            this.ribbonStatusBar.Size = new System.Drawing.Size(892, 31);
+            this.ribbonStatusBar.Click += new System.EventHandler(this.ribbonStatusBar_Click);
+            // 
+            // xtraTabbedMdiManager1
+            // 
+            this.xtraTabbedMdiManager1.MdiParent = this;
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1784, 1079);
+            this.ClientSize = new System.Drawing.Size(892, 561);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormMain";
             this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;

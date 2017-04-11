@@ -22,6 +22,7 @@ namespace MyPos.Helper
             bool hasHeaders = false;
             string HDR = hasHeaders ? "Yes" : "No";
             string strConn;
+            if (string.IsNullOrEmpty(filePath)) return;
             if (filePath.Substring(filePath.LastIndexOf('.')).ToLower() == ".xlsx")
                 strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=\"Excel 12.0;HDR=" + HDR + ";IMEX=0\"";
             else

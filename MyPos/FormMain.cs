@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
 using MyPos.Helper;
+using DevExpress.XtraEditors;
 
 namespace MyPos
 {
@@ -26,7 +27,7 @@ namespace MyPos
         private void barButton_ItemClick(object sender, ItemClickEventArgs e)
         {
             BarButtonItem bbi = (BarButtonItem)sender;
-            
+
             switch (bbi.Tag.ToString())
             {
                 case "category":
@@ -41,6 +42,16 @@ namespace MyPos
 
         private void barButtonCategory_ItemClick(object sender, ItemClickEventArgs e)
         {
+            foreach (XtraForm form in this.MdiChildren)
+            {
+
+
+                if (form.GetType() == typeof(ListForms.frmListCategory))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
             ListForms.frmListCategory frm = new ListForms.frmListCategory();
             frm.MdiParent = this;
             frm.Show();
@@ -48,6 +59,14 @@ namespace MyPos
 
         private void barButtonProduct_ItemClick(object sender, ItemClickEventArgs e)
         {
+            foreach (XtraForm form in this.MdiChildren)
+            {
+                if (form.GetType() == typeof(ListForms.frmListProduct))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
             ListForms.frmListProduct frm = new ListForms.frmListProduct();
             frm.MdiParent = this;
             frm.Show();
@@ -55,6 +74,16 @@ namespace MyPos
 
         private void barButtonOrderItem_ItemClick(object sender, ItemClickEventArgs e)
         {
+            foreach (XtraForm form in this.MdiChildren)
+            {
+
+
+                if (form.GetType() == typeof(FunctionalForms.frmSaleForm))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
             FunctionalForms.frmSaleForm frm = new FunctionalForms.frmSaleForm();
             frm.MdiParent = this;
             frm.Show();
@@ -62,6 +91,16 @@ namespace MyPos
 
         private void barButtonUnit_ItemClick(object sender, ItemClickEventArgs e)
         {
+            foreach (XtraForm form in this.MdiChildren)
+            {
+
+
+                if (form.GetType() == typeof(ListForms.frmListUnit))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
             ListForms.frmListUnit frm = new ListForms.frmListUnit();
             frm.MdiParent = this;
             frm.Show();
@@ -69,7 +108,16 @@ namespace MyPos
 
         private void barButtonCompany_ItemClick(object sender, ItemClickEventArgs e)
         {
-            
+            foreach (XtraForm form in this.MdiChildren)
+            {
+
+
+                if (form.GetType() == typeof(ListForms.frmListCompany))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
             ListForms.frmListCompany frm = new ListForms.frmListCompany();
             frm.MdiParent = this;
             frm.Show();
@@ -89,6 +137,16 @@ namespace MyPos
 
         private void ribbon_Click(object sender, EventArgs e)
         {
+            foreach (XtraForm form in this.MdiChildren)
+            {
+
+
+                if (form.GetType() == typeof(FunctionalForms.frmSaleStatistic))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
             FunctionalForms.frmSaleStatistic frm = new FunctionalForms.frmSaleStatistic();
             frm.MdiParent = this;
             frm.Show();
@@ -111,7 +169,19 @@ namespace MyPos
 
         private void barButtonItemSaleStatistic_ItemClick(object sender, ItemClickEventArgs e)
         {
+            foreach (XtraForm form in this.MdiChildren)
+            {
 
+
+                if (form.GetType() == typeof(FunctionalForms.frmSaleStatistic))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+            FunctionalForms.frmSaleStatistic frm = new FunctionalForms.frmSaleStatistic();
+            frm.MdiParent = this;
+            frm.Show();
         }
     }
 }
