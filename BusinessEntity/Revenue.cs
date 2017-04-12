@@ -12,6 +12,6 @@ namespace BusinessEntity
 
         public DateTime RevenueDateTime { get; set; }
 
-        public double RevenueValue { get; set; }
+        public double? RevenueValue { get; set; }
     }
 }

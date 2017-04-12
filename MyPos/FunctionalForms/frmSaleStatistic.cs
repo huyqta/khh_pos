@@ -45,7 +45,7 @@ namespace MyPos.FunctionalForms
                 gvSaleStatistic.ExpandAllGroups();
                 MessageBox.Show("Saved successfull!");
             }
-            
+
         }
 
         private void btnInitialDay_Click(object sender, EventArgs e)
@@ -59,7 +59,7 @@ namespace MyPos.FunctionalForms
                 listOrderDetails = model.OrderDetails.Where(od => od.OrderId == order.Id).ToList();
                 foreach (var orderDetail in listOrderDetails)
                 {
-                    if (!model.SaleStatistics.Local.Any(s=>s.OrderDetailId == orderDetail.Id))
+                    if (!model.SaleStatistics.Local.Any(s => s.OrderDetailId == orderDetail.Id))
                     {
                         SaleStatistic ss = new SaleStatistic();
                         ss.Id = Guid.NewGuid();
@@ -75,7 +75,7 @@ namespace MyPos.FunctionalForms
                         ss.CustomerId = order.CustomerId;
                         ss.CustomerName = model.Customers.Where(c => c.Id == order.CustomerId).FirstOrDefault().Name.ToString();
                         model.SaleStatistics.Add(ss);
-                    }                                
+                    }
                 }
             }
 
@@ -102,20 +102,20 @@ namespace MyPos.FunctionalForms
 
         private void CalculateRevenues(DateTime datetime)
         {
-            var yearlyRevenue = model.Revenues.Where(s=>s.RevenueDateTime.Year == datetime.Year).Sum(s => s.RevenueValue);
-            var monthlyRevenue = model.Revenues.Where(s =>s.RevenueDateTime.Year == datetime.Year && s.RevenueDateTime.Month == datetime.Month).Sum(s => s.RevenueValue);
-            var dailyRevenue = model.Revenues.Where(s =>DbFunctions.TruncateTime(s.RevenueDateTime) == datetime.Date).Sum(s => s.RevenueValue);
+            var yearlyRevenue = model.Revenues.Where(s => s.RevenueDateTime.Year == datetime.Year).Sum(s => s.RevenueValue);
+            var monthlyRevenue = model.Revenues.Where(s => s.RevenueDateTime.Year == datetime.Year && s.RevenueDateTime.Month == datetime.Month).Sum(s => s.RevenueValue);
+            var dailyRevenue = model.Revenues.Where(s => DbFunctions.TruncateTime(s.RevenueDateTime) == datetime.Date).Sum(s => s.RevenueValue);
 
-            lblRevenueYearly.Text = yearlyRevenue.ToString("###,###,###");
-            lblRevenueMonthly.Text = monthlyRevenue.ToString("###,###,###");
-            lblRevenueDaily.Text = dailyRevenue.ToString("###,###,###");
+            lblRevenueYearly.Text = yearlyRevenue.HasValue ? yearlyRevenue.Value.ToString("###,###,###") : "0";
+            lblRevenueMonthly.Text = monthlyRevenue.HasValue ? monthlyRevenue.Value.ToString("###,###,###") : "0";
+            lblRevenueDaily.Text = dailyRevenue.HasValue ? dailyRevenue.Value.ToString("###,###,###") : "0";
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             var listOrdersCode = LoadOrders(dtSelectDate.DateTime).Select(o => o.OrderCode);
             model.SaleStatistics.Local.Where(o => listOrdersCode.Contains(o.OrderCode)).ToList();
-            if (!model.Revenues.Any(r=>DbFunctions.TruncateTime(r.RevenueDateTime) == dtSelectDate.DateTime.Date))
+            if (!model.Revenues.Any(r => DbFunctions.TruncateTime(r.RevenueDateTime) == dtSelectDate.DateTime.Date))
             {
                 Revenue rev = new Revenue();
                 rev.Id = Guid.NewGuid();
