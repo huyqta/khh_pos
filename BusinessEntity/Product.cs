@@ -23,5 +23,7 @@ namespace BusinessEntity
         public string Description { get; set; }
 
         public int UnitId { get; set; }
+
+        public byte[] ImageBinary { get; set; }
     }
 }

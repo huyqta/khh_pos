@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using DevExpress.XtraBars;
 using MyPos.Helper;
 using DevExpress.XtraEditors;
+using System.Drawing.Imaging;
+using System.IO;
+using BusinessEntity;
 
 namespace MyPos
 {
@@ -19,6 +22,8 @@ namespace MyPos
         {
             InitializeComponent();
             xtraTabbedMdiManager1.MdiParent = this;
+            UpdateImageToDatabase(@"C:\Users\HUYQTA\Downloads\trolley.png");
+
             FunctionalForms.frmSaleForm frm = new FunctionalForms.frmSaleForm();
             frm.MdiParent = this;
             frm.Show();
@@ -180,6 +185,46 @@ namespace MyPos
                 }
             }
             FunctionalForms.frmSaleStatistic frm = new FunctionalForms.frmSaleStatistic();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private byte[] ConvertImageToByteArray(string fileName)
+        {
+            Bitmap bitMap = new Bitmap(fileName);
+            ImageFormat bmpFormat = bitMap.RawFormat;
+            var imageToConvert = Image.FromFile(fileName);
+            using (MemoryStream ms = new MemoryStream())
+            {
+                imageToConvert.Save(ms, bmpFormat);
+                return ms.ToArray();
+            }
+        }
+
+        private void UpdateImageToDatabase(string fileName)
+        {
+            ProductModel model = new ProductModel();
+            byte[] arr = ConvertImageToByteArray(fileName);
+            foreach (var p in model.Categories)
+            {
+                p.ImageBinary = arr;
+            }
+            model.SaveChanges();
+        }
+
+        private void barButtonOrderList_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            foreach (XtraForm form in this.MdiChildren)
+            {
+
+
+                if (form.GetType() == typeof(FunctionalForms.frmOrderStatistic))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+            FunctionalForms.frmOrderStatistic frm = new FunctionalForms.frmOrderStatistic();
             frm.MdiParent = this;
             frm.Show();
         }

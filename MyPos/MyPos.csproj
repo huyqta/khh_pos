@@ -138,6 +138,12 @@
     <Compile Include="FunctionalForms\frmSaleStatistic.Designer.cs">
       <DependentUpon>frmSaleStatistic.cs</DependentUpon>
     </Compile>
+    <Compile Include="FunctionalForms\frmOrderStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FunctionalForms\frmOrderStatistic.Designer.cs">
+      <DependentUpon>frmOrderStatistic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helper\DbHelper.cs" />
     <Compile Include="Helper\GridViewColumnButtonMenu.cs" />
     <Compile Include="Helper\UtilityHelper.cs" />
@@ -222,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FunctionalForms\frmSaleStatistic.resx">
       <DependentUpon>frmSaleStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FunctionalForms\frmOrderStatistic.resx">
+      <DependentUpon>frmOrderStatistic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListForms\frmListCustomer.resx">
       <DependentUpon>frmListCustomer.cs</DependentUpon>
