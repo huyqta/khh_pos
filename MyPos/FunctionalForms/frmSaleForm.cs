@@ -170,7 +170,7 @@ namespace MyPos.FunctionalForms
                     if (model.OrderDetails.Local.Any(l => l.ProductId == product.Id))
                     {
                         OrderDetail focusedOrderDetail = model.OrderDetails.Local.Where(od => od.ProductId == product.Id && od.OrderId == order.Id).FirstOrDefault();
-                        focusedOrderDetail.Quanlity = int.Parse(e.Value.ToString());
+                        focusedOrderDetail.Quanlity = double.Parse(e.Value.ToString());
                         focusedOrderDetail.TotalPrice = focusedOrderDetail.Quanlity * focusedOrderDetail.UnitPrice;
                         model.SaveChanges();
                         order.TotalPrice = model.OrderDetails.Local.Where(od => od.OrderId == order.Id).Sum(od => od.TotalPrice);

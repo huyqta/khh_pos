@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSaleForm));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.gcCategory = new DevExpress.XtraGrid.GridControl();
@@ -39,6 +39,7 @@
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colImageUrl = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
@@ -47,17 +48,10 @@
             this.Id = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Description = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ImageUrl = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ImageBinary = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.lookUpCustomer = new DevExpress.XtraEditors.LookUpEdit();
-            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.lblOrderCode = new DevExpress.XtraEditors.LabelControl();
-            this.btnSubmitOrder = new DevExpress.XtraEditors.SimpleButton();
-            this.btnNewOrder = new DevExpress.XtraEditors.SimpleButton();
             this.gcOrderDetail = new DevExpress.XtraGrid.GridControl();
             this.gvOrderDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ProductId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -70,9 +64,15 @@
             this.UnitPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TotalPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.groupControl6 = new DevExpress.XtraEditors.GroupControl();
+            this.btnNewOrder = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.btnSubmitOrder = new DevExpress.XtraEditors.SimpleButton();
+            this.lookUpCustomer = new DevExpress.XtraEditors.LookUpEdit();
+            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblOrderCode = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
-            this.dtSelectDateOrder = new DevExpress.XtraEditors.DateEdit();
-            this.rdSelectDateOrder = new DevExpress.XtraEditors.RadioGroup();
             this.gcOrders = new DevExpress.XtraGrid.GridControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenu_PrintReceipt = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,7 +81,11 @@
             this.OrderCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.OrderDateTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TotalPrice_Order = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.groupControl7 = new DevExpress.XtraEditors.GroupControl();
+            this.rdSelectDateOrder = new DevExpress.XtraEditors.RadioGroup();
+            this.dtSelectDateOrder = new DevExpress.XtraEditors.DateEdit();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.splitContainerControl3 = new DevExpress.XtraEditors.SplitContainerControl();
             this.categoriesTableAdapter = new MyPos.khh_posDataSetTableAdapters.CategoriesTableAdapter();
             this.productsTableAdapter = new MyPos.khh_posDataSetTableAdapters.ProductsTableAdapter();
             this.unitsTableAdapter = new MyPos.khh_posDataSetTableAdapters.UnitsTableAdapter();
@@ -100,6 +104,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.winExplorerView_Category)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -111,8 +116,6 @@
             this.splitContainerControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
             this.groupControl5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpCustomer.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcOrderDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrderDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpProduct)).BeginInit();
@@ -120,16 +123,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.unitsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).BeginInit();
+            this.groupControl6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpCustomer.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtSelectDateOrder.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtSelectDateOrder.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdSelectDateOrder.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcOrders)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).BeginInit();
+            this.groupControl7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rdSelectDateOrder.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSelectDateOrder.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSelectDateOrder.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).BeginInit();
+            this.splitContainerControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
@@ -137,11 +148,11 @@
             // groupControl1
             // 
             this.groupControl1.Controls.Add(this.gcCategory);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
-            this.groupControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupControl1.Margin = new System.Windows.Forms.Padding(2);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(583, 515);
+            this.groupControl1.Size = new System.Drawing.Size(319, 365);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Nhóm hàng";
             // 
@@ -149,15 +160,15 @@
             // 
             this.gcCategory.DataSource = this.categoriesBindingSource;
             this.gcCategory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcCategory.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
-            gridLevelNode1.RelationName = "Level1";
+            gridLevelNode2.RelationName = "Level1";
             this.gcCategory.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
-            this.gcCategory.Location = new System.Drawing.Point(3, 40);
+            gridLevelNode2});
+            this.gcCategory.Location = new System.Drawing.Point(2, 20);
             this.gcCategory.MainView = this.winExplorerView_Category;
-            this.gcCategory.Margin = new System.Windows.Forms.Padding(6);
             this.gcCategory.Name = "gcCategory";
-            this.gcCategory.Size = new System.Drawing.Size(577, 472);
+            this.gcCategory.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemPictureEdit1});
+            this.gcCategory.Size = new System.Drawing.Size(315, 343);
             this.gcCategory.TabIndex = 0;
             this.gcCategory.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.winExplorerView_Category});
@@ -229,11 +240,16 @@
             // 
             this.colImageUrl.AppearanceCell.Image = ((System.Drawing.Image)(resources.GetObject("colImageUrl.AppearanceCell.Image")));
             this.colImageUrl.AppearanceCell.Options.UseImage = true;
-            this.colImageUrl.FieldName = "ImageUrl";
+            this.colImageUrl.ColumnEdit = this.repositoryItemPictureEdit1;
             this.colImageUrl.Image = ((System.Drawing.Image)(resources.GetObject("colImageUrl.Image")));
             this.colImageUrl.Name = "colImageUrl";
             this.colImageUrl.Visible = true;
             this.colImageUrl.VisibleIndex = 2;
+            // 
+            // repositoryItemPictureEdit1
+            // 
+            this.repositoryItemPictureEdit1.InitialImage = ((System.Drawing.Image)(resources.GetObject("repositoryItemPictureEdit1.InitialImage")));
+            this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
             // 
             // colDescription
             // 
@@ -250,23 +266,21 @@
             // groupControl2
             // 
             this.groupControl2.Controls.Add(this.gcProducts);
-            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupControl2.Location = new System.Drawing.Point(0, 319);
-            this.groupControl2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl2.Location = new System.Drawing.Point(0, 0);
+            this.groupControl2.Margin = new System.Windows.Forms.Padding(2);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(583, 746);
+            this.groupControl2.Size = new System.Drawing.Size(319, 174);
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "Hàng hóa";
             // 
             // gcProducts
             // 
             this.gcProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcProducts.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
-            this.gcProducts.Location = new System.Drawing.Point(3, 40);
+            this.gcProducts.Location = new System.Drawing.Point(2, 20);
             this.gcProducts.MainView = this.winExplorerView_Product;
-            this.gcProducts.Margin = new System.Windows.Forms.Padding(6);
             this.gcProducts.Name = "gcProducts";
-            this.gcProducts.Size = new System.Drawing.Size(577, 703);
+            this.gcProducts.Size = new System.Drawing.Size(315, 152);
             this.gcProducts.TabIndex = 1;
             this.gcProducts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.winExplorerView_Product});
@@ -277,10 +291,10 @@
             this.Id,
             this.Name,
             this.Description,
-            this.ImageUrl});
+            this.ImageBinary});
             this.winExplorerView_Product.ColumnSet.DescriptionColumn = this.Description;
-            this.winExplorerView_Product.ColumnSet.SmallImageColumn = this.ImageUrl;
-            this.winExplorerView_Product.ColumnSet.SmallImageIndexColumn = this.ImageUrl;
+            this.winExplorerView_Product.ColumnSet.SmallImageColumn = this.ImageBinary;
+            this.winExplorerView_Product.ColumnSet.SmallImageIndexColumn = this.ImageBinary;
             this.winExplorerView_Product.ColumnSet.TextColumn = this.Name;
             this.winExplorerView_Product.GridControl = this.gcProducts;
             this.winExplorerView_Product.Name = "winExplorerView_Product";
@@ -311,22 +325,22 @@
             this.Description.Visible = true;
             this.Description.VisibleIndex = 0;
             // 
-            // ImageUrl
+            // ImageBinary
             // 
-            this.ImageUrl.Caption = "ImageUrl";
-            this.ImageUrl.FieldName = "ImageUrl";
-            this.ImageUrl.Name = "ImageUrl";
-            this.ImageUrl.Visible = true;
-            this.ImageUrl.VisibleIndex = 0;
+            this.ImageBinary.Caption = "ImageUrl";
+            this.ImageBinary.FieldName = "ImageBinary";
+            this.ImageBinary.Name = "ImageBinary";
+            this.ImageBinary.Visible = true;
+            this.ImageBinary.VisibleIndex = 0;
             // 
             // groupControl3
             // 
             this.groupControl3.Controls.Add(this.splitContainerControl2);
             this.groupControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl3.Location = new System.Drawing.Point(0, 0);
-            this.groupControl3.Margin = new System.Windows.Forms.Padding(4);
+            this.groupControl3.Margin = new System.Windows.Forms.Padding(2);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(1298, 1065);
+            this.groupControl3.Size = new System.Drawing.Size(622, 544);
             this.groupControl3.TabIndex = 2;
             this.groupControl3.Text = "Thông tin bán hàng";
             // 
@@ -334,117 +348,43 @@
             // 
             this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl2.Horizontal = false;
-            this.splitContainerControl2.Location = new System.Drawing.Point(3, 40);
-            this.splitContainerControl2.Margin = new System.Windows.Forms.Padding(4);
+            this.splitContainerControl2.Location = new System.Drawing.Point(2, 20);
+            this.splitContainerControl2.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainerControl2.Name = "splitContainerControl2";
             this.splitContainerControl2.Panel1.Controls.Add(this.groupControl5);
             this.splitContainerControl2.Panel1.Text = "Panel1";
             this.splitContainerControl2.Panel2.Controls.Add(this.groupControl4);
             this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(1292, 1022);
-            this.splitContainerControl2.SplitterPosition = 734;
+            this.splitContainerControl2.Size = new System.Drawing.Size(618, 522);
+            this.splitContainerControl2.SplitterPosition = 345;
             this.splitContainerControl2.TabIndex = 18;
             this.splitContainerControl2.Text = "splitContainerControl2";
             // 
             // groupControl5
             // 
-            this.groupControl5.Controls.Add(this.labelControl2);
-            this.groupControl5.Controls.Add(this.lookUpCustomer);
-            this.groupControl5.Controls.Add(this.labelControl1);
-            this.groupControl5.Controls.Add(this.lblOrderCode);
-            this.groupControl5.Controls.Add(this.btnSubmitOrder);
-            this.groupControl5.Controls.Add(this.btnNewOrder);
             this.groupControl5.Controls.Add(this.gcOrderDetail);
+            this.groupControl5.Controls.Add(this.groupControl6);
             this.groupControl5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl5.Location = new System.Drawing.Point(0, 0);
-            this.groupControl5.Margin = new System.Windows.Forms.Padding(4);
+            this.groupControl5.Margin = new System.Windows.Forms.Padding(2);
             this.groupControl5.Name = "groupControl5";
-            this.groupControl5.Size = new System.Drawing.Size(1292, 734);
+            this.groupControl5.Size = new System.Drawing.Size(618, 345);
             this.groupControl5.TabIndex = 16;
             this.groupControl5.Text = "Chi tiết đơn hàng";
             // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(7, 171);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(118, 25);
-            this.labelControl2.TabIndex = 19;
-            this.labelControl2.Text = "Khách hàng:";
-            // 
-            // lookUpCustomer
-            // 
-            this.lookUpCustomer.Location = new System.Drawing.Point(190, 167);
-            this.lookUpCustomer.Name = "lookUpCustomer";
-            this.lookUpCustomer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpCustomer.Properties.DataSource = this.customersBindingSource;
-            this.lookUpCustomer.Properties.DisplayMember = "Name";
-            this.lookUpCustomer.Properties.NullText = "Chọn khách hàng ...";
-            this.lookUpCustomer.Properties.ValueMember = "Id";
-            this.lookUpCustomer.Size = new System.Drawing.Size(704, 34);
-            this.lookUpCustomer.TabIndex = 18;
-            this.lookUpCustomer.EditValueChanged += new System.EventHandler(this.lookUpCustomer_EditValueChanged);
-            // 
-            // customersBindingSource
-            // 
-            this.customersBindingSource.DataMember = "Customers";
-            this.customersBindingSource.DataSource = this.khh_posDataSet;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelControl1.Location = new System.Drawing.Point(7, 112);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(217, 39);
-            this.labelControl1.TabIndex = 17;
-            this.labelControl1.Text = "Mã đơn hàng:";
-            // 
-            // lblOrderCode
-            // 
-            this.lblOrderCode.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrderCode.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblOrderCode.Location = new System.Drawing.Point(232, 112);
-            this.lblOrderCode.Margin = new System.Windows.Forms.Padding(4);
-            this.lblOrderCode.Name = "lblOrderCode";
-            this.lblOrderCode.Size = new System.Drawing.Size(42, 39);
-            this.lblOrderCode.TabIndex = 16;
-            this.lblOrderCode.Text = "---";
-            // 
-            // btnSubmitOrder
-            // 
-            this.btnSubmitOrder.Location = new System.Drawing.Point(190, 44);
-            this.btnSubmitOrder.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSubmitOrder.Name = "btnSubmitOrder";
-            this.btnSubmitOrder.Size = new System.Drawing.Size(176, 54);
-            this.btnSubmitOrder.TabIndex = 15;
-            this.btnSubmitOrder.Text = "Đóng đơn hàng";
-            this.btnSubmitOrder.Click += new System.EventHandler(this.btnSubmitOrder_Click);
-            // 
-            // btnNewOrder
-            // 
-            this.btnNewOrder.Location = new System.Drawing.Point(6, 42);
-            this.btnNewOrder.Margin = new System.Windows.Forms.Padding(4);
-            this.btnNewOrder.Name = "btnNewOrder";
-            this.btnNewOrder.Size = new System.Drawing.Size(176, 54);
-            this.btnNewOrder.TabIndex = 14;
-            this.btnNewOrder.Text = "Đơn hàng mới";
-            this.btnNewOrder.Click += new System.EventHandler(this.btnNewOrder_Click);
-            // 
             // gcOrderDetail
             // 
-            this.gcOrderDetail.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gcOrderDetail.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gcOrderDetail.Location = new System.Drawing.Point(3, 230);
+            this.gcOrderDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcOrderDetail.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
+            this.gcOrderDetail.Location = new System.Drawing.Point(2, 120);
             this.gcOrderDetail.MainView = this.gvOrderDetail;
-            this.gcOrderDetail.Margin = new System.Windows.Forms.Padding(4);
+            this.gcOrderDetail.Margin = new System.Windows.Forms.Padding(2);
             this.gcOrderDetail.Name = "gcOrderDetail";
             this.gcOrderDetail.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpProduct,
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpUnit});
-            this.gcOrderDetail.Size = new System.Drawing.Size(1286, 501);
+            this.gcOrderDetail.Size = new System.Drawing.Size(614, 223);
             this.gcOrderDetail.TabIndex = 13;
             this.gcOrderDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvOrderDetail});
@@ -522,8 +462,8 @@
             // Quanlity
             // 
             this.Quanlity.Caption = "Số lượng";
-            this.Quanlity.DisplayFormat.FormatString = "{0:n0}";
-            this.Quanlity.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.Quanlity.DisplayFormat.FormatString = "{0:n2}";
+            this.Quanlity.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.Quanlity.FieldName = "Quanlity";
             this.Quanlity.Name = "Quanlity";
             this.Quanlity.Visible = true;
@@ -570,61 +510,115 @@
             this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
             this.repositoryItemLookUpEdit1.ValueMember = "Id";
             // 
+            // groupControl6
+            // 
+            this.groupControl6.Controls.Add(this.btnNewOrder);
+            this.groupControl6.Controls.Add(this.labelControl2);
+            this.groupControl6.Controls.Add(this.btnSubmitOrder);
+            this.groupControl6.Controls.Add(this.lookUpCustomer);
+            this.groupControl6.Controls.Add(this.lblOrderCode);
+            this.groupControl6.Controls.Add(this.labelControl1);
+            this.groupControl6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupControl6.Location = new System.Drawing.Point(2, 20);
+            this.groupControl6.Name = "groupControl6";
+            this.groupControl6.ShowCaption = false;
+            this.groupControl6.Size = new System.Drawing.Size(614, 100);
+            this.groupControl6.TabIndex = 20;
+            this.groupControl6.Text = "groupControl6";
+            // 
+            // btnNewOrder
+            // 
+            this.btnNewOrder.Location = new System.Drawing.Point(4, 4);
+            this.btnNewOrder.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNewOrder.Name = "btnNewOrder";
+            this.btnNewOrder.Size = new System.Drawing.Size(88, 28);
+            this.btnNewOrder.TabIndex = 14;
+            this.btnNewOrder.Text = "Đơn hàng mới";
+            this.btnNewOrder.Click += new System.EventHandler(this.btnNewOrder_Click);
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(5, 71);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(2);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(60, 13);
+            this.labelControl2.TabIndex = 19;
+            this.labelControl2.Text = "Khách hàng:";
+            // 
+            // btnSubmitOrder
+            // 
+            this.btnSubmitOrder.Location = new System.Drawing.Point(96, 5);
+            this.btnSubmitOrder.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSubmitOrder.Name = "btnSubmitOrder";
+            this.btnSubmitOrder.Size = new System.Drawing.Size(88, 28);
+            this.btnSubmitOrder.TabIndex = 15;
+            this.btnSubmitOrder.Text = "Đóng đơn hàng";
+            this.btnSubmitOrder.Click += new System.EventHandler(this.btnSubmitOrder_Click);
+            // 
+            // lookUpCustomer
+            // 
+            this.lookUpCustomer.Location = new System.Drawing.Point(96, 69);
+            this.lookUpCustomer.Margin = new System.Windows.Forms.Padding(2);
+            this.lookUpCustomer.Name = "lookUpCustomer";
+            this.lookUpCustomer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpCustomer.Properties.DataSource = this.customersBindingSource;
+            this.lookUpCustomer.Properties.DisplayMember = "Name";
+            this.lookUpCustomer.Properties.NullText = "Chọn khách hàng ...";
+            this.lookUpCustomer.Properties.ValueMember = "Id";
+            this.lookUpCustomer.Size = new System.Drawing.Size(352, 20);
+            this.lookUpCustomer.TabIndex = 18;
+            this.lookUpCustomer.EditValueChanged += new System.EventHandler(this.lookUpCustomer_EditValueChanged);
+            // 
+            // customersBindingSource
+            // 
+            this.customersBindingSource.DataMember = "Customers";
+            this.customersBindingSource.DataSource = this.khh_posDataSet;
+            // 
+            // lblOrderCode
+            // 
+            this.lblOrderCode.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrderCode.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblOrderCode.Location = new System.Drawing.Point(117, 40);
+            this.lblOrderCode.Margin = new System.Windows.Forms.Padding(2);
+            this.lblOrderCode.Name = "lblOrderCode";
+            this.lblOrderCode.Size = new System.Drawing.Size(21, 19);
+            this.lblOrderCode.TabIndex = 16;
+            this.lblOrderCode.Text = "---";
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labelControl1.Location = new System.Drawing.Point(5, 40);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(2);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(110, 19);
+            this.labelControl1.TabIndex = 17;
+            this.labelControl1.Text = "Mã đơn hàng:";
+            // 
             // groupControl4
             // 
-            this.groupControl4.Controls.Add(this.dtSelectDateOrder);
-            this.groupControl4.Controls.Add(this.rdSelectDateOrder);
             this.groupControl4.Controls.Add(this.gcOrders);
+            this.groupControl4.Controls.Add(this.groupControl7);
             this.groupControl4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl4.Location = new System.Drawing.Point(0, 0);
-            this.groupControl4.Margin = new System.Windows.Forms.Padding(4);
+            this.groupControl4.Margin = new System.Windows.Forms.Padding(2);
             this.groupControl4.Name = "groupControl4";
-            this.groupControl4.Size = new System.Drawing.Size(1292, 278);
+            this.groupControl4.Size = new System.Drawing.Size(618, 172);
             this.groupControl4.TabIndex = 14;
             this.groupControl4.Text = "Danh sách đơn hàng";
-            // 
-            // dtSelectDateOrder
-            // 
-            this.dtSelectDateOrder.EditValue = null;
-            this.dtSelectDateOrder.Location = new System.Drawing.Point(592, 42);
-            this.dtSelectDateOrder.Margin = new System.Windows.Forms.Padding(4);
-            this.dtSelectDateOrder.Name = "dtSelectDateOrder";
-            this.dtSelectDateOrder.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtSelectDateOrder.Properties.Appearance.Options.UseFont = true;
-            this.dtSelectDateOrder.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtSelectDateOrder.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtSelectDateOrder.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
-            this.dtSelectDateOrder.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
-            this.dtSelectDateOrder.Size = new System.Drawing.Size(246, 42);
-            this.dtSelectDateOrder.TabIndex = 15;
-            // 
-            // rdSelectDateOrder
-            // 
-            this.rdSelectDateOrder.EditValue = true;
-            this.rdSelectDateOrder.Location = new System.Drawing.Point(6, 42);
-            this.rdSelectDateOrder.Margin = new System.Windows.Forms.Padding(4);
-            this.rdSelectDateOrder.Name = "rdSelectDateOrder";
-            this.rdSelectDateOrder.Properties.Columns = 4;
-            this.rdSelectDateOrder.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(true, "Hôm nay", true, "today"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(false, "1 ngày trước", true, "yesterday"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(false, "Chọn ngày", true, "selectdate")});
-            this.rdSelectDateOrder.Size = new System.Drawing.Size(580, 42);
-            this.rdSelectDateOrder.TabIndex = 14;
-            this.rdSelectDateOrder.SelectedIndexChanged += new System.EventHandler(this.rdSelectDateOrder_SelectedIndexChanged);
             // 
             // gcOrders
             // 
             this.gcOrders.ContextMenuStrip = this.contextMenuStrip1;
-            this.gcOrders.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gcOrders.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gcOrders.Location = new System.Drawing.Point(3, -159);
+            this.gcOrders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcOrders.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
+            this.gcOrders.Location = new System.Drawing.Point(2, 51);
             this.gcOrders.MainView = this.gvOrders;
-            this.gcOrders.Margin = new System.Windows.Forms.Padding(4);
+            this.gcOrders.Margin = new System.Windows.Forms.Padding(2);
             this.gcOrders.Name = "gcOrders";
-            this.gcOrders.Size = new System.Drawing.Size(1286, 434);
+            this.gcOrders.Size = new System.Drawing.Size(614, 119);
             this.gcOrders.TabIndex = 13;
             this.gcOrders.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvOrders});
@@ -636,19 +630,19 @@
             this.toolStripMenu_PrintReceipt,
             this.toolStripMenuItem2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(330, 80);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
             // 
             // toolStripMenu_PrintReceipt
             // 
             this.toolStripMenu_PrintReceipt.Name = "toolStripMenu_PrintReceipt";
-            this.toolStripMenu_PrintReceipt.Size = new System.Drawing.Size(329, 38);
+            this.toolStripMenu_PrintReceipt.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenu_PrintReceipt.Text = "In phiếu tính tiền";
             this.toolStripMenu_PrintReceipt.Click += new System.EventHandler(this.toolStripMenu_PrintReceipt_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(329, 38);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem2.Text = "toolStripMenuItem2";
             // 
             // gvOrders
@@ -697,21 +691,78 @@
             this.TotalPrice_Order.Visible = true;
             this.TotalPrice_Order.VisibleIndex = 2;
             // 
+            // groupControl7
+            // 
+            this.groupControl7.Controls.Add(this.rdSelectDateOrder);
+            this.groupControl7.Controls.Add(this.dtSelectDateOrder);
+            this.groupControl7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupControl7.Location = new System.Drawing.Point(2, 20);
+            this.groupControl7.Name = "groupControl7";
+            this.groupControl7.ShowCaption = false;
+            this.groupControl7.Size = new System.Drawing.Size(614, 31);
+            this.groupControl7.TabIndex = 16;
+            this.groupControl7.Text = "groupControl7";
+            // 
+            // rdSelectDateOrder
+            // 
+            this.rdSelectDateOrder.EditValue = true;
+            this.rdSelectDateOrder.Location = new System.Drawing.Point(4, 4);
+            this.rdSelectDateOrder.Margin = new System.Windows.Forms.Padding(2);
+            this.rdSelectDateOrder.Name = "rdSelectDateOrder";
+            this.rdSelectDateOrder.Properties.Columns = 4;
+            this.rdSelectDateOrder.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(true, "Hôm nay", true, "today"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(false, "1 ngày trước", true, "yesterday"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(false, "Chọn ngày", true, "selectdate")});
+            this.rdSelectDateOrder.Size = new System.Drawing.Size(290, 24);
+            this.rdSelectDateOrder.TabIndex = 14;
+            this.rdSelectDateOrder.SelectedIndexChanged += new System.EventHandler(this.rdSelectDateOrder_SelectedIndexChanged);
+            // 
+            // dtSelectDateOrder
+            // 
+            this.dtSelectDateOrder.EditValue = null;
+            this.dtSelectDateOrder.Location = new System.Drawing.Point(297, 4);
+            this.dtSelectDateOrder.Margin = new System.Windows.Forms.Padding(2);
+            this.dtSelectDateOrder.Name = "dtSelectDateOrder";
+            this.dtSelectDateOrder.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtSelectDateOrder.Properties.Appearance.Options.UseFont = true;
+            this.dtSelectDateOrder.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtSelectDateOrder.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtSelectDateOrder.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
+            this.dtSelectDateOrder.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+            this.dtSelectDateOrder.Size = new System.Drawing.Size(123, 24);
+            this.dtSelectDateOrder.TabIndex = 15;
+            // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 20);
-            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.Controls.Add(this.groupControl1);
-            this.splitContainerControl1.Panel1.Controls.Add(this.groupControl2);
+            this.splitContainerControl1.Panel1.Controls.Add(this.splitContainerControl3);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.groupControl3);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1891, 1065);
-            this.splitContainerControl1.SplitterPosition = 583;
+            this.splitContainerControl1.Size = new System.Drawing.Size(946, 544);
+            this.splitContainerControl1.SplitterPosition = 319;
             this.splitContainerControl1.TabIndex = 17;
             this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
+            // splitContainerControl3
+            // 
+            this.splitContainerControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerControl3.Horizontal = false;
+            this.splitContainerControl3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl3.Name = "splitContainerControl3";
+            this.splitContainerControl3.Panel1.Controls.Add(this.groupControl1);
+            this.splitContainerControl3.Panel1.Text = "Panel1";
+            this.splitContainerControl3.Panel2.Controls.Add(this.groupControl2);
+            this.splitContainerControl3.Panel2.Text = "Panel2";
+            this.splitContainerControl3.Size = new System.Drawing.Size(319, 544);
+            this.splitContainerControl3.SplitterPosition = 365;
+            this.splitContainerControl3.TabIndex = 2;
+            this.splitContainerControl3.Text = "splitContainerControl3";
             // 
             // categoriesTableAdapter
             // 
@@ -773,41 +824,45 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1891, 20);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(2);
+            this.barDockControlTop.Size = new System.Drawing.Size(946, 20);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1085);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1891, 0);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 564);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(2);
+            this.barDockControlBottom.Size = new System.Drawing.Size(946, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 20);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1065);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(2);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 544);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1891, 20);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1065);
+            this.barDockControlRight.Location = new System.Drawing.Point(946, 20);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(2);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 544);
             // 
             // frmSaleForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1891, 1085);
+            this.ClientSize = new System.Drawing.Size(946, 564);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(2);
             //this.Name = "frmSaleForm";
             this.Text = "Bán hàng";
             this.Load += new System.EventHandler(this.frmSaleForm_Load);
@@ -817,6 +872,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.winExplorerView_Category)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
@@ -828,9 +884,6 @@
             this.splitContainerControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
             this.groupControl5.ResumeLayout(false);
-            this.groupControl5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpCustomer.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcOrderDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrderDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpProduct)).EndInit();
@@ -838,16 +891,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.unitsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).EndInit();
+            this.groupControl6.ResumeLayout(false);
+            this.groupControl6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpCustomer.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtSelectDateOrder.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtSelectDateOrder.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdSelectDateOrder.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcOrders)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvOrders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).EndInit();
+            this.groupControl7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.rdSelectDateOrder.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSelectDateOrder.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSelectDateOrder.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).EndInit();
+            this.splitContainerControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
@@ -883,7 +945,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn Id;
         private DevExpress.XtraGrid.Columns.GridColumn Name;
         private DevExpress.XtraGrid.Columns.GridColumn Description;
-        private DevExpress.XtraGrid.Columns.GridColumn ImageUrl;
+        private DevExpress.XtraGrid.Columns.GridColumn ImageBinary;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
         private DevExpress.XtraEditors.LabelControl lblOrderCode;
         private DevExpress.XtraEditors.SimpleButton btnSubmitOrder;
@@ -920,5 +982,9 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenu_PrintReceipt;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private DevExpress.XtraEditors.GroupControl groupControl6;
+        private DevExpress.XtraEditors.GroupControl groupControl7;
+        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl3;
+        private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
     }
 }
