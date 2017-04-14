@@ -22,7 +22,7 @@ namespace MyPos
         {
             InitializeComponent();
             xtraTabbedMdiManager1.MdiParent = this;
-            UpdateImageToDatabase(@"C:\Users\HUYQTA\Downloads\trolley.png");
+            //UpdateImageToDatabase(@"C:\Users\HUYQTA\Downloads\trolley.png");
 
             FunctionalForms.frmSaleForm frm = new FunctionalForms.frmSaleForm();
             frm.MdiParent = this;

@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.gcSaleStatistic = new DevExpress.XtraGrid.GridControl();
-            this.saleStatisticBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.saleStatisticBindingSource = new System.Windows.Forms.BindingSource();
             this.khh_posDataSet = new MyPos.khh_posDataSet();
             this.gvSaleStatistic = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colOrderCode = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -74,12 +73,12 @@
             // 
             this.gcSaleStatistic.DataSource = this.saleStatisticBindingSource;
             this.gcSaleStatistic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcSaleStatistic.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gcSaleStatistic.Location = new System.Drawing.Point(0, 254);
+            this.gcSaleStatistic.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
+            this.gcSaleStatistic.Location = new System.Drawing.Point(0, 132);
             this.gcSaleStatistic.MainView = this.gvSaleStatistic;
-            this.gcSaleStatistic.Margin = new System.Windows.Forms.Padding(4);
+            this.gcSaleStatistic.Margin = new System.Windows.Forms.Padding(2);
             this.gcSaleStatistic.Name = "gcSaleStatistic";
-            this.gcSaleStatistic.Size = new System.Drawing.Size(1526, 542);
+            this.gcSaleStatistic.Size = new System.Drawing.Size(763, 282);
             this.gcSaleStatistic.TabIndex = 0;
             this.gcSaleStatistic.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvSaleStatistic});
@@ -179,6 +178,8 @@
             // colQuanlity
             // 
             this.colQuanlity.Caption = "Số lượng";
+            this.colQuanlity.DisplayFormat.FormatString = "{0:n2}";
+            this.colQuanlity.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colQuanlity.FieldName = "Quanlity";
             this.colQuanlity.Name = "colQuanlity";
             this.colQuanlity.OptionsColumn.AllowEdit = false;
@@ -189,6 +190,8 @@
             // colUnitPrice
             // 
             this.colUnitPrice.Caption = "Đơn giá";
+            this.colUnitPrice.DisplayFormat.FormatString = "{0:n0}";
+            this.colUnitPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colUnitPrice.FieldName = "UnitPrice";
             this.colUnitPrice.Name = "colUnitPrice";
             this.colUnitPrice.OptionsColumn.AllowEdit = false;
@@ -199,9 +202,13 @@
             // colTotalPrice
             // 
             this.colTotalPrice.Caption = "Thành tiền";
+            this.colTotalPrice.DisplayFormat.FormatString = "{0:n0}";
+            this.colTotalPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colTotalPrice.FieldName = "TotalPrice";
             this.colTotalPrice.Name = "colTotalPrice";
             this.colTotalPrice.OptionsColumn.AllowEdit = false;
+            this.colTotalPrice.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalPrice", "{0:n0}")});
             this.colTotalPrice.Visible = true;
             this.colTotalPrice.VisibleIndex = 4;
             this.colTotalPrice.Width = 212;
@@ -209,6 +216,8 @@
             // colRevenue
             // 
             this.colRevenue.Caption = "Tiền lời";
+            this.colRevenue.DisplayFormat.FormatString = "{0:n0}";
+            this.colRevenue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colRevenue.FieldName = "Revenue";
             this.colRevenue.Name = "colRevenue";
             this.colRevenue.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -224,20 +233,20 @@
             // 
             // btnInitialDay
             // 
-            this.btnInitialDay.Location = new System.Drawing.Point(6, 12);
-            this.btnInitialDay.Margin = new System.Windows.Forms.Padding(4);
+            this.btnInitialDay.Location = new System.Drawing.Point(3, 6);
+            this.btnInitialDay.Margin = new System.Windows.Forms.Padding(2);
             this.btnInitialDay.Name = "btnInitialDay";
-            this.btnInitialDay.Size = new System.Drawing.Size(352, 54);
+            this.btnInitialDay.Size = new System.Drawing.Size(176, 28);
             this.btnInitialDay.TabIndex = 1;
             this.btnInitialDay.Text = "Tổng hợp bán hàng trong ngày";
             this.btnInitialDay.Click += new System.EventHandler(this.btnInitialDay_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(364, 12);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSave.Location = new System.Drawing.Point(182, 6);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(218, 54);
+            this.btnSave.Size = new System.Drawing.Size(109, 28);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Lưu doanh thu";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -245,14 +254,14 @@
             // dtSelectDate
             // 
             this.dtSelectDate.EditValue = null;
-            this.dtSelectDate.Location = new System.Drawing.Point(588, 23);
-            this.dtSelectDate.Margin = new System.Windows.Forms.Padding(4);
+            this.dtSelectDate.Location = new System.Drawing.Point(294, 12);
+            this.dtSelectDate.Margin = new System.Windows.Forms.Padding(2);
             this.dtSelectDate.Name = "dtSelectDate";
             this.dtSelectDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtSelectDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtSelectDate.Size = new System.Drawing.Size(232, 34);
+            this.dtSelectDate.Size = new System.Drawing.Size(116, 20);
             this.dtSelectDate.TabIndex = 2;
             this.dtSelectDate.DateTimeChanged += new System.EventHandler(this.dtSelectDate_DateTimeChanged);
             // 
@@ -279,10 +288,10 @@
             this.groupControl1.Controls.Add(this.btnSave);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
-            this.groupControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupControl1.Margin = new System.Windows.Forms.Padding(2);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.ShowCaption = false;
-            this.groupControl1.Size = new System.Drawing.Size(1526, 254);
+            this.groupControl1.Size = new System.Drawing.Size(763, 132);
             this.groupControl1.TabIndex = 3;
             // 
             // labelControl5
@@ -290,29 +299,26 @@
             this.labelControl5.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelControl5.Appearance.ForeColor = System.Drawing.Color.White;
             this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl5.Location = new System.Drawing.Point(10, 165);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(6);
+            this.labelControl5.Location = new System.Drawing.Point(5, 86);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(223, 30);
+            this.labelControl5.Size = new System.Drawing.Size(112, 16);
             this.labelControl5.TabIndex = 4;
             this.labelControl5.Text = "Doanh thu trong ngày:";
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(588, 129);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(6);
+            this.labelControl4.Location = new System.Drawing.Point(294, 67);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(211, 25);
+            this.labelControl4.Size = new System.Drawing.Size(108, 13);
             this.labelControl4.TabIndex = 4;
             this.labelControl4.Text = "Doanh thu trong tuần:";
             this.labelControl4.Visible = false;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(588, 92);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(6);
+            this.labelControl3.Location = new System.Drawing.Point(294, 48);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(203, 25);
+            this.labelControl3.Size = new System.Drawing.Size(104, 13);
             this.labelControl3.TabIndex = 3;
             this.labelControl3.Text = "Doanh thu trong quý:";
             this.labelControl3.Visible = false;
@@ -322,29 +328,26 @@
             this.labelControl2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.White;
             this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Location = new System.Drawing.Point(10, 129);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(6);
+            this.labelControl2.Location = new System.Drawing.Point(5, 67);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(223, 30);
+            this.labelControl2.Size = new System.Drawing.Size(112, 16);
             this.labelControl2.TabIndex = 3;
             this.labelControl2.Text = "Doanh thu trong tháng:";
             // 
             // lblRevenueWeekly
             // 
-            this.lblRevenueWeekly.Location = new System.Drawing.Point(840, 129);
-            this.lblRevenueWeekly.Margin = new System.Windows.Forms.Padding(6);
+            this.lblRevenueWeekly.Location = new System.Drawing.Point(420, 67);
             this.lblRevenueWeekly.Name = "lblRevenueWeekly";
-            this.lblRevenueWeekly.Size = new System.Drawing.Size(24, 25);
+            this.lblRevenueWeekly.Size = new System.Drawing.Size(12, 13);
             this.lblRevenueWeekly.TabIndex = 3;
             this.lblRevenueWeekly.Text = "---";
             this.lblRevenueWeekly.Visible = false;
             // 
             // lblRevenueQuarterly
             // 
-            this.lblRevenueQuarterly.Location = new System.Drawing.Point(840, 92);
-            this.lblRevenueQuarterly.Margin = new System.Windows.Forms.Padding(6);
+            this.lblRevenueQuarterly.Location = new System.Drawing.Point(420, 48);
             this.lblRevenueQuarterly.Name = "lblRevenueQuarterly";
-            this.lblRevenueQuarterly.Size = new System.Drawing.Size(24, 25);
+            this.lblRevenueQuarterly.Size = new System.Drawing.Size(12, 13);
             this.lblRevenueQuarterly.TabIndex = 3;
             this.lblRevenueQuarterly.Text = "---";
             this.lblRevenueQuarterly.Visible = false;
@@ -353,10 +356,9 @@
             // 
             this.lblRevenueDaily.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRevenueDaily.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblRevenueDaily.Location = new System.Drawing.Point(268, 165);
-            this.lblRevenueDaily.Margin = new System.Windows.Forms.Padding(6);
+            this.lblRevenueDaily.Location = new System.Drawing.Point(134, 86);
             this.lblRevenueDaily.Name = "lblRevenueDaily";
-            this.lblRevenueDaily.Size = new System.Drawing.Size(30, 29);
+            this.lblRevenueDaily.Size = new System.Drawing.Size(15, 14);
             this.lblRevenueDaily.TabIndex = 3;
             this.lblRevenueDaily.Text = "---";
             // 
@@ -364,10 +366,9 @@
             // 
             this.lblRevenueMonthly.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRevenueMonthly.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblRevenueMonthly.Location = new System.Drawing.Point(268, 129);
-            this.lblRevenueMonthly.Margin = new System.Windows.Forms.Padding(6);
+            this.lblRevenueMonthly.Location = new System.Drawing.Point(134, 67);
             this.lblRevenueMonthly.Name = "lblRevenueMonthly";
-            this.lblRevenueMonthly.Size = new System.Drawing.Size(30, 29);
+            this.lblRevenueMonthly.Size = new System.Drawing.Size(15, 14);
             this.lblRevenueMonthly.TabIndex = 3;
             this.lblRevenueMonthly.Text = "---";
             // 
@@ -375,10 +376,9 @@
             // 
             this.lblRevenueYearly.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRevenueYearly.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblRevenueYearly.Location = new System.Drawing.Point(268, 92);
-            this.lblRevenueYearly.Margin = new System.Windows.Forms.Padding(6);
+            this.lblRevenueYearly.Location = new System.Drawing.Point(134, 48);
             this.lblRevenueYearly.Name = "lblRevenueYearly";
-            this.lblRevenueYearly.Size = new System.Drawing.Size(30, 29);
+            this.lblRevenueYearly.Size = new System.Drawing.Size(15, 14);
             this.lblRevenueYearly.TabIndex = 3;
             this.lblRevenueYearly.Text = "---";
             // 
@@ -387,22 +387,21 @@
             this.labelControl1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.White;
             this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl1.Location = new System.Drawing.Point(10, 92);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(6);
+            this.labelControl1.Location = new System.Drawing.Point(5, 48);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(223, 30);
+            this.labelControl1.Size = new System.Drawing.Size(112, 16);
             this.labelControl1.TabIndex = 3;
             this.labelControl1.Text = "Doanh thu trong năm:";
             // 
             // frmSaleStatistic
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1526, 796);
+            this.ClientSize = new System.Drawing.Size(763, 414);
             this.Controls.Add(this.gcSaleStatistic);
             this.Controls.Add(this.groupControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmSaleStatistic";
             this.Text = "Thống kê bán hàng";
             this.Load += new System.EventHandler(this.frmSaleStatistic_Load);

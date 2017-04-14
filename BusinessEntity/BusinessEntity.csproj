@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.cs" />
+    <Compile Include="Inventory.cs" />
     <Compile Include="Revenue.cs" />
     <Compile Include="SaleStatistic.cs" />
     <Compile Include="Unit.cs" />
