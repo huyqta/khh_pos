@@ -25,5 +25,7 @@ namespace BusinessEntity
         public int UnitId { get; set; }
 
         public byte[] ImageBinary { get; set; }
+
+        public bool isCheckInventory { get; set; }
     }
 }

@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gcList = new DevExpress.XtraGrid.GridControl();
-            this.productsBindingSource = new System.Windows.Forms.BindingSource();
+            this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.khh_posDataSet = new MyPos.khh_posDataSet();
             this.gvList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CategoryId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUp_Category = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.categoriesBindingSource = new System.Windows.Forms.BindingSource();
+            this.categoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.UnitId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUp_Unit = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.unitsBindingSource = new System.Windows.Forms.BindingSource();
+            this.unitsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ImageUrl = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DefaultPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Description = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -47,6 +48,7 @@
             this.productsTableAdapter = new MyPos.khh_posDataSetTableAdapters.ProductsTableAdapter();
             this.categoriesTableAdapter = new MyPos.khh_posDataSetTableAdapters.CategoriesTableAdapter();
             this.unitsTableAdapter = new MyPos.khh_posDataSetTableAdapters.UnitsTableAdapter();
+            this.colisCheckInventory = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).BeginInit();
@@ -65,17 +67,17 @@
             this.gcList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcList.EmbeddedNavigator.Appearance.Font = new System.Drawing.Font("Tahoma", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gcList.EmbeddedNavigator.Appearance.Options.UseFont = true;
-            this.gcList.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
+            this.gcList.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcList.Location = new System.Drawing.Point(0, 0);
             this.gcList.MainView = this.gvList;
-            this.gcList.Margin = new System.Windows.Forms.Padding(2);
+            this.gcList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcList.Name = "gcList";
             this.gcList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.lkuCategoryGrid,
             this.repositoryItemLookUp_Unit,
             this.repositoryItemLookUp_Category});
-            this.gcList.Size = new System.Drawing.Size(717, 452);
+            this.gcList.Size = new System.Drawing.Size(1434, 869);
             this.gcList.TabIndex = 5;
             this.gcList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvList});
@@ -100,7 +102,8 @@
             this.UnitId,
             this.ImageUrl,
             this.DefaultPrice,
-            this.Description});
+            this.Description,
+            this.colisCheckInventory});
             this.gvList.GridControl = this.gcList;
             this.gvList.Name = "gvList";
             this.gvList.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplace;
@@ -224,13 +227,22 @@
             // 
             this.unitsTableAdapter.ClearBeforeFill = true;
             // 
+            // colisCheckInventory
+            // 
+            this.colisCheckInventory.Caption = "Quản lý tồn kho";
+            this.colisCheckInventory.FieldName = "isCheckInventory";
+            this.colisCheckInventory.Name = "colisCheckInventory";
+            this.colisCheckInventory.Visible = true;
+            this.colisCheckInventory.VisibleIndex = 6;
+            // 
             // frmListProduct
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 452);
+            this.ClientSize = new System.Drawing.Size(1434, 869);
             this.Controls.Add(this.gcList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             //this.Name = "frmListProduct";
             this.Tag = "Product";
             this.Text = "Hàng hóa";
@@ -269,5 +281,6 @@
         private khh_posDataSetTableAdapters.CategoriesTableAdapter categoriesTableAdapter;
         private System.Windows.Forms.BindingSource unitsBindingSource;
         private khh_posDataSetTableAdapters.UnitsTableAdapter unitsTableAdapter;
+        private DevExpress.XtraGrid.Columns.GridColumn colisCheckInventory;
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSaleForm));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.gcCategory = new DevExpress.XtraGrid.GridControl();
@@ -69,9 +68,9 @@
             this.btnNewOrder = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnSubmitOrder = new DevExpress.XtraEditors.SimpleButton();
-            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblOrderCode = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.lookUpCustomer = new DevExpress.XtraEditors.ComboBoxEdit();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.gcOrders = new DevExpress.XtraGrid.GridControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -84,6 +83,7 @@
             this.groupControl7 = new DevExpress.XtraEditors.GroupControl();
             this.rdSelectDateOrder = new DevExpress.XtraEditors.RadioGroup();
             this.dtSelectDateOrder = new DevExpress.XtraEditors.DateEdit();
+            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl3 = new DevExpress.XtraEditors.SplitContainerControl();
             this.categoriesTableAdapter = new MyPos.khh_posDataSetTableAdapters.CategoriesTableAdapter();
@@ -98,7 +98,6 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.lookUpCustomer = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcCategory)).BeginInit();
@@ -126,7 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).BeginInit();
             this.groupControl6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpCustomer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcOrders)).BeginInit();
@@ -137,13 +136,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.rdSelectDateOrder.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtSelectDateOrder.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtSelectDateOrder.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).BeginInit();
             this.splitContainerControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpCustomer.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -162,9 +161,6 @@
             this.gcCategory.DataSource = this.categoriesBindingSource;
             this.gcCategory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcCategory.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
-            gridLevelNode1.RelationName = "Level1";
-            this.gcCategory.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
             this.gcCategory.Location = new System.Drawing.Point(3, 40);
             this.gcCategory.MainView = this.winExplorerView_Category;
             this.gcCategory.Margin = new System.Windows.Forms.Padding(6);
@@ -559,11 +555,6 @@
             this.btnSubmitOrder.Text = "Đóng đơn hàng";
             this.btnSubmitOrder.Click += new System.EventHandler(this.btnSubmitOrder_Click);
             // 
-            // customersBindingSource
-            // 
-            this.customersBindingSource.DataMember = "Customers";
-            this.customersBindingSource.DataSource = this.khh_posDataSet;
-            // 
             // lblOrderCode
             // 
             this.lblOrderCode.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -585,6 +576,20 @@
             this.labelControl1.Size = new System.Drawing.Size(217, 39);
             this.labelControl1.TabIndex = 17;
             this.labelControl1.Text = "Mã đơn hàng:";
+            // 
+            // lookUpCustomer
+            // 
+            this.lookUpCustomer.Location = new System.Drawing.Point(192, 133);
+            this.lookUpCustomer.Margin = new System.Windows.Forms.Padding(4);
+            this.lookUpCustomer.Name = "lookUpCustomer";
+            this.lookUpCustomer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpCustomer.Properties.NullText = "Chọn khách hàng ...";
+            this.lookUpCustomer.Properties.PopupSizeable = true;
+            this.lookUpCustomer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.lookUpCustomer.Size = new System.Drawing.Size(704, 34);
+            this.lookUpCustomer.TabIndex = 18;
+            this.lookUpCustomer.EditValueChanged += new System.EventHandler(this.lookUpCustomer_EditValueChanged);
             // 
             // groupControl4
             // 
@@ -653,6 +658,7 @@
             this.OrderCode.Caption = "Mã đơn hàng";
             this.OrderCode.FieldName = "OrderCode";
             this.OrderCode.Name = "OrderCode";
+            this.OrderCode.OptionsColumn.AllowEdit = false;
             this.OrderCode.Visible = true;
             this.OrderCode.VisibleIndex = 0;
             // 
@@ -661,6 +667,7 @@
             this.OrderDateTime.Caption = "Ngày tạo";
             this.OrderDateTime.FieldName = "OrderDateTime";
             this.OrderDateTime.Name = "OrderDateTime";
+            this.OrderDateTime.OptionsColumn.AllowEdit = false;
             this.OrderDateTime.Visible = true;
             this.OrderDateTime.VisibleIndex = 1;
             // 
@@ -677,6 +684,7 @@
             this.TotalPrice_Order.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.TotalPrice_Order.FieldName = "TotalPrice";
             this.TotalPrice_Order.Name = "TotalPrice_Order";
+            this.TotalPrice_Order.OptionsColumn.AllowEdit = false;
             this.TotalPrice_Order.Visible = true;
             this.TotalPrice_Order.VisibleIndex = 2;
             // 
@@ -724,6 +732,11 @@
             this.dtSelectDateOrder.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
             this.dtSelectDateOrder.Size = new System.Drawing.Size(246, 42);
             this.dtSelectDateOrder.TabIndex = 15;
+            // 
+            // customersBindingSource
+            // 
+            this.customersBindingSource.DataMember = "Customers";
+            this.customersBindingSource.DataSource = this.khh_posDataSet;
             // 
             // splitContainerControl1
             // 
@@ -843,20 +856,6 @@
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 1065);
             // 
-            // lookUpCustomer
-            // 
-            this.lookUpCustomer.Location = new System.Drawing.Point(192, 133);
-            this.lookUpCustomer.Margin = new System.Windows.Forms.Padding(4);
-            this.lookUpCustomer.Name = "lookUpCustomer";
-            this.lookUpCustomer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpCustomer.Properties.NullText = "Chọn khách hàng ...";
-            this.lookUpCustomer.Properties.PopupSizeable = true;
-            this.lookUpCustomer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.lookUpCustomer.Size = new System.Drawing.Size(704, 34);
-            this.lookUpCustomer.TabIndex = 18;
-            this.lookUpCustomer.EditValueChanged += new System.EventHandler(this.lookUpCustomer_EditValueChanged);
-            // 
             // frmSaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -900,7 +899,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl6)).EndInit();
             this.groupControl6.ResumeLayout(false);
             this.groupControl6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpCustomer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcOrders)).EndInit();
@@ -911,13 +910,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.rdSelectDateOrder.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtSelectDateOrder.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtSelectDateOrder.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl3)).EndInit();
             this.splitContainerControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpCustomer.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

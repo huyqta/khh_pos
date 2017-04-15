@@ -164,7 +164,19 @@ namespace MyPos
 
         private void barButtonVendor_ItemClick(object sender, ItemClickEventArgs e)
         {
+            foreach (XtraForm form in this.MdiChildren)
+            {
 
+
+                if (form.GetType() == typeof(ListForms.frmListVendor))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+            ListForms.frmListVendor frm = new ListForms.frmListVendor();
+            frm.MdiParent = this;
+            frm.Show();
         }
 
         private void ribbonStatusBar_Click(object sender, EventArgs e)
@@ -225,6 +237,33 @@ namespace MyPos
                 }
             }
             FunctionalForms.frmOrderStatistic frm = new FunctionalForms.frmOrderStatistic();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void barButtonImport_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void barButtonExport_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void barButtonInventory_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            foreach (XtraForm form in this.MdiChildren)
+            {
+
+
+                if (form.GetType() == typeof(FunctionalForms.frmInventory))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+            FunctionalForms.frmInventory frm = new FunctionalForms.frmInventory();
             frm.MdiParent = this;
             frm.Show();
         }

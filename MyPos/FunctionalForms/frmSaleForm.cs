@@ -8,6 +8,7 @@ using BusinessEntity;
 using System.Data.Entity;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
+using MyPos.Helper;
 
 namespace MyPos.FunctionalForms
 {
@@ -96,6 +97,7 @@ namespace MyPos.FunctionalForms
 
         private void btnSubmitOrder_Click(object sender, EventArgs e)
         {
+            InventoryHelpers.UPDATE_INVENTORY(listOrderDetails, InventoryHelpers.ActionType.Export);
             lblOrderCode.Text = string.Empty;
             order = new Order();
             model.SaveChanges();
@@ -104,13 +106,9 @@ namespace MyPos.FunctionalForms
         private void winExplorerView_Product_ItemDoubleClick(object sender, DevExpress.XtraGrid.Views.WinExplorer.WinExplorerViewItemDoubleClickEventArgs e)
         {
             Product pr = e.ItemInfo.Row.RowKey as Product;
-            if (order == null)
+            if (order == null || string.IsNullOrEmpty(order.OrderCode))
             {
-                lblOrderCode.Text = DateTime.Now.ToString("ddMMyyyyHHmmss");
-                order = new Order();
-                order.Id = Guid.NewGuid();
-                order.OrderCode = lblOrderCode.Text;
-                order.OrderDateTime = DateTime.Now;
+                btnNewOrder.PerformClick();
             }
             listOrderDetails = model.OrderDetails.Where(od => od.OrderId == order.Id).ToList();
             if (listOrderDetails.Any(l => l.ProductId == pr.Id))
@@ -218,7 +216,8 @@ namespace MyPos.FunctionalForms
             {
                 lblOrderCode.Text = order.OrderCode;
                 lookUpCustomer.EditValue = order.CustomerId;
-                gcOrderDetail.DataSource = model.OrderDetails.Where(o => o.OrderId == order.Id).ToList();
+                listOrderDetails = model.OrderDetails.Where(o => o.OrderId == order.Id).ToList();
+                gcOrderDetail.DataSource = listOrderDetails;
             }
         }
 
