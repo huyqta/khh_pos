@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucSingleReceipt2));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gcOrderDetail = new DevExpress.XtraGrid.GridControl();
             this.gvOrderDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ProductId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -216,8 +216,10 @@
             // 
             this.repositoryItemButtonDeleteItem.AutoHeight = false;
             this.repositoryItemButtonDeleteItem.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonDeleteItem.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonDeleteItem.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.repositoryItemButtonDeleteItem.Name = "repositoryItemButtonDeleteItem";
+            this.repositoryItemButtonDeleteItem.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.repositoryItemButtonDeleteItem.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonDeleteItem_ButtonClick);
             // 
             // groupControl1
             // 
@@ -280,6 +282,8 @@
             this.txtCustomerPay.Name = "txtCustomerPay";
             this.txtCustomerPay.Size = new System.Drawing.Size(385, 32);
             this.txtCustomerPay.TabIndex = 6;
+            this.txtCustomerPay.EditValueChanged += new System.EventHandler(this.txtCustomerPay_EditValueChanged);
+            this.txtCustomerPay.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.txtCustomerPay_EditValueChanging);
             // 
             // labelControl10
             // 
@@ -291,8 +295,11 @@
             // 
             // txtDiscount
             // 
+            this.txtDiscount.EditValue = "0";
             this.txtDiscount.Location = new System.Drawing.Point(147, 257);
             this.txtDiscount.Name = "txtDiscount";
+            this.txtDiscount.Properties.Mask.EditMask = "n0";
+            this.txtDiscount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtDiscount.Size = new System.Drawing.Size(385, 32);
             this.txtDiscount.TabIndex = 6;
             // 

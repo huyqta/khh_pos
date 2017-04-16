@@ -278,10 +278,11 @@ namespace MyPos.FunctionalForms
 
         private void xtraTabControl1_CustomHeaderButtonClick(object sender, DevExpress.XtraTab.ViewInfo.CustomHeaderButtonEventArgs e)
         {
+            ucSingleReceipt2 uc;
             switch (e.Button.Kind.ToString())
             {
                 case "Plus":
-                    ucSingleReceipt2 uc = new ucSingleReceipt2();
+                    uc = new ucSingleReceipt2();
                     XtraTabPage tab = new XtraTabPage();
                     tab.Controls.Add(uc);
                     uc.Dock = DockStyle.Fill;
@@ -289,9 +290,17 @@ namespace MyPos.FunctionalForms
                     xtraTabControl1.TabPages.Add(tab);
                     break;
                 case "Minus":
+                    uc = (ucSingleReceipt2)xtraTabControl1.SelectedTabPage.Controls.Find("ucSingleReceipt2", false).FirstOrDefault();
+                    if (!uc.IsAvailableToDeleteOrder())
+                    {
+                        return;
+                    }
                     xtraTabControl1.TabPages.Remove(xtraTabControl1.SelectedTabPage);
                     break;
                 case "OK":
+                    uc = (ucSingleReceipt2)xtraTabControl1.SelectedTabPage.Controls.Find("ucSingleReceipt2", false).FirstOrDefault();
+                    uc.SaveOrder();
+                    xtraTabControl1.TabPages.Remove(xtraTabControl1.SelectedTabPage);
                     break;
             }
         }
