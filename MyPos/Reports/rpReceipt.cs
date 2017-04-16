@@ -29,7 +29,7 @@ namespace MyPos.Reports
             listOD = model.OrderDetails.Where(o => o.OrderId == OrderPrint.Id).ToList();
             this.DataSource = listOD;
             xrLabelProductName.DataBindings.Add("Text", null, "ProductName");
-            xrLabelQuantity.DataBindings.Add("Text", null, "Quanlity", "{0:n0}");
+            xrLabelQuantity.DataBindings.Add("Text", null, "Quantity", "{0:n0}");
             xrLabelUnitPrice.DataBindings.Add("Text", null, "UnitPrice", "{0:n0}");
             xrLabelTotalPrice.DataBindings.Add("Text", null, "TotalPrice", "{0:n0}");
 

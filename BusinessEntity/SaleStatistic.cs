@@ -22,7 +22,7 @@ namespace BusinessEntity
 
         public string UnitName { get; set; }
 
-        public double Quanlity { get; set; }
+        public double Quantity { get; set; }
 
         public double UnitPrice { get; set; }
 

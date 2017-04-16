@@ -20,7 +20,7 @@ namespace BusinessEntity
 
         public int CategoryId { get; set; }
 
-        public double Quanlity { get; set; }
+        public double Quantity { get; set; }
 
         public string UnitName { get; set; }
 

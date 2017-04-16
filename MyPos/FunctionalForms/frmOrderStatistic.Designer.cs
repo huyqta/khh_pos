@@ -33,7 +33,7 @@
             this.colProductName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCategoryName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUnitName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colQuanlity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUnitPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotalPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcOrderList = new DevExpress.XtraGrid.GridControl();
@@ -78,7 +78,7 @@
             this.colProductName,
             this.colCategoryName,
             this.colUnitName,
-            this.colQuanlity,
+            this.colQuantity,
             this.colUnitPrice,
             this.colTotalPrice});
             this.gridView1.GridControl = this.gcOrderList;
@@ -111,15 +111,15 @@
             this.colUnitName.Visible = true;
             this.colUnitName.VisibleIndex = 3;
             // 
-            // colQuanlity
+            // colQuantity
             // 
-            this.colQuanlity.Caption = "Số lượng";
-            this.colQuanlity.DisplayFormat.FormatString = "{0:n2}";
-            this.colQuanlity.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colQuanlity.FieldName = "Quanlity";
-            this.colQuanlity.Name = "colQuanlity";
-            this.colQuanlity.Visible = true;
-            this.colQuanlity.VisibleIndex = 2;
+            this.colQuantity.Caption = "Số lượng";
+            this.colQuantity.DisplayFormat.FormatString = "{0:n2}";
+            this.colQuantity.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colQuantity.FieldName = "Quantity";
+            this.colQuantity.Name = "colQuantity";
+            this.colQuantity.Visible = true;
+            this.colQuantity.VisibleIndex = 2;
             // 
             // colUnitPrice
             // 
@@ -380,7 +380,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colProductName;
         private DevExpress.XtraGrid.Columns.GridColumn colCategoryName;
         private DevExpress.XtraGrid.Columns.GridColumn colUnitName;
-        private DevExpress.XtraGrid.Columns.GridColumn colQuanlity;
+        private DevExpress.XtraGrid.Columns.GridColumn colQuantity;
         private DevExpress.XtraGrid.Columns.GridColumn colUnitPrice;
         private DevExpress.XtraGrid.Columns.GridColumn colTotalPrice;
     }

@@ -18,5 +18,7 @@ namespace BusinessEntity
         public DbSet<Revenue> Revenues { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
+        public DbSet<Import> Imports { get; set; }
+        public DbSet<ImportDetail> ImportDetails { get; set; }
     }
 }

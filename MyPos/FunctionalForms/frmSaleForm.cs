@@ -114,8 +114,8 @@ namespace MyPos.FunctionalForms
             if (listOrderDetails.Any(l => l.ProductId == pr.Id))
             {
                 OrderDetail focusedOrderDetail = model.OrderDetails.Where(od => od.ProductId == pr.Id && od.OrderId == order.Id).FirstOrDefault();
-                focusedOrderDetail.Quanlity++;
-                focusedOrderDetail.TotalPrice = focusedOrderDetail.Quanlity * focusedOrderDetail.UnitPrice;
+                focusedOrderDetail.Quantity++;
+                focusedOrderDetail.TotalPrice = focusedOrderDetail.Quantity * focusedOrderDetail.UnitPrice;
                 order.TotalPrice = model.OrderDetails.Local.Where(od => od.OrderId == order.Id).Sum(od => od.TotalPrice);
             }
             else
@@ -127,7 +127,7 @@ namespace MyPos.FunctionalForms
                 orderDetail.ProductId = pr.Id;
                 orderDetail.CategoryName = model.Categories.Where(c => c.Id == pr.CategoryId).Select(c => c.Name).FirstOrDefault().ToString();
                 orderDetail.CategoryId = pr.CategoryId;
-                orderDetail.Quanlity = 1;
+                orderDetail.Quantity = 1;
                 orderDetail.UnitName = model.Units.Where(u => u.Id == pr.UnitId).Select(u => u.Name).FirstOrDefault().ToString();
                 orderDetail.UnitId = pr.UnitId;
                 orderDetail.UnitPrice = pr.DefaultPrice;
@@ -161,15 +161,15 @@ namespace MyPos.FunctionalForms
                     orderDetail.UnitId = product.UnitId;
 
                     gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["UnitPrice"], product.DefaultPrice);
-                    gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["Quanlity"], 1);
+                    gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["Quantity"], 1);
                     gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["TotalPrice"], product.DefaultPrice);
                     break;
-                case "Quanlity":
+                case "Quantity":
                     if (model.OrderDetails.Local.Any(l => l.ProductId == product.Id))
                     {
                         OrderDetail focusedOrderDetail = model.OrderDetails.Local.Where(od => od.ProductId == product.Id && od.OrderId == order.Id).FirstOrDefault();
-                        focusedOrderDetail.Quanlity = double.Parse(e.Value.ToString());
-                        focusedOrderDetail.TotalPrice = focusedOrderDetail.Quanlity * focusedOrderDetail.UnitPrice;
+                        focusedOrderDetail.Quantity = double.Parse(e.Value.ToString());
+                        focusedOrderDetail.TotalPrice = focusedOrderDetail.Quantity * focusedOrderDetail.UnitPrice;
                         model.SaveChanges();
                         order.TotalPrice = model.OrderDetails.Local.Where(od => od.OrderId == order.Id).Sum(od => od.TotalPrice);
                     }
@@ -182,7 +182,7 @@ namespace MyPos.FunctionalForms
                     {
                         OrderDetail focusedOrderDetail = model.OrderDetails.Local.Where(od => od.ProductId == product.Id && od.OrderId == order.Id).FirstOrDefault();
                         focusedOrderDetail.UnitPrice = int.Parse(e.Value.ToString());
-                        focusedOrderDetail.TotalPrice = focusedOrderDetail.Quanlity * focusedOrderDetail.UnitPrice;
+                        focusedOrderDetail.TotalPrice = focusedOrderDetail.Quantity * focusedOrderDetail.UnitPrice;
                         model.SaveChanges();
                         order.TotalPrice = model.OrderDetails.Local.Where(od => od.OrderId == order.Id).Sum(od => od.TotalPrice);
                     }

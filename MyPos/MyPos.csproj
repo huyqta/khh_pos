@@ -102,6 +102,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomControls\ucSingleReceipt2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ucSingleReceipt2.Designer.cs">
+      <DependentUpon>ucSingleReceipt2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,12 @@
     </Compile>
     <Compile Include="FunctionalForms\frmOverview.Designer.cs">
       <DependentUpon>frmOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionalForms\frmSaleForm_v2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FunctionalForms\frmSaleForm_v2.Designer.cs">
+      <DependentUpon>frmSaleForm_v2.cs</DependentUpon>
     </Compile>
     <Compile Include="FunctionalForms\frmSaleForm.cs">
       <SubType>Form</SubType>
@@ -230,6 +242,9 @@
     <Compile Include="Reports\rpReceipt.Designer.cs">
       <DependentUpon>rpReceipt.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CustomControls\ucSingleReceipt2.resx">
+      <DependentUpon>ucSingleReceipt2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -247,6 +262,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FunctionalForms\frmOverview.resx">
       <DependentUpon>frmOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FunctionalForms\frmSaleForm_v2.resx">
+      <DependentUpon>frmSaleForm_v2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FunctionalForms\frmSaleForm.resx">
       <DependentUpon>frmSaleForm.cs</DependentUpon>

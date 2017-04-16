@@ -23,6 +23,9 @@ namespace BusinessEntity
         public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<Vendor> Vendors { get; set; }
 
+        public virtual DbSet<Import> Imports { get; set; }
+        public virtual DbSet<ImportDetail> ImportDetails { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }

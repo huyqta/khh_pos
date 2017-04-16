@@ -67,7 +67,7 @@ namespace MyPos.FunctionalForms
                         ss.OrderDetailId = orderDetail.Id;
                         ss.ProductId = orderDetail.ProductId;
                         ss.ProductName = orderDetail.ProductName;
-                        ss.Quanlity = orderDetail.Quanlity;
+                        ss.Quantity = orderDetail.Quantity;
                         ss.UnitId = orderDetail.UnitId;
                         ss.UnitName = orderDetail.UnitName;
                         ss.UnitPrice = orderDetail.UnitPrice;

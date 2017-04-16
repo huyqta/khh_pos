@@ -24,7 +24,7 @@ namespace MyPos
             xtraTabbedMdiManager1.MdiParent = this;
             //UpdateImageToDatabase(@"C:\Users\HUYQTA\Downloads\trolley.png");
 
-            FunctionalForms.frmSaleForm frm = new FunctionalForms.frmSaleForm();
+            FunctionalForms.frmSaleForm_v2 frm = new FunctionalForms.frmSaleForm_v2();
             frm.MdiParent = this;
             frm.Show();
         }
@@ -83,13 +83,13 @@ namespace MyPos
             {
 
 
-                if (form.GetType() == typeof(FunctionalForms.frmSaleForm))
+                if (form.GetType() == typeof(FunctionalForms.frmSaleForm_v2))
                 {
                     form.Activate();
                     return;
                 }
             }
-            FunctionalForms.frmSaleForm frm = new FunctionalForms.frmSaleForm();
+            FunctionalForms.frmSaleForm_v2 frm = new FunctionalForms.frmSaleForm_v2();
             frm.MdiParent = this;
             frm.Show();
         }
@@ -243,7 +243,19 @@ namespace MyPos
 
         private void barButtonImport_ItemClick(object sender, ItemClickEventArgs e)
         {
+            foreach (XtraForm form in this.MdiChildren)
+            {
 
+
+                if (form.GetType() == typeof(FunctionalForms.frmImport))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+            FunctionalForms.frmImport frm = new FunctionalForms.frmImport();
+            frm.MdiParent = this;
+            frm.Show();
         }
 
         private void barButtonExport_ItemClick(object sender, ItemClickEventArgs e)
