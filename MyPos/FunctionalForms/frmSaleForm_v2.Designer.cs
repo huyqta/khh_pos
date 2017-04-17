@@ -222,7 +222,7 @@
             this.groupControl2.Location = new System.Drawing.Point(0, 0);
             this.groupControl2.Margin = new System.Windows.Forms.Padding(4);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(821, 677);
+            this.groupControl2.Size = new System.Drawing.Size(821, 838);
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "Hàng hóa";
             // 
@@ -234,7 +234,7 @@
             this.gcProducts.MainView = this.winExplorerView_Product;
             this.gcProducts.Margin = new System.Windows.Forms.Padding(6);
             this.gcProducts.Name = "gcProducts";
-            this.gcProducts.Size = new System.Drawing.Size(815, 634);
+            this.gcProducts.Size = new System.Drawing.Size(815, 795);
             this.gcProducts.TabIndex = 1;
             this.gcProducts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.winExplorerView_Product});
@@ -298,7 +298,7 @@
             this.groupControl3.Location = new System.Drawing.Point(0, 0);
             this.groupControl3.Margin = new System.Windows.Forms.Padding(4);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(1061, 1065);
+            this.groupControl3.Size = new System.Drawing.Size(1203, 1226);
             this.groupControl3.TabIndex = 2;
             this.groupControl3.Text = "Thông tin bán hàng";
             // 
@@ -309,7 +309,7 @@
             this.groupControl5.Location = new System.Drawing.Point(3, 40);
             this.groupControl5.Margin = new System.Windows.Forms.Padding(4);
             this.groupControl5.Name = "groupControl5";
-            this.groupControl5.Size = new System.Drawing.Size(1055, 1022);
+            this.groupControl5.Size = new System.Drawing.Size(1197, 1183);
             this.groupControl5.TabIndex = 16;
             this.groupControl5.Text = "Đơn hàng";
             // 
@@ -331,7 +331,7 @@
             this.xtraTabControl1.HeaderButtonsShowMode = DevExpress.XtraTab.TabButtonShowMode.Always;
             this.xtraTabControl1.Location = new System.Drawing.Point(3, 40);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.Size = new System.Drawing.Size(1049, 979);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1191, 1140);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.CustomHeaderButtonClick += new DevExpress.XtraTab.ViewInfo.CustomHeaderButtonEventHandler(this.xtraTabControl1_CustomHeaderButtonClick);
             // 
@@ -366,15 +366,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1892, 20);
+            this.barDockControlTop.Size = new System.Drawing.Size(2034, 20);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1085);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1246);
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1892, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(2034, 0);
             // 
             // barDockControlLeft
             // 
@@ -382,15 +382,15 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 20);
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1065);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1226);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1892, 20);
+            this.barDockControlRight.Location = new System.Drawing.Point(2034, 20);
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1065);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1226);
             // 
             // barButtonItem1
             // 
@@ -446,7 +446,7 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.groupControl3);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1892, 1065);
+            this.splitContainerControl1.Size = new System.Drawing.Size(2034, 1226);
             this.splitContainerControl1.SplitterPosition = 821;
             this.splitContainerControl1.TabIndex = 17;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -462,7 +462,7 @@
             this.splitContainerControl3.Panel1.Text = "Panel1";
             this.splitContainerControl3.Panel2.Controls.Add(this.groupControl2);
             this.splitContainerControl3.Panel2.Text = "Panel2";
-            this.splitContainerControl3.Size = new System.Drawing.Size(821, 1065);
+            this.splitContainerControl3.Size = new System.Drawing.Size(821, 1226);
             this.splitContainerControl3.SplitterPosition = 378;
             this.splitContainerControl3.TabIndex = 2;
             this.splitContainerControl3.Text = "splitContainerControl3";
@@ -494,7 +494,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1892, 1085);
+            this.ClientSize = new System.Drawing.Size(2034, 1246);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);

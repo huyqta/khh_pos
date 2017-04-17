@@ -209,10 +209,25 @@ namespace MyPos.FunctionalForms
                     uc = (ucSingleReceipt2)xtraTabControl1.SelectedTabPage.Controls.Find("ucSingleReceipt2", false).FirstOrDefault();
                     if (!uc.IsAvailableToDeleteOrder())
                     {
-                        return;
+                        DialogResult ds = MessageBox.Show("Đơn hàng đang có hàng, bạn có chắc là muốn kết thúc đơn hàng?", "Đóng đơn hàng", MessageBoxButtons.OKCancel);
+                        if (ds == DialogResult.Cancel)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            uc.SaveOrder();
+                            xtraTabControl1.TabPages.Remove(xtraTabControl1.SelectedTabPage);
+                            if (xtraTabControl1.TabPages.Count > 0)
+                            {
+                                xtraTabControl1.SelectedTabPage = xtraTabControl1.TabPages[xtraTabControl1.TabPages.Count - 1];
+                            }
+                            else
+                            {
+                                uc = CreateOrderTab(new ucSingleReceipt2());
+                            }
+                        }
                     }
-                    xtraTabControl1.TabPages.Remove(xtraTabControl1.SelectedTabPage);
-                    xtraTabControl1.SelectedTabPage = xtraTabControl1.TabPages[xtraTabControl1.TabPages.Count - 1];
                     break;
                 case "OK":
                     uc = (ucSingleReceipt2)xtraTabControl1.SelectedTabPage.Controls.Find("ucSingleReceipt2", false).FirstOrDefault();

@@ -24,9 +24,10 @@ namespace MyPos.FunctionalForms
 
         private void btnShow_Click(object sender, EventArgs e)
         {
+            DateTime dateTo = dtTo.DateTime.AddDays(1);
             if (dtFrom.DateTime != null && dtTo.DateTime != null)
             {
-                gcOrderList.DataSource = model.Orders.Where(o => DbFunctions.TruncateTime(o.OrderDateTime) >= dtFrom.DateTime && DbFunctions.TruncateTime(o.OrderDateTime) < dtTo.DateTime).ToList();
+                gcOrderList.DataSource = model.Orders.Where(o => DbFunctions.TruncateTime(o.OrderDateTime) >= dtFrom.DateTime && DbFunctions.TruncateTime(o.OrderDateTime) < dateTo).ToList();
             }
             else
             {
