@@ -8,6 +8,7 @@ using BusinessEntity;
 using System.Data.Entity;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
+using DevExpress.XtraPrinting;
 
 namespace MyPos.Reports
 {

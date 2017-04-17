@@ -11,6 +11,8 @@ using DevExpress.XtraEditors;
 using BusinessEntity;
 using MyPos.Helper;
 using System.Data.Entity;
+using DevExpress.XtraPrinting;
+using DevExpress.XtraReports.UI;
 
 namespace MyPos.CustomControls
 {
@@ -97,10 +99,7 @@ namespace MyPos.CustomControls
                     orderDetail.TotalPrice = orderDetail.Quantity * orderDetail.UnitPrice;
                     break;
             }
-            this.Order.TotalPrice = this.OrderDetails.Sum(o => o.TotalPrice);
-            lblTotalPrice.Text = this.Order.TotalPrice.ToString("###,###,###");
-            double totalPrice = this.Order.TotalPrice - double.Parse(txtDiscount.EditValue.ToString());
-            lblPayment.Text = totalPrice.ToString("###,###,###");
+            RecalculateOrderSummary();
 
             gcOrderDetail.DataSource = this.OrderDetails;
             gcOrderDetail.RefreshDataSource();
@@ -126,7 +125,7 @@ namespace MyPos.CustomControls
         {
             SaveOrder();
             Reports.rpReceipt rp = new Reports.rpReceipt(this.Order);
-            rp.ExportToImage("C://report.png", System.Drawing.Imaging.ImageFormat.Png);
+            rp.ShowPreview();
 
             MessageBox.Show("Lưu đơn hàng thành công!");
         }
@@ -204,6 +203,29 @@ namespace MyPos.CustomControls
             {
                 return true;
             }
+        }
+
+        private void gvOrderDetail_RowCountChanged(object sender, EventArgs e)
+        {
+            RecalculateOrderSummary();
+        }
+
+        private void RecalculateOrderSummary()
+        {
+            this.Order.TotalPrice = this.OrderDetails.Sum(o => o.TotalPrice);
+            lblTotalPrice.Text = this.Order.TotalPrice.ToString("###,###,###");
+            double totalPrice = this.Order.TotalPrice - double.Parse(txtDiscount.EditValue.ToString());
+            lblPayment.Text = totalPrice.ToString("###,###,###");
+        }
+
+        private void txtDiscount_EditValueChanged(object sender, EventArgs e)
+        {
+            RecalculateOrderSummary();
+        }
+
+        private void lblOrderCode_TextChanged(object sender, EventArgs e)
+        {
+            this.Parent.Text = lblOrderCode.Text;
         }
     }
 }

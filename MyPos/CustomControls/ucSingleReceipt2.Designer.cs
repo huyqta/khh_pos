@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucSingleReceipt2));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gcOrderDetail = new DevExpress.XtraGrid.GridControl();
             this.gvOrderDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ProductId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -88,14 +88,16 @@
             // gcOrderDetail
             // 
             this.gcOrderDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcOrderDetail.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
             this.gcOrderDetail.Location = new System.Drawing.Point(0, 0);
             this.gcOrderDetail.MainView = this.gvOrderDetail;
+            this.gcOrderDetail.Margin = new System.Windows.Forms.Padding(2);
             this.gcOrderDetail.Name = "gcOrderDetail";
             this.gcOrderDetail.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2,
             this.repositoryItemButtonDeleteItem});
-            this.gcOrderDetail.Size = new System.Drawing.Size(1475, 624);
+            this.gcOrderDetail.Size = new System.Drawing.Size(738, 324);
             this.gcOrderDetail.TabIndex = 0;
             this.gcOrderDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvOrderDetail});
@@ -113,6 +115,7 @@
             this.gvOrderDetail.Name = "gvOrderDetail";
             this.gvOrderDetail.OptionsView.ShowFooter = true;
             this.gvOrderDetail.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gvOrderDetail_CellValueChanged);
+            this.gvOrderDetail.RowCountChanged += new System.EventHandler(this.gvOrderDetail_RowCountChanged);
             // 
             // ProductId
             // 
@@ -216,7 +219,7 @@
             // 
             this.repositoryItemButtonDeleteItem.AutoHeight = false;
             this.repositoryItemButtonDeleteItem.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonDeleteItem.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonDeleteItem.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
             this.repositoryItemButtonDeleteItem.Name = "repositoryItemButtonDeleteItem";
             this.repositoryItemButtonDeleteItem.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButtonDeleteItem.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonDeleteItem_ButtonClick);
@@ -243,124 +246,152 @@
             this.groupControl1.Controls.Add(this.lblOrderCode);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupControl1.Location = new System.Drawing.Point(0, 624);
+            this.groupControl1.Location = new System.Drawing.Point(0, 324);
+            this.groupControl1.Margin = new System.Windows.Forms.Padding(2);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1475, 455);
+            this.groupControl1.Size = new System.Drawing.Size(738, 237);
             this.groupControl1.TabIndex = 1;
             this.groupControl1.Text = "Thông tin thanh toán";
             // 
             // btnSaveAndPrint
             // 
-            this.btnSaveAndPrint.Location = new System.Drawing.Point(1264, 201);
+            this.btnSaveAndPrint.Location = new System.Drawing.Point(632, 105);
+            this.btnSaveAndPrint.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveAndPrint.Name = "btnSaveAndPrint";
-            this.btnSaveAndPrint.Size = new System.Drawing.Size(205, 72);
+            this.btnSaveAndPrint.Size = new System.Drawing.Size(102, 37);
             this.btnSaveAndPrint.TabIndex = 7;
             this.btnSaveAndPrint.Text = "Lưu + In đơn hàng";
             this.btnSaveAndPrint.Click += new System.EventHandler(this.btnSaveAndPrint_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(1264, 123);
+            this.btnSave.Location = new System.Drawing.Point(632, 64);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(205, 72);
+            this.btnSave.Size = new System.Drawing.Size(102, 37);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Lưu đơn hàng";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(1264, 45);
+            this.btnCancel.Location = new System.Drawing.Point(632, 23);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(205, 72);
+            this.btnCancel.Size = new System.Drawing.Size(102, 37);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Hủy đơn hàng";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtCustomerPay
             // 
-            this.txtCustomerPay.Location = new System.Drawing.Point(147, 355);
+            this.txtCustomerPay.EditValue = "0";
+            this.txtCustomerPay.Location = new System.Drawing.Point(87, 185);
+            this.txtCustomerPay.Margin = new System.Windows.Forms.Padding(2);
             this.txtCustomerPay.Name = "txtCustomerPay";
-            this.txtCustomerPay.Size = new System.Drawing.Size(385, 32);
+            this.txtCustomerPay.Properties.Mask.EditMask = "n0";
+            this.txtCustomerPay.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtCustomerPay.Size = new System.Drawing.Size(192, 20);
             this.txtCustomerPay.TabIndex = 6;
             this.txtCustomerPay.EditValueChanged += new System.EventHandler(this.txtCustomerPay_EditValueChanged);
             this.txtCustomerPay.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.txtCustomerPay_EditValueChanging);
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(16, 358);
+            this.labelControl10.Location = new System.Drawing.Point(8, 186);
+            this.labelControl10.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(107, 25);
+            this.labelControl10.Size = new System.Drawing.Size(55, 13);
             this.labelControl10.TabIndex = 5;
             this.labelControl10.Text = "Khách đưa:";
             // 
             // txtDiscount
             // 
             this.txtDiscount.EditValue = "0";
-            this.txtDiscount.Location = new System.Drawing.Point(147, 257);
+            this.txtDiscount.Location = new System.Drawing.Point(87, 134);
+            this.txtDiscount.Margin = new System.Windows.Forms.Padding(2);
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Properties.Mask.EditMask = "n0";
             this.txtDiscount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtDiscount.Size = new System.Drawing.Size(385, 32);
+            this.txtDiscount.Size = new System.Drawing.Size(192, 20);
             this.txtDiscount.TabIndex = 6;
+            this.txtDiscount.EditValueChanged += new System.EventHandler(this.txtDiscount_EditValueChanged);
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(16, 260);
+            this.labelControl7.Location = new System.Drawing.Point(8, 135);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(90, 25);
+            this.labelControl7.Size = new System.Drawing.Size(44, 13);
             this.labelControl7.TabIndex = 5;
             this.labelControl7.Text = "Giảm giá:";
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(16, 409);
+            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl12.Appearance.ForeColor = System.Drawing.Color.Purple;
+            this.labelControl12.Location = new System.Drawing.Point(8, 213);
+            this.labelControl12.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(97, 25);
+            this.labelControl12.Size = new System.Drawing.Size(63, 14);
             this.labelControl12.TabIndex = 3;
             this.labelControl12.Text = "Tiền thừa:";
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(16, 310);
+            this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl9.Appearance.ForeColor = System.Drawing.Color.Green;
+            this.labelControl9.Location = new System.Drawing.Point(8, 161);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(114, 25);
+            this.labelControl9.Size = new System.Drawing.Size(75, 14);
             this.labelControl9.TabIndex = 3;
             this.labelControl9.Text = "Thanh toán:";
             // 
             // lblMoneyReturn
             // 
-            this.lblMoneyReturn.Location = new System.Drawing.Point(147, 409);
+            this.lblMoneyReturn.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMoneyReturn.Appearance.ForeColor = System.Drawing.Color.Purple;
+            this.lblMoneyReturn.Location = new System.Drawing.Point(87, 213);
+            this.lblMoneyReturn.Margin = new System.Windows.Forms.Padding(2);
             this.lblMoneyReturn.Name = "lblMoneyReturn";
-            this.lblMoneyReturn.Size = new System.Drawing.Size(24, 25);
+            this.lblMoneyReturn.Size = new System.Drawing.Size(15, 14);
             this.lblMoneyReturn.TabIndex = 1;
             this.lblMoneyReturn.Text = "---";
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(16, 210);
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl5.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelControl5.Location = new System.Drawing.Point(8, 109);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(101, 25);
+            this.labelControl5.Size = new System.Drawing.Size(64, 14);
             this.labelControl5.TabIndex = 3;
             this.labelControl5.Text = "Tiền hàng:";
             // 
             // lblPayment
             // 
-            this.lblPayment.Location = new System.Drawing.Point(147, 310);
+            this.lblPayment.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPayment.Appearance.ForeColor = System.Drawing.Color.Green;
+            this.lblPayment.Location = new System.Drawing.Point(87, 161);
+            this.lblPayment.Margin = new System.Windows.Forms.Padding(2);
             this.lblPayment.Name = "lblPayment";
-            this.lblPayment.Size = new System.Drawing.Size(24, 25);
+            this.lblPayment.Size = new System.Drawing.Size(15, 14);
             this.lblPayment.TabIndex = 1;
             this.lblPayment.Text = "---";
             // 
             // lookCustomer
             // 
-            this.lookCustomer.Location = new System.Drawing.Point(147, 161);
+            this.lookCustomer.Location = new System.Drawing.Point(87, 84);
+            this.lookCustomer.Margin = new System.Windows.Forms.Padding(2);
             this.lookCustomer.Name = "lookCustomer";
             this.lookCustomer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookCustomer.Properties.DataSource = this.customersBindingSource;
             this.lookCustomer.Properties.DisplayMember = "Name";
             this.lookCustomer.Properties.ValueMember = "Id";
-            this.lookCustomer.Size = new System.Drawing.Size(385, 34);
+            this.lookCustomer.Size = new System.Drawing.Size(192, 20);
             this.lookCustomer.TabIndex = 2;
             // 
             // customersBindingSource
@@ -370,33 +401,39 @@
             // 
             // lblTotalPrice
             // 
-            this.lblTotalPrice.Location = new System.Drawing.Point(147, 210);
+            this.lblTotalPrice.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPrice.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblTotalPrice.Location = new System.Drawing.Point(87, 109);
+            this.lblTotalPrice.Margin = new System.Windows.Forms.Padding(2);
             this.lblTotalPrice.Name = "lblTotalPrice";
-            this.lblTotalPrice.Size = new System.Drawing.Size(24, 25);
+            this.lblTotalPrice.Size = new System.Drawing.Size(15, 14);
             this.lblTotalPrice.TabIndex = 1;
             this.lblTotalPrice.Text = "---";
             // 
             // lblOrderDateTime
             // 
-            this.lblOrderDateTime.Location = new System.Drawing.Point(147, 118);
+            this.lblOrderDateTime.Location = new System.Drawing.Point(81, 61);
+            this.lblOrderDateTime.Margin = new System.Windows.Forms.Padding(2);
             this.lblOrderDateTime.Name = "lblOrderDateTime";
-            this.lblOrderDateTime.Size = new System.Drawing.Size(24, 25);
+            this.lblOrderDateTime.Size = new System.Drawing.Size(12, 13);
             this.lblOrderDateTime.TabIndex = 1;
             this.lblOrderDateTime.Text = "---";
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(16, 165);
+            this.labelControl4.Location = new System.Drawing.Point(8, 86);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(118, 25);
+            this.labelControl4.Size = new System.Drawing.Size(60, 13);
             this.labelControl4.TabIndex = 1;
             this.labelControl4.Text = "Khách hàng:";
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(16, 118);
+            this.labelControl2.Location = new System.Drawing.Point(8, 61);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(96, 25);
+            this.labelControl2.Size = new System.Drawing.Size(50, 13);
             this.labelControl2.TabIndex = 1;
             this.labelControl2.Text = "Ngày bán:";
             // 
@@ -404,19 +441,22 @@
             // 
             this.lblOrderCode.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOrderCode.Appearance.ForeColor = System.Drawing.Color.Maroon;
-            this.lblOrderCode.Location = new System.Drawing.Point(239, 58);
+            this.lblOrderCode.Location = new System.Drawing.Point(120, 30);
+            this.lblOrderCode.Margin = new System.Windows.Forms.Padding(2);
             this.lblOrderCode.Name = "lblOrderCode";
-            this.lblOrderCode.Size = new System.Drawing.Size(42, 39);
+            this.lblOrderCode.Size = new System.Drawing.Size(21, 19);
             this.lblOrderCode.TabIndex = 0;
             this.lblOrderCode.Text = "---";
+            this.lblOrderCode.TextChanged += new System.EventHandler(this.lblOrderCode_TextChanged);
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Maroon;
-            this.labelControl1.Location = new System.Drawing.Point(16, 58);
+            this.labelControl1.Location = new System.Drawing.Point(8, 30);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(2);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(217, 39);
+            this.labelControl1.Size = new System.Drawing.Size(110, 19);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Mã đơn hàng:";
             // 
@@ -434,12 +474,13 @@
             // 
             // ucSingleReceipt2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcOrderDetail);
             this.Controls.Add(this.groupControl1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ucSingleReceipt2";
-            this.Size = new System.Drawing.Size(1475, 1079);
+            this.Size = new System.Drawing.Size(738, 561);
             this.Load += new System.EventHandler(this.ucSingleReceipt2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gcOrderDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrderDetail)).EndInit();

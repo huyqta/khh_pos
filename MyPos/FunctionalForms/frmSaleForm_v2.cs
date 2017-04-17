@@ -105,92 +105,21 @@ namespace MyPos.FunctionalForms
         private void winExplorerView_Product_ItemDoubleClick(object sender, DevExpress.XtraGrid.Views.WinExplorer.WinExplorerViewItemDoubleClickEventArgs e)
         {
             Product pr = e.ItemInfo.Row.RowKey as Product;
-            ucSingleReceipt2 xuc = (ucSingleReceipt2)xtraTabControl1.SelectedTabPage.Controls.Find("ucSingleReceipt2", false).FirstOrDefault();
-            xuc.AddProduct(pr);
-            //if (order == null || string.IsNullOrEmpty(order.OrderCode))
-            //{
-            //    //btnNewOrder.PerformClick();
-            //}
-            //listOrderDetails = model.OrderDetails.Where(od => od.OrderId == order.Id).ToList();
-            //if (listOrderDetails.Any(l => l.ProductId == pr.Id))
-            //{
-            //    OrderDetail focusedOrderDetail = model.OrderDetails.Where(od => od.ProductId == pr.Id && od.OrderId == order.Id).FirstOrDefault();
-            //    focusedOrderDetail.Quantity++;
-            //    focusedOrderDetail.TotalPrice = focusedOrderDetail.Quantity * focusedOrderDetail.UnitPrice;
-            //    order.TotalPrice = model.OrderDetails.Local.Where(od => od.OrderId == order.Id).Sum(od => od.TotalPrice);
-            //}
-            //else
-            //{
-            //    OrderDetail orderDetail = new OrderDetail();
-            //    orderDetail.Id = Guid.NewGuid();
-            //    orderDetail.OrderId = order.Id;
-            //    orderDetail.ProductName = pr.Name;
-            //    orderDetail.ProductId = pr.Id;
-            //    orderDetail.CategoryName = model.Categories.Where(c => c.Id == pr.CategoryId).Select(c => c.Name).FirstOrDefault().ToString();
-            //    orderDetail.CategoryId = pr.CategoryId;
-            //    orderDetail.Quantity = 1;
-            //    orderDetail.UnitName = model.Units.Where(u => u.Id == pr.UnitId).Select(u => u.Name).FirstOrDefault().ToString();
-            //    orderDetail.UnitId = pr.UnitId;
-            //    orderDetail.UnitPrice = pr.DefaultPrice;
-            //    orderDetail.TotalPrice = pr.DefaultPrice;
-            //    model.OrderDetails.Add(orderDetail);
-            //}
-            //order.TotalPrice = model.OrderDetails.Local.Where(od => od.OrderId == order.Id).Sum(od => od.TotalPrice);
-
-            //model.SaveChanges();
-            //rdSelectDateOrder_SelectedIndexChanged(null, null);
+            if (xtraTabControl1.SelectedTabPage != null)
+            {
+                ucSingleReceipt2 xuc = (ucSingleReceipt2)xtraTabControl1.SelectedTabPage.Controls.Find("ucSingleReceipt2", false).FirstOrDefault();
+                xuc.AddProduct(pr);
+            }
+            else
+            {
+                ucSingleReceipt2 xuc = CreateOrderTab(new ucSingleReceipt2());
+                xuc.AddProduct(pr);
+            }
         }
 
         private void gvOrderDetail_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            //var selectedOrderDetail = gvOrderDetail.GetRow(gvOrderDetail.FocusedRowHandle) as OrderDetail;
-            //int productId = selectedOrderDetail.ProductId;
-            //Product product = model.Products.Where(p => p.Id == productId).FirstOrDefault();
-            //OrderDetail orderDetail = model.OrderDetails.Where(od => od.OrderId == order.Id && od.ProductId == productId).FirstOrDefault();
-            //switch (e.Column.FieldName)
-            //{
-            //    case "ProductId":
-            //        orderDetail.ProductName = product.Name;
 
-            //        gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["CategoryId"], product.CategoryId);
-            //        orderDetail.CategoryName = model.Categories.Where(c => c.Id == product.CategoryId).Select(c => c.Name).FirstOrDefault().ToString();
-            //        orderDetail.CategoryId = product.CategoryId;
-
-            //        gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["UnitId"], product.UnitId);
-            //        orderDetail.UnitName = model.Units.Where(u => u.Id == product.UnitId).Select(u => u.Name).FirstOrDefault().ToString();
-            //        orderDetail.UnitId = product.UnitId;
-
-            //        gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["UnitPrice"], product.DefaultPrice);
-            //        gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["Quantity"], 1);
-            //        gvOrderDetail.SetFocusedRowCellValue(gvOrderDetail.Columns["TotalPrice"], product.DefaultPrice);
-            //        break;
-            //    case "Quantity":
-            //        if (model.OrderDetails.Local.Any(l => l.ProductId == product.Id))
-            //        {
-            //            OrderDetail focusedOrderDetail = model.OrderDetails.Local.Where(od => od.ProductId == product.Id && od.OrderId == order.Id).FirstOrDefault();
-            //            focusedOrderDetail.Quantity = double.Parse(e.Value.ToString());
-            //            focusedOrderDetail.TotalPrice = focusedOrderDetail.Quantity * focusedOrderDetail.UnitPrice;
-            //            model.SaveChanges();
-            //            order.TotalPrice = model.OrderDetails.Local.Where(od => od.OrderId == order.Id).Sum(od => od.TotalPrice);
-            //        }
-            //        model.SaveChanges();
-            //        gcOrderDetail.DataSource = model.OrderDetails.Where(od => od.OrderId == order.Id).ToList();
-            //        //gcOrders.RefreshDataSource();
-            //        break;
-            //    case "UnitPrice":
-            //        if (model.OrderDetails.Local.Any(l => l.ProductId == product.Id))
-            //        {
-            //            OrderDetail focusedOrderDetail = model.OrderDetails.Local.Where(od => od.ProductId == product.Id && od.OrderId == order.Id).FirstOrDefault();
-            //            focusedOrderDetail.UnitPrice = int.Parse(e.Value.ToString());
-            //            focusedOrderDetail.TotalPrice = focusedOrderDetail.Quantity * focusedOrderDetail.UnitPrice;
-            //            model.SaveChanges();
-            //            order.TotalPrice = model.OrderDetails.Local.Where(od => od.OrderId == order.Id).Sum(od => od.TotalPrice);
-            //        }
-            //        model.SaveChanges();
-            //        gcOrderDetail.DataSource = model.OrderDetails.Where(od => od.OrderId == order.Id).ToList();
-            //        //gcOrders.RefreshDataSource();
-            //        break;
-            //}
         }
 
         private void gvOrderDetail_CellValueChanging(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -205,20 +134,12 @@ namespace MyPos.FunctionalForms
 
         private void lookUpCustomer_EditValueChanged(object sender, EventArgs e)
         {
-            //order.CustomerId = int.Parse(lookUpCustomer.EditValue.ToString());
             model.SaveChanges();
         }
 
         private void LoadOrder()
         {
-            //order = (Order)gvOrders.GetFocusedRow();
-            //if (order != null)
-            //{
-            //    lblOrderCode.Text = order.OrderCode;
-            //    lookUpCustomer.EditValue = order.CustomerId;
-            //    listOrderDetails = model.OrderDetails.Where(o => o.OrderId == order.Id).ToList();
-            //    gcOrderDetail.DataSource = listOrderDetails;
-            //}
+
         }
 
         private void gcCategory_DataSourceChanged(object sender, EventArgs e)
@@ -282,12 +203,7 @@ namespace MyPos.FunctionalForms
             switch (e.Button.Kind.ToString())
             {
                 case "Plus":
-                    uc = new ucSingleReceipt2();
-                    XtraTabPage tab = new XtraTabPage();
-                    tab.Controls.Add(uc);
-                    uc.Dock = DockStyle.Fill;
-                    tab.Text = "#" + xtraTabControl1.TabPages.Count.ToString();
-                    xtraTabControl1.TabPages.Add(tab);
+                    uc = CreateOrderTab(new ucSingleReceipt2());
                     break;
                 case "Minus":
                     uc = (ucSingleReceipt2)xtraTabControl1.SelectedTabPage.Controls.Find("ucSingleReceipt2", false).FirstOrDefault();
@@ -296,13 +212,29 @@ namespace MyPos.FunctionalForms
                         return;
                     }
                     xtraTabControl1.TabPages.Remove(xtraTabControl1.SelectedTabPage);
+                    xtraTabControl1.SelectedTabPage = xtraTabControl1.TabPages[xtraTabControl1.TabPages.Count - 1];
                     break;
                 case "OK":
                     uc = (ucSingleReceipt2)xtraTabControl1.SelectedTabPage.Controls.Find("ucSingleReceipt2", false).FirstOrDefault();
-                    uc.SaveOrder();
-                    xtraTabControl1.TabPages.Remove(xtraTabControl1.SelectedTabPage);
+                    if (uc != null && uc.Order != null && uc.OrderDetails != null && uc.OrderDetails.Count > 0)
+                    {
+                        uc.SaveOrder();
+                        xtraTabControl1.TabPages.Remove(xtraTabControl1.SelectedTabPage);
+                    }
                     break;
             }
+        }
+
+        private ucSingleReceipt2 CreateOrderTab(ucSingleReceipt2 uc)
+        {
+            uc = new ucSingleReceipt2();
+            XtraTabPage tab = new XtraTabPage();
+            tab.Controls.Add(uc);
+            uc.Dock = DockStyle.Fill;
+            tab.Text = "#" + xtraTabControl1.TabPages.Count.ToString();
+            xtraTabControl1.TabPages.Add(tab);
+            xtraTabControl1.SelectedTabPage = tab;
+            return uc;
         }
     }
 }
