@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colProductName = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -37,13 +38,13 @@
             this.colUnitPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotalPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcOrderList = new DevExpress.XtraGrid.GridControl();
-            this.ordersBindingSource = new System.Windows.Forms.BindingSource();
+            this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.khh_posDataSet = new MyPos.khh_posDataSet();
             this.gvOrderList = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.OrderCode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CustomerId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.customersBindingSource = new System.Windows.Forms.BindingSource();
+            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.OrderDateTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TotalPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cardView1 = new DevExpress.XtraGrid.Views.Card.CardView();
@@ -84,6 +85,8 @@
             this.gridView1.GridControl = this.gcOrderList;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsView.ShowFooter = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.ViewCaption = "Chi tiết đơn hàng";
             this.gridView1.ViewCaptionHeight = 30;
             // 
@@ -133,11 +136,18 @@
             // 
             // colTotalPrice
             // 
+            this.colTotalPrice.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.colTotalPrice.AppearanceCell.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.colTotalPrice.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colTotalPrice.AppearanceCell.Options.UseBackColor = true;
+            this.colTotalPrice.AppearanceCell.Options.UseFont = true;
             this.colTotalPrice.Caption = "Thành tiền";
             this.colTotalPrice.DisplayFormat.FormatString = "{0:n0}";
             this.colTotalPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colTotalPrice.FieldName = "TotalPrice";
             this.colTotalPrice.Name = "colTotalPrice";
+            this.colTotalPrice.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalPrice", "{0:n0}")});
             this.colTotalPrice.Visible = true;
             this.colTotalPrice.VisibleIndex = 5;
             // 
@@ -182,6 +192,8 @@
             this.TotalPrice});
             this.gvOrderList.GridControl = this.gcOrderList;
             this.gvOrderList.Name = "gvOrderList";
+            this.gvOrderList.OptionsView.ShowAutoFilterRow = true;
+            this.gvOrderList.OptionsView.ShowFooter = true;
             // 
             // OrderCode
             // 
@@ -189,6 +201,8 @@
             this.OrderCode.FieldName = "OrderCode";
             this.OrderCode.Name = "OrderCode";
             this.OrderCode.OptionsColumn.AllowEdit = false;
+            this.OrderCode.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "OrderCode", "{0}")});
             this.OrderCode.Visible = true;
             this.OrderCode.VisibleIndex = 0;
             // 
@@ -228,12 +242,19 @@
             // 
             // TotalPrice
             // 
+            this.TotalPrice.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.TotalPrice.AppearanceCell.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.TotalPrice.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalPrice.AppearanceCell.Options.UseBackColor = true;
+            this.TotalPrice.AppearanceCell.Options.UseFont = true;
             this.TotalPrice.Caption = "Tổng tiền";
             this.TotalPrice.DisplayFormat.FormatString = "{0:n0}";
             this.TotalPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.TotalPrice.FieldName = "TotalPrice";
             this.TotalPrice.Name = "TotalPrice";
             this.TotalPrice.OptionsColumn.AllowEdit = false;
+            this.TotalPrice.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalPrice", "{0:n0}")});
             this.TotalPrice.Visible = true;
             this.TotalPrice.VisibleIndex = 3;
             // 

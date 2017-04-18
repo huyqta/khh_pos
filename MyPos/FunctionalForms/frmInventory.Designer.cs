@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.btnInitialize = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.chkShowRedItemOnly = new DevExpress.XtraEditors.CheckEdit();
             this.gcInventory = new DevExpress.XtraGrid.GridControl();
             this.gvInventory = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Product = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -44,9 +45,9 @@
             this.MinQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.productsTableAdapter = new MyPos.khh_posDataSetTableAdapters.ProductsTableAdapter();
             this.unitsTableAdapter = new MyPos.khh_posDataSetTableAdapters.UnitsTableAdapter();
-            this.chkShowRedItemOnly = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkShowRedItemOnly.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcInventory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvInventory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
@@ -54,15 +55,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.unitsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkShowRedItemOnly.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnInitialize
             // 
-            this.btnInitialize.Location = new System.Drawing.Point(10, 44);
-            this.btnInitialize.Margin = new System.Windows.Forms.Padding(6);
+            this.btnInitialize.Location = new System.Drawing.Point(5, 23);
             this.btnInitialize.Name = "btnInitialize";
-            this.btnInitialize.Size = new System.Drawing.Size(252, 48);
+            this.btnInitialize.Size = new System.Drawing.Size(126, 25);
             this.btnInitialize.TabIndex = 0;
             this.btnInitialize.Text = "Khởi tạo số lượng";
             this.btnInitialize.Click += new System.EventHandler(this.btnInitialize_Click);
@@ -73,24 +72,32 @@
             this.groupControl1.Controls.Add(this.btnInitialize);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
-            this.groupControl1.Margin = new System.Windows.Forms.Padding(6);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1906, 102);
+            this.groupControl1.Size = new System.Drawing.Size(953, 53);
             this.groupControl1.TabIndex = 1;
             this.groupControl1.Text = "Quản lý kho hàng";
+            // 
+            // chkShowRedItemOnly
+            // 
+            this.chkShowRedItemOnly.Location = new System.Drawing.Point(136, 27);
+            this.chkShowRedItemOnly.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkShowRedItemOnly.Name = "chkShowRedItemOnly";
+            this.chkShowRedItemOnly.Properties.Caption = "Chỉ hiển thị hàng dưới số lượng tối thiểu";
+            this.chkShowRedItemOnly.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+            this.chkShowRedItemOnly.Size = new System.Drawing.Size(222, 19);
+            this.chkShowRedItemOnly.TabIndex = 1;
+            this.chkShowRedItemOnly.CheckedChanged += new System.EventHandler(this.chkShowRedItemOnly_CheckedChanged);
             // 
             // gcInventory
             // 
             this.gcInventory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcInventory.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
-            this.gcInventory.Location = new System.Drawing.Point(0, 102);
+            this.gcInventory.Location = new System.Drawing.Point(0, 53);
             this.gcInventory.MainView = this.gvInventory;
-            this.gcInventory.Margin = new System.Windows.Forms.Padding(6);
             this.gcInventory.Name = "gcInventory";
             this.gcInventory.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2});
-            this.gcInventory.Size = new System.Drawing.Size(1906, 821);
+            this.gcInventory.Size = new System.Drawing.Size(953, 427);
             this.gcInventory.TabIndex = 2;
             this.gcInventory.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvInventory});
@@ -164,6 +171,8 @@
             // 
             // Quantity
             // 
+            this.Quantity.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Quantity.AppearanceCell.Options.UseFont = true;
             this.Quantity.Caption = "Số lượng hiện tại";
             this.Quantity.FieldName = "Quantity";
             this.Quantity.Name = "Quantity";
@@ -173,6 +182,8 @@
             // 
             // MinQuantity
             // 
+            this.MinQuantity.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MinQuantity.AppearanceCell.Options.UseFont = true;
             this.MinQuantity.Caption = "Số lượng tối thiểu";
             this.MinQuantity.FieldName = "MinQuantity";
             this.MinQuantity.Name = "MinQuantity";
@@ -187,29 +198,19 @@
             // 
             this.unitsTableAdapter.ClearBeforeFill = true;
             // 
-            // chkShowRedItemOnly
-            // 
-            this.chkShowRedItemOnly.Location = new System.Drawing.Point(271, 51);
-            this.chkShowRedItemOnly.Name = "chkShowRedItemOnly";
-            this.chkShowRedItemOnly.Properties.Caption = "Chỉ hiển thị hàng dưới số lượng tối thiểu";
-            this.chkShowRedItemOnly.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
-            this.chkShowRedItemOnly.Size = new System.Drawing.Size(445, 34);
-            this.chkShowRedItemOnly.TabIndex = 1;
-            this.chkShowRedItemOnly.CheckedChanged += new System.EventHandler(this.chkShowRedItemOnly_CheckedChanged);
-            // 
             // frmInventory
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1906, 923);
+            this.ClientSize = new System.Drawing.Size(953, 480);
             this.Controls.Add(this.gcInventory);
             this.Controls.Add(this.groupControl1);
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmInventory";
             this.Text = "Quản lý kho";
             this.Load += new System.EventHandler(this.frmInventory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chkShowRedItemOnly.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcInventory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvInventory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
@@ -217,7 +218,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.unitsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkShowRedItemOnly.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

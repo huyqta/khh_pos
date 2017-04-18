@@ -11,28 +11,28 @@ namespace MyPos.Helper
     {
         public enum ActionType { Import, Export };
 
-        public static void UPDATE_INVENTORY(List<OrderDetail> orderDetails, ActionType action)
-        {
-            ProductModel model = new ProductModel();
-            foreach (var orderDetail in orderDetails)
-            {
-                var inventoryItem = model.Inventories.Where(o => o.ProductId == orderDetail.ProductId).FirstOrDefault();
-                if (inventoryItem != null)
-                {
-                    if (action == ActionType.Export)
-                    {
-                        inventoryItem.Quantity -= orderDetail.Quantity;
-                    }
-                    else
-                    {
-                        inventoryItem.Quantity += orderDetail.Quantity;
-                    }
-                }
+        //public static void UPDATE_INVENTORY(List<OrderDetail> orderDetails, ActionType action)
+        //{
+        //    ProductModel model = new ProductModel();
+        //    foreach (var orderDetail in orderDetails)
+        //    {
+        //        var inventoryItem = model.Inventories.Where(o => o.ProductId == orderDetail.ProductId).FirstOrDefault();
+        //        if (inventoryItem != null)
+        //        {
+        //            if (action == ActionType.Export)
+        //            {
+        //                inventoryItem.Quantity -= orderDetail.Quantity;
+        //            }
+        //            else
+        //            {
+        //                inventoryItem.Quantity += orderDetail.Quantity;
+        //            }
+        //        }
                 
-                //model.Inventories.Attach(inventoryItem);
-            }
-            model.SaveChanges();
-        }
+        //        //model.Inventories.Attach(inventoryItem);
+        //    }
+        //    model.SaveChanges();
+        //}
 
         public static void UPDATE_INVENTORY(List<ImportDetail> orderDetails, ActionType action)
         {

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucSingleReceipt2));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gcOrderDetail = new DevExpress.XtraGrid.GridControl();
             this.gvOrderDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ProductId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -69,6 +69,8 @@
             this.customersTableAdapter = new MyPos.khh_posDataSetTableAdapters.CustomersTableAdapter();
             this.productsTableAdapter = new MyPos.khh_posDataSetTableAdapters.ProductsTableAdapter();
             this.unitsTableAdapter = new MyPos.khh_posDataSetTableAdapters.UnitsTableAdapter();
+            this.lblDebtAmount = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.gcOrderDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrderDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
@@ -219,7 +221,7 @@
             // 
             this.repositoryItemButtonDeleteItem.AutoHeight = false;
             this.repositoryItemButtonDeleteItem.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonDeleteItem.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonDeleteItem.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
             this.repositoryItemButtonDeleteItem.Name = "repositoryItemButtonDeleteItem";
             this.repositoryItemButtonDeleteItem.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButtonDeleteItem.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonDeleteItem_ButtonClick);
@@ -233,8 +235,10 @@
             this.groupControl1.Controls.Add(this.labelControl10);
             this.groupControl1.Controls.Add(this.txtDiscount);
             this.groupControl1.Controls.Add(this.labelControl7);
+            this.groupControl1.Controls.Add(this.labelControl6);
             this.groupControl1.Controls.Add(this.labelControl12);
             this.groupControl1.Controls.Add(this.labelControl9);
+            this.groupControl1.Controls.Add(this.lblDebtAmount);
             this.groupControl1.Controls.Add(this.lblMoneyReturn);
             this.groupControl1.Controls.Add(this.labelControl5);
             this.groupControl1.Controls.Add(this.lblPayment);
@@ -472,6 +476,28 @@
             // 
             this.unitsTableAdapter.ClearBeforeFill = true;
             // 
+            // lblDebtAmount
+            // 
+            this.lblDebtAmount.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDebtAmount.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lblDebtAmount.Location = new System.Drawing.Point(264, 213);
+            this.lblDebtAmount.Margin = new System.Windows.Forms.Padding(2);
+            this.lblDebtAmount.Name = "lblDebtAmount";
+            this.lblDebtAmount.Size = new System.Drawing.Size(15, 14);
+            this.lblDebtAmount.TabIndex = 1;
+            this.lblDebtAmount.Text = "---";
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl6.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.labelControl6.Location = new System.Drawing.Point(185, 213);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(2);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(56, 14);
+            this.labelControl6.TabIndex = 3;
+            this.labelControl6.Text = "Công nợ:";
+            // 
             // ucSingleReceipt2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -541,5 +567,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonDeleteItem;
         private khh_posDataSetTableAdapters.ProductsTableAdapter productsTableAdapter;
         private khh_posDataSetTableAdapters.UnitsTableAdapter unitsTableAdapter;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.LabelControl lblDebtAmount;
     }
 }

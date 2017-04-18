@@ -43,10 +43,26 @@ namespace MyPos.FunctionalForms
             lookUpVendor.Properties.DataSource = model.Vendors.ToList();
             lookUpVendor.Properties.DisplayMember = "Name";
             lookUpVendor.Properties.ValueMember = "Id";
+            lookUpVendor.Properties.PopulateColumns();
+            for (int i = 0; i< lookUpVendor.Properties.Columns.Count; i++)
+            {
+                if (lookUpVendor.Properties.Columns[i].FieldName != "Name")
+                {
+                    lookUpVendor.Properties.Columns[i].Visible = false;
+                }
+            }
 
-            lookUpProduct.Properties.DataSource = model.Products.ToList();
+            lookUpProduct.Properties.DataSource = model.Products.Where(p=>p.isCheckInventory == true).ToList();
             lookUpProduct.Properties.DisplayMember = "Name";
             lookUpProduct.Properties.ValueMember = "Id";
+            lookUpProduct.Properties.PopulateColumns();
+            for (int i = 0; i < lookUpProduct.Properties.Columns.Count; i++)
+            {
+                if (lookUpProduct.Properties.Columns[i].FieldName != "Name")
+                {
+                    lookUpProduct.Properties.Columns[i].Visible = false;
+                }
+            }
 
             LoadOrders(DateTime.Now);
         }
@@ -91,7 +107,11 @@ namespace MyPos.FunctionalForms
 
         private void btnNewOrder_Click(object sender, EventArgs e)
         {
-            Vendor vendor = (Vendor)lookUpVendor.GetSelectedDataRow();
+            Vendor vendor = null;
+            if (lookUpVendor.GetSelectedDataRow() != null)
+            {
+                vendor = (Vendor)lookUpVendor.GetSelectedDataRow();
+            }
 
             lblOrderCode.Text = DateTime.Now.ToString("ddMMyyyyHHmmss");
             import = new Import();
@@ -117,6 +137,9 @@ namespace MyPos.FunctionalForms
             lblOrderCode.Text = string.Empty;
             import = new Import();
             model.SaveChanges();
+
+            gcOrderDetail.DataSource = model.ImportDetails.Where(od => od.ImportId == import.Id).ToList();
+            gcOrders.RefreshDataSource();
         }
 
         private void gvOrderDetail_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)

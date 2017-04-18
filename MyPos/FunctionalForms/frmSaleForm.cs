@@ -97,7 +97,7 @@ namespace MyPos.FunctionalForms
 
         private void btnSubmitOrder_Click(object sender, EventArgs e)
         {
-            InventoryHelpers.UPDATE_INVENTORY(listOrderDetails, InventoryHelpers.ActionType.Export);
+            //InventoryHelpers.UPDATE_INVENTORY(listOrderDetails, InventoryHelpers.ActionType.Export);
             lblOrderCode.Text = string.Empty;
             order = new Order();
             model.SaveChanges();

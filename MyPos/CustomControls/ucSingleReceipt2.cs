@@ -22,6 +22,7 @@ namespace MyPos.CustomControls
         private DateTime orderDateTime = DateTime.Now;
         public Order Order { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
+        private double debtAmount { get; set; }
 
         public ucSingleReceipt2()
         {
@@ -51,7 +52,7 @@ namespace MyPos.CustomControls
                 this.Order.TotalPrice = 0;
                 this.Order.CustomerId = 1;
             }
-            
+
         }
 
         public void AddProduct(Product product)
@@ -117,7 +118,7 @@ namespace MyPos.CustomControls
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveOrder();
-            InventoryHelpers.UPDATE_INVENTORY(this.OrderDetails, InventoryHelpers.ActionType.Export);
+            //InventoryHelpers.UPDATE_INVENTORY(this.OrderDetails, InventoryHelpers.ActionType.Export);
             MessageBox.Show("Lưu đơn hàng thành công!");
         }
 
@@ -144,7 +145,7 @@ namespace MyPos.CustomControls
                 model.Orders.Add(this.Order);
                 model.OrderDetails.AddRange(this.OrderDetails);
             }
-            if (!model.Orders.Any(o=>o.Id == this.Order.Id))
+            if (!model.Orders.Any(o => o.Id == this.Order.Id))
             {
                 model.Orders.Add(this.Order);
                 model.OrderDetails.AddRange(this.OrderDetails);
@@ -166,8 +167,19 @@ namespace MyPos.CustomControls
                     }
                 }
             }
+            if (this.debtAmount > 0)
+            {
+                DebtManagement debt = new DebtManagement();
+                debt.Id = Guid.NewGuid();
+                debt.DebtAmount = this.debtAmount;
+                debt.isDone = false;
+                debt.PartnerId = Order.CustomerId;
+                debt.ReceiptId = this.Order.Id;
+                model.DebtManagements.Add(debt);
+                model.Entry(debt).State = EntityState.Added;
+            }
             model.SaveChanges();
-            InventoryHelpers.UPDATE_INVENTORY(this.OrderDetails, InventoryHelpers.ActionType.Export);
+            //InventoryHelpers.UPDATE_INVENTORY(this.OrderDetails, InventoryHelpers.ActionType.Export);
 
             lblOrderCode.Text = Order.OrderCode;
         }
@@ -191,6 +203,10 @@ namespace MyPos.CustomControls
         {
             double moneyReturn = double.Parse(lblPayment.Text) - double.Parse(txtCustomerPay.EditValue.ToString());
             lblMoneyReturn.Text = moneyReturn.ToString("###,###,###");
+            this.debtAmount = double.Parse(txtCustomerPay.EditValue.ToString()) - double.Parse(lblPayment.Text);
+            lblDebtAmount.Text = debtAmount.ToString("###,###,###");
+            
+            
         }
 
         public bool IsAvailableToDeleteOrder()
@@ -216,6 +232,7 @@ namespace MyPos.CustomControls
             lblTotalPrice.Text = this.Order.TotalPrice.ToString("###,###,###");
             double totalPrice = this.Order.TotalPrice - double.Parse(txtDiscount.EditValue.ToString());
             lblPayment.Text = totalPrice.ToString("###,###,###");
+
         }
 
         private void txtDiscount_EditValueChanged(object sender, EventArgs e)

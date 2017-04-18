@@ -25,6 +25,7 @@ namespace BusinessEntity
 
         public virtual DbSet<Import> Imports { get; set; }
         public virtual DbSet<ImportDetail> ImportDetails { get; set; }
+        public virtual DbSet<DebtManagement> DebtManagements { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

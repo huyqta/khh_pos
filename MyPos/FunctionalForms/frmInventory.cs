@@ -19,6 +19,7 @@ namespace MyPos.FunctionalForms
         public frmInventory()
         {
             InitializeComponent();
+            UpdateInventoryData();
             gcInventory.DataSource = model.Inventories.ToList();
         }
 
@@ -27,7 +28,7 @@ namespace MyPos.FunctionalForms
             List<Product> products = model.Products.Where(p => p.isCheckInventory == true).ToList();
             foreach (var product in products)
             {
-                if (!model.Inventories.Any(o=>o.ProductId == product.Id))
+                if (!model.Inventories.Any(o => o.ProductId == product.Id))
                 {
                     model.Inventories.Add(new Inventory()
                     {
@@ -43,6 +44,20 @@ namespace MyPos.FunctionalForms
             model.SaveChanges();
 
             gcInventory.DataSource = model.Inventories.ToList();
+        }
+
+        private void UpdateInventoryData()
+        {
+            foreach (var inventory in model.Inventories.ToList())
+            {
+                var listImported = model.ImportDetails.Where(p => p.ProductId == inventory.ProductId).ToList();
+                var totalImported = listImported.Count == 0 ? 0 : listImported.Sum(p => p.Quantity);
+
+                var listSold = model.OrderDetails.Where(p => p.ProductId == inventory.ProductId).ToList();
+                var totalSold = listSold.Count == 0 ? 0 : listSold.Sum(p => p.Quantity);
+
+                inventory.Quantity = totalImported - totalSold;
+            }
         }
 
         private void frmInventory_Load(object sender, EventArgs e)
@@ -77,7 +92,7 @@ namespace MyPos.FunctionalForms
 
         private List<Inventory> ListProductUnderMinimumQuantity()
         {
-            return model.Inventories.Where(o => o.MinQuantity >= o.Quantity).ToList();
+            return model.Inventories.Local.Where(o => o.MinQuantity >= o.Quantity).ToList();
         }
 
         private void gvInventory_RowStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs e)
