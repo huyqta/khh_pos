@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using BusinessEntity;
 using MyPos.Helper;
 using System.Data.Entity;
+using MyPos.CustomControls;
 
 namespace MyPos.FunctionalForms
 {
@@ -24,7 +25,6 @@ namespace MyPos.FunctionalForms
         {
             InitializeComponent();
             lblOrderCode.Text = string.Empty;
-            dtSelectDateOrder.DateTime = DateTime.Now;
         }
 
         private void frmImport_Load(object sender, EventArgs e)
@@ -63,13 +63,6 @@ namespace MyPos.FunctionalForms
                     lookUpProduct.Properties.Columns[i].Visible = false;
                 }
             }
-
-            LoadOrders(DateTime.Now);
-        }
-
-        private void LoadOrders(DateTime datetimeOrder)
-        {
-            gcOrders.DataSource = model.Imports.Where(o => DbFunctions.TruncateTime(o.ImportDateTime) == datetimeOrder.Date).ToList();
         }
 
         private void btnAddProduct_Click(object sender, EventArgs e)
@@ -128,7 +121,6 @@ namespace MyPos.FunctionalForms
             gcOrderDetail.DataSource = model.ImportDetails.Local.Where(od => od.ImportId == import.Id).ToList();
 
             model.SaveChanges();
-            rdSelectDateOrder_SelectedIndexChanged(null, null);
         }
 
         private void btnSubmitOrder_Click(object sender, EventArgs e)
@@ -139,7 +131,6 @@ namespace MyPos.FunctionalForms
             model.SaveChanges();
 
             gcOrderDetail.DataSource = model.ImportDetails.Where(od => od.ImportId == import.Id).ToList();
-            gcOrders.RefreshDataSource();
         }
 
         private void gvOrderDetail_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -172,7 +163,6 @@ namespace MyPos.FunctionalForms
                     }
                     model.SaveChanges();
                     gcOrderDetail.DataSource = model.ImportDetails.Where(od => od.ImportId == import.Id).ToList();
-                    gcOrders.RefreshDataSource();
                     break;
                 case "UnitPrice":
                     if (model.ImportDetails.Local.Any(l => l.ProductId == product.Id))
@@ -185,42 +175,22 @@ namespace MyPos.FunctionalForms
                     }
                     model.SaveChanges();
                     gcOrderDetail.DataSource = model.ImportDetails.Where(od => od.ImportId == import.Id).ToList();
-                    gcOrders.RefreshDataSource();
                     break;
             }
         }
 
-        private void rdSelectDateOrder_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnListOrder_Click(object sender, EventArgs e)
         {
-            dtSelectDateOrder.Enabled = rdSelectDateOrder.SelectedIndex == 2;
-            if (rdSelectDateOrder.SelectedIndex == 1)
+            ucListItem uc = new ucListItem();
+            
+            uc.ListFields = "Id,VendorId,ImportCode,ImportDateTime,TotalPrice";
+            uc.ListColumns = "Id,Nhà cung cấp,Mã đơn hàng,Ngày nhập kho,Tổng tiền";
+            uc.ListDataSources = ",Vendors,,,";
+            uc.SetDataSource(model.Imports.ToList());
+            uc.ShowDialog();
+            if (uc.ReturnId != null)
             {
-                LoadOrders(DateTime.Now.AddDays(-1));
-            }
-            else if (rdSelectDateOrder.SelectedIndex == 0)
-            {
-                LoadOrders(DateTime.Now);
-            }
-            else
-            {
-                LoadOrders(dtSelectDateOrder.DateTime);
-            }
-        }
-
-        private void gvOrders_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
-        {
-            LoadOrder();
-        }
-
-        private void LoadOrder()
-        {
-            import = (Import)gvOrders.GetFocusedRow();
-            if (import != null)
-            {
-                lblOrderCode.Text = import.ImportCode;
-                lookUpVendor.EditValue = import.VendorId;
-                importDetails = model.ImportDetails.Where(o => o.ImportId == import.Id).ToList();
-                gcOrderDetail.DataSource = importDetails;
+                lblId.Text = uc.ReturnId.ToString();
             }
         }
     }
