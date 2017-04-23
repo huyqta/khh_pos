@@ -14,6 +14,7 @@ using BusinessEntity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Core.EntityClient;
 using System.Data.SqlClient;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace MyPos.CustomControls
 {
@@ -25,6 +26,8 @@ namespace MyPos.CustomControls
         public string ListDataSources { get; set; }
         ProductModel model = new ProductModel();
         public object ReturnId { get; set; }
+
+        RepositoryItemLookUpEdit ri = new RepositoryItemLookUpEdit();
 
         public ucListItem()
         {
@@ -53,56 +56,26 @@ namespace MyPos.CustomControls
                         gc.Caption = listColumns[indexCol];
                         if (listDataSources[indexCol] != string.Empty)
                         {
-                            string sql = string.Format("SELECT Name FROM {0}", listDataSources[indexCol]);
+                            string sql = string.Format("SELECT Id, Name FROM {0}", listDataSources[indexCol]);
                             DataTable dataTable = GetDataTable(sql);
-                            RepositoryItemLookUpEdit ri = new RepositoryItemLookUpEdit() { DataSource = dataTable, ValueMember = dataTable.Columns[0].ColumnName, DisplayMember = dataTable.Columns[1].ColumnName };
+                            ri = new RepositoryItemLookUpEdit();
+                            ri.BeginInit();
+                            ri.DataSource = dataTable;
+                            ri.ValueMember = dataTable.Columns[0].ColumnName;
+                            ri.DisplayMember = dataTable.Columns[1].ColumnName;
+                            gridControl1.RepositoryItems.Add(ri);
                             gc.ColumnEdit = ri;
                         }
                         gc.OptionsColumn.AllowEdit = false;
                     }
                 }
             }
-            //for (int i = 0; i < listFields.Count(); i++)
-            //{
-            //    GridColumn gc = new GridColumn();
-            //    gc.FieldName = listFields[i];
-            //    gc.Caption = listColumns[i];
-
-
-            //    if (listDataSources[i] != string.Empty)
-            //    {
-            //        string sql = string.Format("SELECT Id, Name FROM {0}", listDataSources[i]);
-            //        DataTable dataTable = GetDataTable(sql);
-            //        gc.ColumnEdit = new RepositoryItemLookUpEdit() { DataSource = dataTable, ValueMember = dataTable.Columns[0].ColumnName, DisplayMember = dataTable.Columns[1].ColumnName };
-            //    }
-            //    gc.OptionsColumn.AllowEdit = false;
-            //    gridView1.Columns.Add(gc);
-            //}
-            
+            gridControl1.ViewRegistered += new DevExpress.XtraGrid.ViewOperationEventHandler(gridControl1_ViewRegistered);
         }
 
         private void ucListItem_Load(object sender, EventArgs e)
         {
-            //string[] listFields = this.ListFields.Split(',');
-            //string[] listColumns = this.ListColumns.Split(',');
-            //string[] listDataSources = this.ListDataSources.Split(',');
-
-            //for (int i = 0; i < listFields.Count(); i++)
-            //{
-            //    GridColumn gc = new GridColumn();
-            //    gc.FieldName = listFields[i];
-            //    gc.Caption = listColumns[i];
-
-
-            //    if (listDataSources[i] != string.Empty)
-            //    {
-            //        string sql = string.Format("SELECT Id, Name FROM {0}", listDataSources[i]);
-            //        DataTable dataTable = GetDataTable(sql);
-            //        gc.ColumnEdit = new RepositoryItemLookUpEdit() { DataSource = dataTable, ValueMember = dataTable.Columns[0].ColumnName, DisplayMember = dataTable.Columns[1].ColumnName };
-            //    }
-            //    gc.OptionsColumn.AllowEdit = false;
-            //    gridView1.Columns.Add(gc);
-            //}
+            
         }
 
         private void gridView1_DoubleClick(object sender, EventArgs e)
@@ -120,6 +93,11 @@ namespace MyPos.CustomControls
             cmdReport.CommandType = CommandType.Text;
             daReport.Fill(retVal);
             return retVal;
+        }
+
+        private void gridControl1_ViewRegistered(object sender, DevExpress.XtraGrid.ViewOperationEventArgs e)
+        {
+            (e.View as GridView).Columns["VendorId"].ColumnEdit = ri;
         }
     }
 }
