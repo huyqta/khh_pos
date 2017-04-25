@@ -26,8 +26,7 @@ namespace MyPos.CustomControls
         public string ListDataSources { get; set; }
         ProductModel model = new ProductModel();
         public object ReturnId { get; set; }
-
-        RepositoryItemLookUpEdit ri = new RepositoryItemLookUpEdit();
+        public string SqlQuery { get; set; }
 
         public ucListItem()
         {
@@ -38,7 +37,8 @@ namespace MyPos.CustomControls
 
         public void SetDataSource<T>(List<T> datasource)
         {
-            gridControl1.DataSource = datasource;
+            DataTable dataTable = GetDataTable(this.SqlQuery);
+            gridControl1.DataSource = dataTable;
 
             List<string> listFields = this.ListFields.Split(',').ToList();
             List<string> listColumns = this.ListColumns.Split(',').ToList();
@@ -54,28 +54,10 @@ namespace MyPos.CustomControls
                     else
                     {
                         gc.Caption = listColumns[indexCol];
-                        if (listDataSources[indexCol] != string.Empty)
-                        {
-                            string sql = string.Format("SELECT Id, Name FROM {0}", listDataSources[indexCol]);
-                            DataTable dataTable = GetDataTable(sql);
-                            ri = new RepositoryItemLookUpEdit();
-                            ri.BeginInit();
-                            ri.DataSource = dataTable;
-                            ri.ValueMember = dataTable.Columns[0].ColumnName;
-                            ri.DisplayMember = dataTable.Columns[1].ColumnName;
-                            gridControl1.RepositoryItems.Add(ri);
-                            gc.ColumnEdit = ri;
-                        }
                         gc.OptionsColumn.AllowEdit = false;
                     }
                 }
             }
-            gridControl1.ViewRegistered += new DevExpress.XtraGrid.ViewOperationEventHandler(gridControl1_ViewRegistered);
-        }
-
-        private void ucListItem_Load(object sender, EventArgs e)
-        {
-            
         }
 
         private void gridView1_DoubleClick(object sender, EventArgs e)
@@ -93,11 +75,6 @@ namespace MyPos.CustomControls
             cmdReport.CommandType = CommandType.Text;
             daReport.Fill(retVal);
             return retVal;
-        }
-
-        private void gridControl1_ViewRegistered(object sender, DevExpress.XtraGrid.ViewOperationEventArgs e)
-        {
-            (e.View as GridView).Columns["VendorId"].ColumnEdit = ri;
         }
     }
 }

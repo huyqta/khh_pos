@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmImport));
             this.importsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.khh_posDataSet = new MyPos.khh_posDataSet();
-            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
-            this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
             this.gcOrderDetail = new DevExpress.XtraGrid.GridControl();
             this.importDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -57,6 +55,7 @@
             this.btnNewOrder = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnSubmitOrder = new DevExpress.XtraEditors.SimpleButton();
+            this.lblId = new DevExpress.XtraEditors.LabelControl();
             this.lblOrderCode = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.productsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -66,13 +65,10 @@
             this.unitsTableAdapter = new MyPos.khh_posDataSetTableAdapters.UnitsTableAdapter();
             this.productsTableAdapter = new MyPos.khh_posDataSetTableAdapters.ProductsTableAdapter();
             this.importsTableAdapter = new MyPos.khh_posDataSetTableAdapters.ImportsTableAdapter();
-            this.lblId = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.lblImportDate = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.importsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
-            this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).BeginInit();
-            this.splitContainerControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
             this.groupControl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcOrderDetail)).BeginInit();
@@ -101,32 +97,6 @@
             this.khh_posDataSet.DataSetName = "khh_posDataSet";
             this.khh_posDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // groupControl3
-            // 
-            this.groupControl3.Controls.Add(this.splitContainerControl2);
-            this.groupControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl3.Location = new System.Drawing.Point(0, 0);
-            this.groupControl3.Margin = new System.Windows.Forms.Padding(4);
-            this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(1791, 1054);
-            this.groupControl3.TabIndex = 3;
-            this.groupControl3.Text = "Thông tin bán hàng";
-            // 
-            // splitContainerControl2
-            // 
-            this.splitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl2.Horizontal = false;
-            this.splitContainerControl2.Location = new System.Drawing.Point(3, 40);
-            this.splitContainerControl2.Margin = new System.Windows.Forms.Padding(4);
-            this.splitContainerControl2.Name = "splitContainerControl2";
-            this.splitContainerControl2.Panel1.Controls.Add(this.groupControl5);
-            this.splitContainerControl2.Panel1.Text = "Panel1";
-            this.splitContainerControl2.Panel2.Text = "Panel2";
-            this.splitContainerControl2.Size = new System.Drawing.Size(1785, 1011);
-            this.splitContainerControl2.SplitterPosition = 996;
-            this.splitContainerControl2.TabIndex = 18;
-            this.splitContainerControl2.Text = "splitContainerControl2";
-            // 
             // groupControl5
             // 
             this.groupControl5.Controls.Add(this.gcOrderDetail);
@@ -135,7 +105,7 @@
             this.groupControl5.Location = new System.Drawing.Point(0, 0);
             this.groupControl5.Margin = new System.Windows.Forms.Padding(4);
             this.groupControl5.Name = "groupControl5";
-            this.groupControl5.Size = new System.Drawing.Size(1785, 996);
+            this.groupControl5.Size = new System.Drawing.Size(1551, 1054);
             this.groupControl5.TabIndex = 16;
             this.groupControl5.Text = "Chi tiết đơn hàng";
             // 
@@ -144,7 +114,7 @@
             this.gcOrderDetail.DataSource = this.importDetailsBindingSource;
             this.gcOrderDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcOrderDetail.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gcOrderDetail.Location = new System.Drawing.Point(3, 230);
+            this.gcOrderDetail.Location = new System.Drawing.Point(3, 261);
             this.gcOrderDetail.MainView = this.gvOrderDetail;
             this.gcOrderDetail.Margin = new System.Windows.Forms.Padding(4);
             this.gcOrderDetail.Name = "gcOrderDetail";
@@ -152,7 +122,7 @@
             this.repositoryItemLookUpProduct,
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpUnit});
-            this.gcOrderDetail.Size = new System.Drawing.Size(1779, 763);
+            this.gcOrderDetail.Size = new System.Drawing.Size(1545, 790);
             this.gcOrderDetail.TabIndex = 13;
             this.gcOrderDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvOrderDetail});
@@ -293,20 +263,22 @@
             this.groupControl6.Controls.Add(this.labelControl2);
             this.groupControl6.Controls.Add(this.btnSubmitOrder);
             this.groupControl6.Controls.Add(this.lblId);
+            this.groupControl6.Controls.Add(this.lblImportDate);
             this.groupControl6.Controls.Add(this.lblOrderCode);
+            this.groupControl6.Controls.Add(this.labelControl4);
             this.groupControl6.Controls.Add(this.labelControl1);
             this.groupControl6.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl6.Location = new System.Drawing.Point(3, 40);
             this.groupControl6.Margin = new System.Windows.Forms.Padding(6);
             this.groupControl6.Name = "groupControl6";
             this.groupControl6.ShowCaption = false;
-            this.groupControl6.Size = new System.Drawing.Size(1779, 190);
+            this.groupControl6.Size = new System.Drawing.Size(1545, 221);
             this.groupControl6.TabIndex = 20;
             this.groupControl6.Text = "groupControl6";
             // 
             // lookUpProduct
             // 
-            this.lookUpProduct.Location = new System.Drawing.Point(174, 129);
+            this.lookUpProduct.Location = new System.Drawing.Point(179, 168);
             this.lookUpProduct.Margin = new System.Windows.Forms.Padding(4);
             this.lookUpProduct.Name = "lookUpProduct";
             this.lookUpProduct.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -314,12 +286,13 @@
             this.lookUpProduct.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpProduct.Properties.NullText = "Chọn hàng hóa ...";
-            this.lookUpProduct.Size = new System.Drawing.Size(554, 38);
+            this.lookUpProduct.Size = new System.Drawing.Size(931, 38);
             this.lookUpProduct.TabIndex = 20;
+            this.lookUpProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lookUpProduct_KeyDown);
             // 
             // lookUpVendor
             // 
-            this.lookUpVendor.Location = new System.Drawing.Point(174, 79);
+            this.lookUpVendor.Location = new System.Drawing.Point(179, 122);
             this.lookUpVendor.Margin = new System.Windows.Forms.Padding(4);
             this.lookUpVendor.Name = "lookUpVendor";
             this.lookUpVendor.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -333,7 +306,7 @@
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Location = new System.Drawing.Point(8, 133);
+            this.labelControl3.Location = new System.Drawing.Point(7, 175);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(135, 31);
@@ -342,31 +315,30 @@
             // 
             // btnListOrder
             // 
-            this.btnListOrder.Image = ((System.Drawing.Image)(resources.GetObject("btnListOrder.Image")));
             this.btnListOrder.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.btnListOrder.ImageToTextAlignment = DevExpress.XtraEditors.ImageAlignToText.TopCenter;
-            this.btnListOrder.Location = new System.Drawing.Point(1638, 10);
+            this.btnListOrder.Location = new System.Drawing.Point(416, 7);
             this.btnListOrder.Margin = new System.Windows.Forms.Padding(4);
             this.btnListOrder.Name = "btnListOrder";
-            this.btnListOrder.Size = new System.Drawing.Size(134, 104);
+            this.btnListOrder.Size = new System.Drawing.Size(226, 54);
             this.btnListOrder.TabIndex = 14;
-            this.btnListOrder.Text = "Đơn hàng";
+            this.btnListOrder.Text = "Danh sách đơn hàng";
             this.btnListOrder.Click += new System.EventHandler(this.btnListOrder_Click);
             // 
             // btnAddProduct
             // 
             this.btnAddProduct.Image = ((System.Drawing.Image)(resources.GetObject("btnAddProduct.Image")));
             this.btnAddProduct.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            this.btnAddProduct.Location = new System.Drawing.Point(736, 127);
+            this.btnAddProduct.Location = new System.Drawing.Point(1118, 167);
             this.btnAddProduct.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddProduct.Name = "btnAddProduct";
-            this.btnAddProduct.Size = new System.Drawing.Size(100, 44);
+            this.btnAddProduct.Size = new System.Drawing.Size(96, 39);
             this.btnAddProduct.TabIndex = 14;
             this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
             // btnNewOrder
             // 
-            this.btnNewOrder.Location = new System.Drawing.Point(8, 8);
+            this.btnNewOrder.Location = new System.Drawing.Point(4, 7);
             this.btnNewOrder.Margin = new System.Windows.Forms.Padding(4);
             this.btnNewOrder.Name = "btnNewOrder";
             this.btnNewOrder.Size = new System.Drawing.Size(176, 54);
@@ -377,7 +349,7 @@
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Location = new System.Drawing.Point(8, 83);
+            this.labelControl2.Location = new System.Drawing.Point(4, 125);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(167, 31);
@@ -386,7 +358,7 @@
             // 
             // btnSubmitOrder
             // 
-            this.btnSubmitOrder.Location = new System.Drawing.Point(192, 10);
+            this.btnSubmitOrder.Location = new System.Drawing.Point(188, 7);
             this.btnSubmitOrder.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmitOrder.Name = "btnSubmitOrder";
             this.btnSubmitOrder.Size = new System.Drawing.Size(220, 54);
@@ -394,11 +366,21 @@
             this.btnSubmitOrder.Text = "Lưu phiếu nhập kho";
             this.btnSubmitOrder.Click += new System.EventHandler(this.btnSubmitOrder_Click);
             // 
+            // lblId
+            // 
+            this.lblId.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblId.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblId.Location = new System.Drawing.Point(866, 133);
+            this.lblId.Margin = new System.Windows.Forms.Padding(4);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(0, 39);
+            this.lblId.TabIndex = 16;
+            // 
             // lblOrderCode
             // 
             this.lblOrderCode.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOrderCode.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblOrderCode.Location = new System.Drawing.Point(644, 12);
+            this.lblOrderCode.Location = new System.Drawing.Point(244, 69);
             this.lblOrderCode.Margin = new System.Windows.Forms.Padding(4);
             this.lblOrderCode.Name = "lblOrderCode";
             this.lblOrderCode.Size = new System.Drawing.Size(42, 39);
@@ -409,7 +391,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelControl1.Location = new System.Drawing.Point(420, 14);
+            this.labelControl1.Location = new System.Drawing.Point(7, 69);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(217, 39);
@@ -446,33 +428,40 @@
             // 
             this.importsTableAdapter.ClearBeforeFill = true;
             // 
-            // lblId
+            // labelControl4
             // 
-            this.lblId.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblId.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblId.Location = new System.Drawing.Point(866, 133);
-            this.lblId.Margin = new System.Windows.Forms.Padding(4);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(42, 39);
-            this.lblId.TabIndex = 16;
-            this.lblId.Text = "---";
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelControl4.Location = new System.Drawing.Point(416, 74);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(213, 33);
+            this.labelControl4.TabIndex = 17;
+            this.labelControl4.Text = "Ngày nhập kho:";
+            // 
+            // lblImportDate
+            // 
+            this.lblImportDate.Appearance.Font = new System.Drawing.Font("Tahoma", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblImportDate.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblImportDate.Location = new System.Drawing.Point(649, 74);
+            this.lblImportDate.Margin = new System.Windows.Forms.Padding(4);
+            this.lblImportDate.Name = "lblImportDate";
+            this.lblImportDate.Size = new System.Drawing.Size(36, 33);
+            this.lblImportDate.TabIndex = 16;
+            this.lblImportDate.Text = "---";
             // 
             // frmImport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1791, 1054);
-            this.Controls.Add(this.groupControl3);
+            this.ClientSize = new System.Drawing.Size(1551, 1054);
+            this.Controls.Add(this.groupControl5);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmImport";
             this.Text = "Nhập kho";
             this.Load += new System.EventHandler(this.frmImport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.importsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
-            this.groupControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl2)).EndInit();
-            this.splitContainerControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
             this.groupControl5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcOrderDetail)).EndInit();
@@ -495,8 +484,6 @@
         }
 
         #endregion
-        private DevExpress.XtraEditors.GroupControl groupControl3;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
         private DevExpress.XtraEditors.GroupControl groupControl5;
         private DevExpress.XtraGrid.GridControl gcOrderDetail;
         private DevExpress.XtraGrid.Views.Grid.GridView gvOrderDetail;
@@ -532,5 +519,7 @@
         private DevExpress.XtraEditors.SimpleButton btnAddProduct;
         private DevExpress.XtraEditors.SimpleButton btnListOrder;
         private DevExpress.XtraEditors.LabelControl lblId;
+        private DevExpress.XtraEditors.LabelControl lblImportDate;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
     }
 }

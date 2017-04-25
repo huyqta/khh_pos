@@ -279,5 +279,22 @@ namespace MyPos
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void barButtonDebt_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            foreach (XtraForm form in this.MdiChildren)
+            {
+
+
+                if (form.GetType() == typeof(FunctionalForms.frmDebtManagement))
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+            FunctionalForms.frmDebtManagement frm = new FunctionalForms.frmDebtManagement();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

@@ -20,6 +20,7 @@ namespace MyPos.FunctionalForms
         Import import;
         List<ImportDetail> importDetails = new List<ImportDetail>();
         ProductModel model = new ProductModel();
+        double debtAmount = 0;
 
         public frmImport()
         {
@@ -107,12 +108,13 @@ namespace MyPos.FunctionalForms
             }
 
             lblOrderCode.Text = DateTime.Now.ToString("ddMMyyyyHHmmss");
+            lblImportDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
             import = new Import();
             import.Id = Guid.NewGuid();
             import.ImportCode = lblOrderCode.Text;
             import.ImportDateTime = DateTime.Now;
             import.TotalPrice = 0;
-            import.VendorId = vendor == null ? -1 : vendor.Id;
+            import.VendorId = vendor == null ? 1 : vendor.Id;
 
             importDetails = new List<ImportDetail>();
 
@@ -126,8 +128,17 @@ namespace MyPos.FunctionalForms
         private void btnSubmitOrder_Click(object sender, EventArgs e)
         {
             InventoryHelpers.UPDATE_INVENTORY(importDetails, InventoryHelpers.ActionType.Import);
-            lblOrderCode.Text = string.Empty;
-            import = new Import();
+            //if (this.debtAmount > 0)
+            //{
+            //    DebtManagement debt = new DebtManagement();
+            //    debt.Id = Guid.NewGuid();
+            //    debt.DebtAmount = this.debtAmount;
+            //    debt.IsVendor = false;
+            //    debt.PartnerId = Order.CustomerId;
+            //    debt.ReceiptId = this.Order.Id;
+            //    model.DebtManagements.Add(debt);
+            //    model.Entry(debt).State = EntityState.Added;
+            //}
             model.SaveChanges();
 
             gcOrderDetail.DataSource = model.ImportDetails.Where(od => od.ImportId == import.Id).ToList();
@@ -183,14 +194,30 @@ namespace MyPos.FunctionalForms
         {
             ucListItem uc = new ucListItem();
             
-            uc.ListFields = "Id,VendorId,ImportCode,ImportDateTime,TotalPrice";
+            uc.ListFields = "Id,VendorName,ImportCode,ImportDateTime,TotalPrice";
             uc.ListColumns = "Id,Nhà cung cấp,Mã đơn hàng,Ngày nhập kho,Tổng tiền";
             uc.ListDataSources = ",Vendors,,,";
+            uc.SqlQuery = @"SELECT imp.Id, imp.ImportCode, imp.ImportDateTime, imp.TotalPrice, vd.Name as VendorName FROM Imports imp INNER JOIN Vendors vd ON imp.VendorId = vd.Id";
             uc.SetDataSource(model.Imports.ToList());
             uc.ShowDialog();
             if (uc.ReturnId != null)
             {
-                lblId.Text = uc.ReturnId.ToString();
+                Guid importId = Guid.Parse(uc.ReturnId.ToString());
+                this.import = model.Imports.Where(i => i.Id == importId).FirstOrDefault();
+                lblId.Text = this.import.ImportCode.ToString();
+                lblOrderCode.Text = this.import.ImportCode;
+                lblImportDate.Text = this.import.ImportDateTime.ToString("dd/MM/yyyy");
+                lookUpVendor.EditValue = this.import.VendorId;
+                this.importDetails = model.ImportDetails.Where(id => id.ImportId == this.import.Id).ToList();
+                gcOrderDetail.DataSource = this.importDetails.ToList();
+            }
+        }
+
+        private void lookUpProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnAddProduct.PerformClick();
             }
         }
     }

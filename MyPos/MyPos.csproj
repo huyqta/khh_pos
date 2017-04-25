@@ -132,6 +132,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FunctionalForms\frmDebtManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FunctionalForms\frmDebtManagement.Designer.cs">
+      <DependentUpon>frmDebtManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="FunctionalForms\frmImport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FunctionalForms\frmDebtManagement.resx">
+      <DependentUpon>frmDebtManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FunctionalForms\frmImport.resx">
       <DependentUpon>frmImport.cs</DependentUpon>

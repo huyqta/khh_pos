@@ -18,6 +18,6 @@ namespace BusinessEntity
         /// </summary>
         public Guid ReceiptId { get; set; }
         public double DebtAmount { get; set; }
-        public bool isDone { get; set; }
+        public bool IsVendor { get; set; }
     }
 }

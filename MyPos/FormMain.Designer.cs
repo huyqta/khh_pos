@@ -53,6 +53,7 @@
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.barButtonDebt = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -74,10 +75,11 @@
             this.barButtonOrderList,
             this.barButtonImport,
             this.barButtonExport,
-            this.barButtonInventory});
+            this.barButtonInventory,
+            this.barButtonDebt});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(4);
-            this.ribbon.MaxItemId = 14;
+            this.ribbon.MaxItemId = 15;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPageList});
@@ -249,6 +251,7 @@
             // 
             this.ribbonPageGroup4.ItemLinks.Add(this.barButtonItemSaleStatistic);
             this.ribbonPageGroup4.ItemLinks.Add(this.barButtonOrderList);
+            this.ribbonPageGroup4.ItemLinks.Add(this.barButtonDebt);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = "Thống kê";
             // 
@@ -273,6 +276,15 @@
             // xtraTabbedMdiManager1
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
+            // 
+            // barButtonDebt
+            // 
+            this.barButtonDebt.Caption = "Công nợ";
+            this.barButtonDebt.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonDebt.Glyph")));
+            this.barButtonDebt.Id = 14;
+            this.barButtonDebt.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonDebt.LargeGlyph")));
+            this.barButtonDebt.Name = "barButtonDebt";
+            this.barButtonDebt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonDebt_ItemClick);
             // 
             // FormMain
             // 
@@ -320,5 +332,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonExport;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.BarButtonItem barButtonInventory;
+        private DevExpress.XtraBars.BarButtonItem barButtonDebt;
     }
 }

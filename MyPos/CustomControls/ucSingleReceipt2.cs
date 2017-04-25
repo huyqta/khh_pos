@@ -170,13 +170,21 @@ namespace MyPos.CustomControls
             if (this.debtAmount > 0)
             {
                 DebtManagement debt = new DebtManagement();
-                debt.Id = Guid.NewGuid();
-                debt.DebtAmount = this.debtAmount;
-                debt.isDone = false;
-                debt.PartnerId = Order.CustomerId;
-                debt.ReceiptId = this.Order.Id;
-                model.DebtManagements.Add(debt);
-                model.Entry(debt).State = EntityState.Added;
+
+                if (model.DebtManagements.Any(d=>d.ReceiptId == this.Order.Id))
+                {
+                    model.DebtManagements.Where(d => d.ReceiptId == this.Order.Id).FirstOrDefault().DebtAmount = this.debtAmount;
+                }
+                else
+                {
+                    debt.Id = Guid.NewGuid();
+                    debt.DebtAmount = this.debtAmount;
+                    debt.IsVendor = false;
+                    debt.PartnerId = Order.CustomerId;
+                    debt.ReceiptId = this.Order.Id;
+                    model.DebtManagements.Add(debt);
+                    model.Entry(debt).State = EntityState.Added;
+                }
             }
             model.SaveChanges();
             //InventoryHelpers.UPDATE_INVENTORY(this.OrderDetails, InventoryHelpers.ActionType.Export);
@@ -201,10 +209,12 @@ namespace MyPos.CustomControls
 
         private void txtCustomerPay_EditValueChanged(object sender, EventArgs e)
         {
-            double moneyReturn = double.Parse(lblPayment.Text) - double.Parse(txtCustomerPay.EditValue.ToString());
-            lblMoneyReturn.Text = moneyReturn.ToString("###,###,###");
-            this.debtAmount = double.Parse(txtCustomerPay.EditValue.ToString()) - double.Parse(lblPayment.Text);
-            lblDebtAmount.Text = debtAmount.ToString("###,###,###");
+            double moneyReturn = double.Parse(txtCustomerPay.EditValue.ToString()) - double.Parse(lblPayment.Text);
+            moneyReturn = moneyReturn > 0 ? moneyReturn : 0;
+            lblMoneyReturn.Text = moneyReturn.ToString("###,###,##0");
+            this.debtAmount = double.Parse(lblPayment.Text) - double.Parse(txtCustomerPay.EditValue.ToString());
+            this.debtAmount = this.debtAmount > 0 ? this.debtAmount : 0;
+            lblDebtAmount.Text = debtAmount.ToString("###,###,##0");
             
             
         }
