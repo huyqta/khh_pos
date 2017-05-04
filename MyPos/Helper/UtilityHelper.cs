@@ -12,6 +12,27 @@ namespace MyPos.Helper
 {
     public static class UtilityHelper
     {
+        static char[,] charArr = {
+            { 'a', 'á', 'à', 'ả', 'ã', 'ạ', 'ă', 'ắ', 'ằ', 'ẳ', 'ẵ', 'ặ', 'â', 'ấ', 'ầ', 'ẩ', 'ẫ', 'ậ'},
+            { 'e', 'é', 'è', 'ẻ', 'ẽ', 'ẹ', 'ê', 'ế', 'ề', 'ể', 'ễ', 'ệ', 'ê', 'ế', 'ề', 'ể', 'ễ', 'ệ'},
+            { 'o', 'ó', 'ò', 'ỏ', 'õ', 'ọ', 'ô', 'ố', 'ồ', 'ổ', 'ỗ', 'ộ', 'ơ','ớ', 'ờ', 'ở', 'ỡ', 'ợ'},
+            { 'i', 'í', 'ì', 'ỉ', 'ĩ', 'ị', 'i', 'í', 'ì', 'ỉ', 'ĩ', 'ị', 'i', 'í', 'ì', 'ỉ', 'ĩ', 'ị'},
+            { 'u', 'ú', 'ù', 'ủ', 'ũ', 'ụ', 'u', 'ú', 'ù', 'ủ', 'ũ', 'ụ', 'ư','ứ', 'ừ', 'ử', 'ữ', 'ự'},
+            { 'y', 'ý', 'ỷ', 'ỹ', 'ỷ', 'ỵ', 'y', 'ý', 'ỷ', 'ỹ', 'ỷ', 'ỵ', 'y', 'ý', 'ỷ', 'ỹ', 'ỷ', 'ỵ'}
+        };
+
+        static string[] strArr =
+        {
+            "aáàảãạăắằẳẵặâấầẩẫậ",
+            "eéèẻẽẹêếềểễệ",
+            "oóòỏõọôốồổỗộơớờởỡợ",
+            "iíìỉĩị",
+            "uúùủũụưứừửữự",
+            "yýỷỹỷỵ",
+            "dđ",
+        };
+
+        static string strLong = "aáàảãạăắằẳẵặâấầẩẫậeéèẻẽẹêếềểễệoóòỏõọôốồổỗộơớờởỡợiíìỉĩịuúùủũụưứừửữựyýỷỹỷỵdđ";
 
         public static void ReadFileExcel(string filePath)
         {
@@ -195,6 +216,26 @@ namespace MyPos.Helper
                 || productName.ToLower().Contains("phao"))
                 return model.Units.Where(c => c.Name == "Cái").FirstOrDefault().Id;
             else return model.Units.Where(c => c.Name == "Cái").FirstOrDefault().Id;
+        }
+
+        public static string ReplaceNonEnglishChars(string input)
+        {
+            //string output = string.Empty;
+            foreach (char c in input.ToLower().ToCharArray())
+            {
+                if (strLong.Contains(c))
+                {
+                    for (int i = 0; i < 7; i++)
+                    {
+                        if (strArr[i].IndexOf(c) > -1)
+                        {
+                            input = input.Replace(c, strArr[i].ToCharArray()[0]);
+                            continue;
+                        }
+                    }
+                }
+            }
+            return input;
         }
     }
 }

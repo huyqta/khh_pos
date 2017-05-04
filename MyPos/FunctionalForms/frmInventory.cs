@@ -20,7 +20,7 @@ namespace MyPos.FunctionalForms
         {
             InitializeComponent();
             UpdateInventoryData();
-            gcInventory.DataSource = model.Inventories.ToList();
+            gcInventory.DataBindings.Add("DataSource", model.Inventories.ToList(), "DataSource");
         }
 
         private void btnInitialize_Click(object sender, EventArgs e)

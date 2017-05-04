@@ -12,6 +12,7 @@ using BusinessEntity;
 using MyPos.Helper;
 using System.Data.Entity;
 using MyPos.CustomControls;
+using DevExpress.XtraGrid;
 
 namespace MyPos.FunctionalForms
 {
@@ -45,7 +46,7 @@ namespace MyPos.FunctionalForms
             lookUpVendor.Properties.DisplayMember = "Name";
             lookUpVendor.Properties.ValueMember = "Id";
             lookUpVendor.Properties.PopulateColumns();
-            for (int i = 0; i< lookUpVendor.Properties.Columns.Count; i++)
+            for (int i = 0; i < lookUpVendor.Properties.Columns.Count; i++)
             {
                 if (lookUpVendor.Properties.Columns[i].FieldName != "Name")
                 {
@@ -53,7 +54,7 @@ namespace MyPos.FunctionalForms
                 }
             }
 
-            lookUpProduct.Properties.DataSource = model.Products.Where(p=>p.isCheckInventory == true).ToList();
+            lookUpProduct.Properties.DataSource = model.Products.Where(p => p.isCheckInventory == true).ToList();
             lookUpProduct.Properties.DisplayMember = "Name";
             lookUpProduct.Properties.ValueMember = "Id";
             lookUpProduct.Properties.PopulateColumns();
@@ -68,35 +69,70 @@ namespace MyPos.FunctionalForms
 
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
-            if (import == null)
+            ucSelectProduct uc = new ucSelectProduct();
+            uc.ShowDialog();
+            foreach (var prod in uc.SelectedProducts)
             {
-                btnNewOrder.PerformClick();
-            }
-            Product product = (Product)lookUpProduct.GetSelectedDataRow();
-            if (importDetails.Any(i => i.ProductId == product.Id))
-            {
-                ImportDetail focusedOrderDetail = model.ImportDetails.Where(od => od.ProductId == product.Id && od.ImportId == import.Id).FirstOrDefault();
-                focusedOrderDetail.Quantity++;
-                focusedOrderDetail.TotalPrice = focusedOrderDetail.Quantity * focusedOrderDetail.UnitPrice;
-                //import.TotalPrice = model.ImportDetails.Local.Where(od => od.ImportId == import.Id).Sum(od => od.TotalPrice);
-            }
-            else
-            {
-                ImportDetail importDetail = new ImportDetail();
-                importDetail.Id = Guid.NewGuid();
-                importDetail.ImportId = import.Id;
-                importDetail.ProductId = product.Id;
-                importDetail.Quantity = 0;
-                importDetail.UnitId = product.UnitId;
-                importDetail.UnitPrice = product.DefaultPrice;
-                importDetail.TotalPrice = importDetail.Quantity * importDetail.UnitPrice;
-                importDetails.Add(importDetail);
-                model.ImportDetails.Add(importDetail);
-            }
-            import.TotalPrice = model.ImportDetails.Local.Where(od => od.ImportId == import.Id).Sum(od => od.TotalPrice);
+                if (import == null)
+                {
+                    btnNewOrder.PerformClick();
+                }
+                Product product = prod;
+                if (importDetails.Any(i => i.ProductId == product.Id))
+                {
+                    ImportDetail focusedOrderDetail = model.ImportDetails.Where(od => od.ProductId == product.Id && od.ImportId == import.Id).FirstOrDefault();
+                    focusedOrderDetail.Quantity++;
+                    focusedOrderDetail.TotalPrice = focusedOrderDetail.Quantity * focusedOrderDetail.UnitPrice;
+                }
+                else
+                {
+                    ImportDetail importDetail = new ImportDetail();
+                    importDetail.Id = Guid.NewGuid();
+                    importDetail.ImportId = import.Id;
+                    importDetail.ProductId = product.Id;
+                    importDetail.Quantity = 0;
+                    importDetail.UnitId = product.UnitId;
+                    importDetail.UnitPrice = product.DefaultPrice;
+                    importDetail.TotalPrice = importDetail.Quantity * importDetail.UnitPrice;
+                    importDetails.Add(importDetail);
+                    model.ImportDetails.Add(importDetail);
+                }
+                import.TotalPrice = model.ImportDetails.Local.Where(od => od.ImportId == import.Id).Sum(od => od.TotalPrice);
 
-            model.SaveChanges();
-            gcOrderDetail.DataSource = model.ImportDetails.Where(od => od.ImportId == import.Id).ToList();
+                model.SaveChanges();
+                gcOrderDetail.DataSource = model.ImportDetails.Where(od => od.ImportId == import.Id).ToList();
+            }
+            return;
+
+            //if (import == null)
+            //{
+            //    btnNewOrder.PerformClick();
+            //}
+            //Product product = (Product)lookUpProduct.GetSelectedDataRow();
+            //if (importDetails.Any(i => i.ProductId == product.Id))
+            //{
+            //    ImportDetail focusedOrderDetail = model.ImportDetails.Where(od => od.ProductId == product.Id && od.ImportId == import.Id).FirstOrDefault();
+            //    focusedOrderDetail.Quantity++;
+            //    focusedOrderDetail.TotalPrice = focusedOrderDetail.Quantity * focusedOrderDetail.UnitPrice;
+            //    //import.TotalPrice = model.ImportDetails.Local.Where(od => od.ImportId == import.Id).Sum(od => od.TotalPrice);
+            //}
+            //else
+            //{
+            //    ImportDetail importDetail = new ImportDetail();
+            //    importDetail.Id = Guid.NewGuid();
+            //    importDetail.ImportId = import.Id;
+            //    importDetail.ProductId = product.Id;
+            //    importDetail.Quantity = 0;
+            //    importDetail.UnitId = product.UnitId;
+            //    importDetail.UnitPrice = product.DefaultPrice;
+            //    importDetail.TotalPrice = importDetail.Quantity * importDetail.UnitPrice;
+            //    importDetails.Add(importDetail);
+            //    model.ImportDetails.Add(importDetail);
+            //}
+            //import.TotalPrice = model.ImportDetails.Local.Where(od => od.ImportId == import.Id).Sum(od => od.TotalPrice);
+
+            //model.SaveChanges();
+            //gcOrderDetail.DataSource = model.ImportDetails.Where(od => od.ImportId == import.Id).ToList();
         }
 
         private void btnNewOrder_Click(object sender, EventArgs e)
@@ -127,7 +163,7 @@ namespace MyPos.FunctionalForms
 
         private void btnSubmitOrder_Click(object sender, EventArgs e)
         {
-            InventoryHelpers.UPDATE_INVENTORY(importDetails, InventoryHelpers.ActionType.Import);
+            //InventoryHelpers.UPDATE_INVENTORY(importDetails, InventoryHelpers.ActionType.Import);
             //if (this.debtAmount > 0)
             //{
             //    DebtManagement debt = new DebtManagement();
@@ -142,6 +178,14 @@ namespace MyPos.FunctionalForms
             model.SaveChanges();
 
             gcOrderDetail.DataSource = model.ImportDetails.Where(od => od.ImportId == import.Id).ToList();
+            foreach (XtraForm form in this.ParentForm.MdiChildren)
+            {
+                foreach (GridControl ctr in form.Controls.OfType<GridControl>())
+                {
+                    ctr.Refresh();
+                    ctr.RefreshDataSource();
+                }
+            }
         }
 
         private void gvOrderDetail_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -193,7 +237,7 @@ namespace MyPos.FunctionalForms
         private void btnListOrder_Click(object sender, EventArgs e)
         {
             ucListItem uc = new ucListItem();
-            
+
             uc.ListFields = "Id,VendorName,ImportCode,ImportDateTime,TotalPrice";
             uc.ListColumns = "Id,Nhà cung cấp,Mã đơn hàng,Ngày nhập kho,Tổng tiền";
             uc.ListDataSources = ",Vendors,,,";
@@ -204,7 +248,6 @@ namespace MyPos.FunctionalForms
             {
                 Guid importId = Guid.Parse(uc.ReturnId.ToString());
                 this.import = model.Imports.Where(i => i.Id == importId).FirstOrDefault();
-                lblId.Text = this.import.ImportCode.ToString();
                 lblOrderCode.Text = this.import.ImportCode;
                 lblImportDate.Text = this.import.ImportDateTime.ToString("dd/MM/yyyy");
                 lookUpVendor.EditValue = this.import.VendorId;

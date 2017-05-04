@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmImport));
             this.importsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.khh_posDataSet = new MyPos.khh_posDataSet();
             this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
             this.gcOrderDetail = new DevExpress.XtraGrid.GridControl();
-            this.importDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gvOrderDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ProductId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpProduct = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -55,9 +53,11 @@
             this.btnNewOrder = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnSubmitOrder = new DevExpress.XtraEditors.SimpleButton();
-            this.lblId = new DevExpress.XtraEditors.LabelControl();
+            this.lblImportDate = new DevExpress.XtraEditors.LabelControl();
             this.lblOrderCode = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.importDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.vendorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.vendorsTableAdapter = new MyPos.khh_posDataSetTableAdapters.VendorsTableAdapter();
@@ -65,14 +65,11 @@
             this.unitsTableAdapter = new MyPos.khh_posDataSetTableAdapters.UnitsTableAdapter();
             this.productsTableAdapter = new MyPos.khh_posDataSetTableAdapters.ProductsTableAdapter();
             this.importsTableAdapter = new MyPos.khh_posDataSetTableAdapters.ImportsTableAdapter();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.lblImportDate = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.importsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khh_posDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
             this.groupControl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcOrderDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.importDetailsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrderDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
@@ -83,6 +80,7 @@
             this.groupControl6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpProduct.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpVendor.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.importDetailsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vendorsBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -111,7 +109,6 @@
             // 
             // gcOrderDetail
             // 
-            this.gcOrderDetail.DataSource = this.importDetailsBindingSource;
             this.gcOrderDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcOrderDetail.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gcOrderDetail.Location = new System.Drawing.Point(3, 261);
@@ -126,11 +123,6 @@
             this.gcOrderDetail.TabIndex = 13;
             this.gcOrderDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvOrderDetail});
-            // 
-            // importDetailsBindingSource
-            // 
-            this.importDetailsBindingSource.DataMember = "ImportDetails";
-            this.importDetailsBindingSource.DataSource = this.khh_posDataSet;
             // 
             // gvOrderDetail
             // 
@@ -262,7 +254,6 @@
             this.groupControl6.Controls.Add(this.btnNewOrder);
             this.groupControl6.Controls.Add(this.labelControl2);
             this.groupControl6.Controls.Add(this.btnSubmitOrder);
-            this.groupControl6.Controls.Add(this.lblId);
             this.groupControl6.Controls.Add(this.lblImportDate);
             this.groupControl6.Controls.Add(this.lblOrderCode);
             this.groupControl6.Controls.Add(this.labelControl4);
@@ -327,13 +318,12 @@
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Image = ((System.Drawing.Image)(resources.GetObject("btnAddProduct.Image")));
-            this.btnAddProduct.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             this.btnAddProduct.Location = new System.Drawing.Point(1118, 167);
             this.btnAddProduct.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddProduct.Name = "btnAddProduct";
-            this.btnAddProduct.Size = new System.Drawing.Size(96, 39);
+            this.btnAddProduct.Size = new System.Drawing.Size(171, 39);
             this.btnAddProduct.TabIndex = 14;
+            this.btnAddProduct.Text = "Chọn nhanh";
             this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
             // btnNewOrder
@@ -366,15 +356,16 @@
             this.btnSubmitOrder.Text = "Lưu phiếu nhập kho";
             this.btnSubmitOrder.Click += new System.EventHandler(this.btnSubmitOrder_Click);
             // 
-            // lblId
+            // lblImportDate
             // 
-            this.lblId.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblId.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblId.Location = new System.Drawing.Point(866, 133);
-            this.lblId.Margin = new System.Windows.Forms.Padding(4);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(0, 39);
-            this.lblId.TabIndex = 16;
+            this.lblImportDate.Appearance.Font = new System.Drawing.Font("Tahoma", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblImportDate.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblImportDate.Location = new System.Drawing.Point(842, 74);
+            this.lblImportDate.Margin = new System.Windows.Forms.Padding(4);
+            this.lblImportDate.Name = "lblImportDate";
+            this.lblImportDate.Size = new System.Drawing.Size(36, 33);
+            this.lblImportDate.TabIndex = 16;
+            this.lblImportDate.Text = "---";
             // 
             // lblOrderCode
             // 
@@ -387,6 +378,17 @@
             this.lblOrderCode.TabIndex = 16;
             this.lblOrderCode.Text = "---";
             // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelControl4.Location = new System.Drawing.Point(609, 74);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(213, 33);
+            this.labelControl4.TabIndex = 17;
+            this.labelControl4.Text = "Ngày nhập kho:";
+            // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -397,6 +399,11 @@
             this.labelControl1.Size = new System.Drawing.Size(217, 39);
             this.labelControl1.TabIndex = 17;
             this.labelControl1.Text = "Mã đơn hàng:";
+            // 
+            // importDetailsBindingSource
+            // 
+            this.importDetailsBindingSource.DataMember = "ImportDetails";
+            this.importDetailsBindingSource.DataSource = this.khh_posDataSet;
             // 
             // productsBindingSource1
             // 
@@ -428,28 +435,6 @@
             // 
             this.importsTableAdapter.ClearBeforeFill = true;
             // 
-            // labelControl4
-            // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl4.Location = new System.Drawing.Point(416, 74);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(213, 33);
-            this.labelControl4.TabIndex = 17;
-            this.labelControl4.Text = "Ngày nhập kho:";
-            // 
-            // lblImportDate
-            // 
-            this.lblImportDate.Appearance.Font = new System.Drawing.Font("Tahoma", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblImportDate.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblImportDate.Location = new System.Drawing.Point(649, 74);
-            this.lblImportDate.Margin = new System.Windows.Forms.Padding(4);
-            this.lblImportDate.Name = "lblImportDate";
-            this.lblImportDate.Size = new System.Drawing.Size(36, 33);
-            this.lblImportDate.TabIndex = 16;
-            this.lblImportDate.Text = "---";
-            // 
             // frmImport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -465,7 +450,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
             this.groupControl5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcOrderDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.importDetailsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrderDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
@@ -477,6 +461,7 @@
             this.groupControl6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpProduct.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpVendor.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.importDetailsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vendorsBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -518,7 +503,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.SimpleButton btnAddProduct;
         private DevExpress.XtraEditors.SimpleButton btnListOrder;
-        private DevExpress.XtraEditors.LabelControl lblId;
         private DevExpress.XtraEditors.LabelControl lblImportDate;
         private DevExpress.XtraEditors.LabelControl labelControl4;
     }
